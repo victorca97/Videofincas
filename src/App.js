@@ -10,11 +10,20 @@ function App() {
       </div>
       <form class="nombre-finca-formulario">
         <h2> Nombre de la Finca: </h2>
-        <input
+        {/* <input
           className='tarea-input'
           type='text'
           placeholder=''
           name='texto'
+        /> */}
+        <input 
+          className='tarea-input' 
+          type="text" 
+          role="combobox" 
+          size="1" 
+          name='texto' 
+          placeholder="Seleccione..." 
+          autocomplete="off"
         />
       </form>
       <div className='form-info'>

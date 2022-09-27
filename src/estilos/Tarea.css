@@ -1,5 +1,5 @@
 .tarea-contenedor {
-    width: 500px;
+    width: 1000px;
     min-height: 65px;
     background-color: #1b1b32;
     margin: 5px 0; /* superior e inferior - izquierdo y derecho */
@@ -31,6 +31,14 @@
     display: flex;
     align-items: center;
     overflow-wrap: anywhere;
+}
+
+.periodo-contenedor {
+    padding: 10px;
+}
+
+.importe-contenedor {
+    padding: 10px;
 }
 
 .tarea-icono {
