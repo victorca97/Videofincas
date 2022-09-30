@@ -15,7 +15,6 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
                 <input 
                     className='tarea-input' 
                     type="text" 
-                    role="combobox" 
                     size="1" 
                     name='texto' 
                     placeholder="Ingresar periodo" 
@@ -26,8 +25,7 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
                 className='importe-contenedor'>
                 <input 
                     className='tarea-input' 
-                    type="text" 
-                    role="combobox" 
+                    type="text"
                     size="1" 
                     name='texto' 
                     placeholder="Ingresar importe" 

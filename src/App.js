@@ -8,23 +8,22 @@ function App() {
       <div className="aplicacion-cabecera">
         <Logo />
       </div>
-      <form class="nombre-finca-formulario">
+      <form className="nombre-finca-formulario" autoComplete='off'>
         <h2> Nombre de la Finca: </h2>
-        {/* <input
-          className='tarea-input'
-          type='text'
-          placeholder=''
-          name='texto'
-        /> */}
-        <input 
-          className='tarea-input' 
-          type="text" 
-          role="combobox" 
-          size="1" 
-          name='texto' 
-          placeholder="Seleccione..." 
-          autocomplete="off"
-        />
+        <div className='autocomplete-wrapper'>
+          <input id="autocomplete-input" className="tarea-input" type="text" placeholder='- Seleccione ... -' />
+          <ul className="autocomplete-list">
+            {/* <li>
+              <button>United Kingdom</button>
+            </li>
+            <li>
+              <button>United States</button>
+            </li>
+            <li>
+              <button>Netherlands</button>
+            </li> */}
+          </ul>
+        </div>
       </form>
       <div className='form-info'>
         <h2> Servicios públicos </h2>
