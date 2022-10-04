@@ -17,8 +17,7 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
           type="text" 
           size="1" 
           name='texto' 
-          placeholder="Ingresar periodo" 
-          autocomplete="off"
+          placeholder="Ingresar periodo"
         />
       </div>
       <div
@@ -28,8 +27,7 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
           type="text"
           size="1" 
           name='texto' 
-          placeholder="Ingresar importe" 
-          autocomplete="off"
+          placeholder="Ingresar importe"
         />
       </div>
       <div 

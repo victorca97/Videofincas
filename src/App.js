@@ -10,7 +10,7 @@ function App() {
       <div className="contenedor-cabecera">
         <Logo />
       </div>
-      <form className="nombre-finca-formulario" autoComplete='off'>
+      <form className="nombre-finca-formulario">
         <h2> Nombre de la Finca: </h2>
         <div className='autocomplete-wrapper'>
           <Fincas/>
@@ -19,10 +19,10 @@ function App() {
       <div className='contenedor-agregarseccion'>
         <AgregarSeccion/>
       </div>
-      <div className='form-info'>
-        <h2> Servicios públicos </h2>
+      {/* <div className='form-info'>
+        <h2> Nueva Sección </h2>
         <ListaTareas />
-      </div>
+      </div> */}
     </>
     
   );
