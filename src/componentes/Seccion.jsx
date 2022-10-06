@@ -1,21 +1,13 @@
-import React from 'react'
-import '../estilos/Seccion.css'
+import React from 'react';
+import ListaTareas from './ListaTareas';
 
-function AgregarSeccion () {
-
-  const pulsar = (e)=>{
-    e.preventDefault()
-    console.log('Nueva seccion');
-  }
-
-  return (
-    <button 
-    className='seccion-boton'
-    type='button'
-    onClick={(e)=>{pulsar(e)}}>
-      Nueva Sección
-    </button>
-  );
+function Seccion({texto}) {
+    return (
+        <div className='form-info'>
+            <h2> {texto} </h2>
+            <ListaTareas />
+        </div>
+    );
 }
 
-export default AgregarSeccion;
+export default Seccion;

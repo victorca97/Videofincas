@@ -55,4 +55,4 @@ function ListaTareas() {
   );
 }
 
-export default ListaTareas
+export default ListaTareas;

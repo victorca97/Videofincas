@@ -1,10 +1,10 @@
 import './App.css';
 import Logo from './componentes/logo.jsx';
-import ListaTareas from './componentes/ListaTareas';
 import { Fincas } from './componentes/Fincas';
-import AgregarSeccion from './componentes/Seccion';
+import ListaSecciones from './componentes/ListaSecciones';
 
 function App() {
+
   return (
     <>
       <div className="contenedor-cabecera">
@@ -13,16 +13,10 @@ function App() {
       <form className="nombre-finca-formulario">
         <h2> Nombre de la Finca: </h2>
         <div className='autocomplete-wrapper'>
-          <Fincas/>
+          <Fincas />
         </div>
       </form>
-      <div className='contenedor-agregarseccion'>
-        <AgregarSeccion/>
-      </div>
-      {/* <div className='form-info'>
-        <h2> Nueva Sección </h2>
-        <ListaTareas />
-      </div> */}
+      <ListaSecciones/>
     </>
     
   );
