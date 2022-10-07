@@ -23,6 +23,8 @@ function ListaSecciones() {
                 {
                     secciones.map((seccion) =>
                     <Seccion
+                        key={seccion.id}
+                        id={seccion.id}
                         texto={seccion.texto}
                     />
                     )

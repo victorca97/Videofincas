@@ -8,7 +8,7 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
       <div 
         className='tarea-texto'
         onClick={() => completarTarea(id)}>
-        {texto}
+        {texto.charAt(0).toUpperCase() + texto.slice(1)}
       </div>
       <div
         className='periodo-contenedor'>

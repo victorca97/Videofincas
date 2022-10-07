@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../estilos/FormSeccion.css';
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 function AgregarSeccion (props) {
 
@@ -13,6 +13,7 @@ function AgregarSeccion (props) {
   const manejarEnvioSeccion = e => {
     e.preventDefault();
     const seccionNueva = {
+      id: uuidv4(),
       texto: input
     }
     props.onSubmit(seccionNueva);
