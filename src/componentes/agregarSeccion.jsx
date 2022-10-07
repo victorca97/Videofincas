@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../estilos/Seccion.css';
+import '../estilos/FormSeccion.css';
 // import { v4 as uuidv4 } from 'uuid';
 
 function AgregarSeccion (props) {
@@ -13,7 +13,7 @@ function AgregarSeccion (props) {
   const manejarEnvioSeccion = e => {
     e.preventDefault();
     const seccionNueva = {
-      texto: input,
+      texto: input
     }
     props.onSubmit(seccionNueva);
   }
@@ -29,8 +29,7 @@ function AgregarSeccion (props) {
         onChange={manejarCambioSeccion}
       />
       <button 
-        className='seccion-boton'
-        type='button'>
+        className='seccion-boton'>
         Nueva Sección
       </button>
     </form>

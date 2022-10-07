@@ -59,24 +59,3 @@ h2 {
   align-items: right;
   justify-content: right;
 }
-
-.contenedor-agregarseccion {
-  display: flex;
-  justify-content: center;
-  margin: 20px 20px;
-}
-
-.form-info {
-  width: auto;
-  min-height: auto;
-  background-color: #d0d0d5;
-  padding: 25px;
-  margin-bottom: 25px;
-  margin-right: 173px;
-  margin-left: 173px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 26px;
-  border-style: solid;
-  border-color: black;
-}

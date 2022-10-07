@@ -16,7 +16,7 @@ function App() {
           <Fincas />
         </div>
       </form>
-      <ListaSecciones/>
+      <ListaSecciones />
     </>
     
   );

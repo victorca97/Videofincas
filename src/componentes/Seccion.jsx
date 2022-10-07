@@ -1,5 +1,6 @@
 import React from 'react';
 import ListaTareas from './ListaTareas';
+import '../estilos/Seccion.css';
 
 function Seccion({texto}) {
     return (
