@@ -15,6 +15,11 @@ function ListaSecciones() {
 
         }
     }
+
+    const eliminarSeccion = id => {
+        const seccionesActualizadas = secciones.filter(seccion => seccion.id !== id);
+        setSecciones(seccionesActualizadas);
+    }
     
     return(
         <>
@@ -26,6 +31,7 @@ function ListaSecciones() {
                         key={seccion.id}
                         id={seccion.id}
                         texto={seccion.texto}
+                        eliminarSeccion={eliminarSeccion}
                     />
                     )
                 }
