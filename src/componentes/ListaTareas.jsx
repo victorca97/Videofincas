@@ -11,7 +11,7 @@ function ListaTareas() {
     if (tarea.texto.trim()) {
       tarea.texto = tarea.texto.trim();
 
-      const tareasActualizadas = [tarea, ...tareas];
+      const tareasActualizadas = [...tareas, tarea];
       setTareas(tareasActualizadas);
 
       // console.log("Tarea agregada");

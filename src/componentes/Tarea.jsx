@@ -3,6 +3,7 @@ import '../estilos/Tarea.css'
 import { AiFillCloseCircle } from "react-icons/ai";
 
 function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
+
   return (
     <div className={completada ? 'tarea-contenedor completada' : 'tarea-contenedor'}>
       <div 
@@ -14,9 +15,8 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
         className='periodo-contenedor'>
         <input 
           className='tarea-input' 
-          type="text" 
-          size="1" 
-          name='texto' 
+          type="date" 
+          name='periodo' 
           placeholder="Ingresar periodo"
         />
       </div>
@@ -24,9 +24,9 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
         className='importe-contenedor'>
         <input 
           className='tarea-input' 
-          type="text"
-          size="1" 
-          name='texto' 
+          type="number"
+          maxLength={ 5 }
+          name='importe' 
           placeholder="Ingresar importe"
         />
       </div>

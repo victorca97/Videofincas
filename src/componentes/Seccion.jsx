@@ -8,10 +8,10 @@ function Seccion({id, texto, eliminarSeccion}) {
         <div className='form-info'>
             <h2> {texto.charAt(0).toUpperCase() + texto.slice(1)} </h2>
             <ListaTareas />
-            <div 
-                className='seccion-contenedor-iconos'
-                onClick={() => eliminarSeccion(id)}>
-                <BsFillTrashFill className="seccion-icono"/>
+            <div className='seccion-contenedor-iconos'>
+                <BsFillTrashFill 
+                className="seccion-icono"
+                onClick={() => eliminarSeccion(id)}/>
             </div>
         </div>
     );

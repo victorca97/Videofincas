@@ -10,7 +10,7 @@ function ListaSecciones() {
         if (seccion.texto.trim()) {
             seccion.texto = seccion.texto.trim();
 
-            const seccionesActualizadas = [seccion, ...secciones];
+            const seccionesActualizadas = [...secciones, seccion];
             setSecciones(seccionesActualizadas);
 
         }
