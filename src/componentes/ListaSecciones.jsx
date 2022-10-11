@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AgregarSeccion from './agregarSeccion';
+import FormSeccion from './FormSeccion';
 import Seccion from './Seccion';
 
 function ListaSecciones() {
@@ -14,6 +14,7 @@ function ListaSecciones() {
             setSecciones(seccionesActualizadas);
 
         }
+
     }
 
     const eliminarSeccion = id => {
@@ -23,7 +24,7 @@ function ListaSecciones() {
     
     return(
         <>
-            <AgregarSeccion onSubmit={agregarSeccion}/>
+            <FormSeccion onSubmit={agregarSeccion}/>
             <div className='contenedor-secciones'>
                 {
                     secciones.map((seccion) =>

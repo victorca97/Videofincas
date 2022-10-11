@@ -11,21 +11,40 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
         onClick={() => completarTarea(id)}>
         {texto.charAt(0).toUpperCase() + texto.slice(1)}
       </div>
-      <div
-        className='periodo-contenedor'>
+      {/* <div
+        className='desde-contenedor'>
         <input 
-          className='tarea-input' 
+          className='desde-input' 
           type="date" 
           name='periodo' 
           placeholder="Ingresar periodo"
         />
       </div>
+      <p >al</p>
+      <div
+        className='hasta-contenedor'>
+        <input 
+          className='hasta-input' 
+          type="date" 
+          name='periodo' 
+          placeholder="Ingresar periodo"
+        />
+      </div> */}
+      <div
+        className='periodo-contenedor'>
+        <input
+          className='periodo-input'
+          type="text"
+          name='periodo'
+          placeholder='Ingresar periodo'
+        />
+
+      </div>
       <div
         className='importe-contenedor'>
         <input 
-          className='tarea-input' 
+          className='importe-input' 
           type="number"
-          maxLength={ 5 }
           name='importe' 
           placeholder="Ingresar importe"
         />

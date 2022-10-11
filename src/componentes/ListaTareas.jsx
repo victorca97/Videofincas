@@ -13,10 +13,8 @@ function ListaTareas() {
 
       const tareasActualizadas = [...tareas, tarea];
       setTareas(tareasActualizadas);
-
-      // console.log("Tarea agregada");
-      // console.log(tarea);
     }
+
   }
 
   const eliminarTarea = id => {

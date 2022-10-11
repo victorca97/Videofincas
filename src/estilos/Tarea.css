@@ -33,12 +33,36 @@
     overflow-wrap: anywhere;
 }
 
-.periodo-contenedor {
+/* .desde-contenedor, .hasta-contenedor {
     padding: 10px;
 }
 
-.importe-contenedor {
+p {
+    font-size: 20px;
+}
+
+.desde-input, .hasta-input {
+    width: 225px;
+    font-size: 18px;
+    background-color: white;
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #294A98;
+    outline: none;
+} */
+
+.importe-contenedor, .periodo-contenedor {
     padding: 10px;
+}
+
+.importe-input, .periodo-input {
+    width: 350px;
+    font-size: 18px;
+    background-color: white;
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #294A98;
+    outline: none;
 }
 
 .tarea-icono {
