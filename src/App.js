@@ -13,20 +13,25 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path='/administrador'>
-          <div className="contenedor-cabecera">
-            <Logo />
-          </div>
-          <form className="nombre-finca-formulario">
-            <h2> Nombre de la Finca: </h2>
-            <div className='autocomplete-wrapper'>
-              <Fincas />
+      <div className='contenedor-rutas'>
+        <Switch>
+          <Route path='/administrador'>
+            <div className="contenedor-cabecera">
+              <Logo />
             </div>
-          </form>
-          <ListaSecciones />
-        </Route>
-      </Switch>
+            <form className="nombre-finca-formulario">
+              <h2> Nombre de la Finca: </h2>
+              <div className='autocomplete-wrapper'>
+                <Fincas />
+              </div>
+            </form>
+            <ListaSecciones />
+          </Route>
+          <Route path='/propietarios'>
+            Hola Mundo
+          </Route>
+        </Switch>
+      </div>
     </Router>
     
   );
