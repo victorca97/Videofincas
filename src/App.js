@@ -1,10 +1,5 @@
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Route } from "react-router-dom";
 import Logo from './componentes/logo.jsx';
 import { Fincas } from './componentes/Fincas';
 import ListaSecciones from './componentes/ListaSecciones';
@@ -12,9 +7,8 @@ import ListaSecciones from './componentes/ListaSecciones';
 function App() {
 
   return (
-    <Router>
       <div className='contenedor-rutas'>
-        <Switch>
+          <Route exact path='/' />
           <Route path='/administrador'>
             <div className="contenedor-cabecera">
               <Logo />
@@ -30,9 +24,7 @@ function App() {
           <Route path='/propietarios'>
             Hola Mundo
           </Route>
-        </Switch>
       </div>
-    </Router>
     
   );
 }
