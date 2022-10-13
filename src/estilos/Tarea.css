@@ -1,0 +1,77 @@
+.tarea-contenedor {
+    width: 1000px;
+    min-height: 65px;
+    background-color: #1b1b32;
+    margin: 5px 0; /* superior e inferior - izquierdo y derecho */
+    padding: 8px 15px 8px 20px; /* superior - derecha - inferior - izquierda */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 7px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.tarea-contenedor:nth-child(3n+1) {
+    background-color: #1b1b32;
+}
+
+.tarea-contenedor:nth-child(3n+2) {
+    background-color: #2a2a40;
+}
+
+.tarea-contenedor:nth-child(3n+3) {
+    background-color: #3b3b4f;
+}
+
+.tarea-texto {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    overflow-wrap: anywhere;
+}
+
+/* .desde-contenedor, .hasta-contenedor {
+    padding: 10px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.desde-input, .hasta-input {
+    width: 225px;
+    font-size: 18px;
+    background-color: white;
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #294A98;
+    outline: none;
+} */
+
+.importe-contenedor, .periodo-contenedor {
+    padding: 10px;
+}
+
+.importe-input, .periodo-input {
+    width: 350px;
+    font-size: 18px;
+    background-color: white;
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #294A98;
+    outline: none;
+}
+
+.tarea-icono {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+}
+
+.tarea-contenedor.completada {
+    background-color: #5a01a7;
+    text-decoration: line-through;
+}

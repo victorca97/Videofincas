@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route } from "react-router-dom";
+import Logo from './componentes/logo.jsx';
+import { Fincas } from './componentes/Fincas';
+import ListaSecciones from './componentes/ListaSecciones';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='contenedor-rutas'>
+          <Route exact path='/' />
+          <Route path='/administrador'>
+            <div className="contenedor-cabecera">
+              <Logo />
+            </div>
+            <form className="nombre-finca-formulario">
+              <h2> Nombre de la Finca: </h2>
+              <div className='autocomplete-wrapper'>
+                <Fincas />
+              </div>
+            </form>
+            <ListaSecciones />
+          </Route>
+          <Route path='/propietarios'>
+            Hola Mundo
+          </Route>
+      </div>
+    
   );
 }
 
