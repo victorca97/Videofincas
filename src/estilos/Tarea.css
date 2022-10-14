@@ -1,6 +1,6 @@
 .tarea-contenedor {
-    width: 1000px;
-    min-height: 65px;
+    width: 800px;
+    min-height: 52px;
     background-color: #1b1b32;
     margin: 5px 0; /* superior e inferior - izquierdo y derecho */
     padding: 8px 15px 8px 20px; /* superior - derecha - inferior - izquierda */
@@ -27,7 +27,7 @@
 .tarea-texto {
     width: 100%;
     height: 100%;
-    font-size: 20px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     overflow-wrap: anywhere;
@@ -56,8 +56,8 @@ p {
 }
 
 .importe-input, .periodo-input {
-    width: 350px;
-    font-size: 18px;
+    width: 280px;
+    font-size: 14.4px;
     background-color: white;
     padding: 14px 32px 14px 16px;
     border-radius: 4px 0 0 4px;
@@ -66,8 +66,8 @@ p {
 }
 
 .tarea-icono {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     margin: 5px;
 }
 

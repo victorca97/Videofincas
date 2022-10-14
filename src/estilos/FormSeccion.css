@@ -6,7 +6,7 @@
 
 .seccion-boton {
     padding: 16px;
-    font-size: 18px;
+    font-size: 14.4px;
     font-family: Roboto, sans-serif;
     border: none;
     border-radius: 0 4px 4px 0;
@@ -18,8 +18,8 @@
 }
 
 .seccion-input {
-    width: 350px;
-    font-size: 18px;
+    width: 280px;
+    font-size: 14.4px;
     background-color: white;
     padding: 14px 32px 14px 16px;
     border-radius: 4px 0 0 4px;

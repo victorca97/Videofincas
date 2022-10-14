@@ -1,13 +1,14 @@
+import React from 'react';
+import '../estilos/FormPropietario.css';
+
 function FormPropietario (props) {
     return (
         <form className="form-propietarios">
-            <div>
-                <h2> {props.nombre} </h2>
-                <input 
-                    className='prop-input'
-                    type='text'
-                    placeholder=''/>
-            </div>
+            <h2 className='h2-propietario'> {props.nombre} </h2>
+            <input 
+                className='input-propietario'
+                type='text'
+                placeholder=''/>
         </form>
     );
 }

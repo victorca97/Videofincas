@@ -6,7 +6,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 function Seccion({id, texto, eliminarSeccion}) {
     return (
         <div className='form-info'>
-            <h2> {texto.charAt(0).toUpperCase() + texto.slice(1)} </h2>
+            <h3> {texto.charAt(0).toUpperCase() + texto.slice(1)} </h3>
             <ListaTareas />
             <div className='seccion-contenedor-iconos'>
                 <BsFillTrashFill 
