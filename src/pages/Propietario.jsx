@@ -14,17 +14,19 @@ function Propietario () {
             <FormPropietario
                 nombre='Nombres y Apellidos:' />
             <form className="tipodoc-formulario">
-                <h3> Tipo de Documento: </h3>
+                <h2 className='h2-propietario'> Tipo de Documento: </h2>
                 <div className='autocomplete-wrapper'>
                     <TipoDoc />
                 </div>
             </form>
             <FormPropietario
-                nombre='Nro. Documento:' />
+                nombre='Nro. Documento:'
+                longitud={20} />
             <FormPropietario
                 nombre='Correo Electrónico:' />
             <FormPropietario
-                nombre='Nro. Celular:' />
+                nombre='Nro. Celular:'
+                longitud={20} />
             <FormPropietario
                 nombre='Finca:' />
             <FormPropietario

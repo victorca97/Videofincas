@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 25px;
-    justify-content: center;
+    margin-left: 30%;
 }
 
 .h2-propietario {
@@ -14,10 +14,14 @@
 
 .input-propietario {
     width: 280px;
+    height: 35px;
     font-size: 14.4px;
     background-color: white;
     padding: 3.5px 8px 3.5px 4px;
     border-radius: 4px 0 0 4px;
     border: 1px solid black;
     outline: none;
+    margin-left: auto;
+    margin-right: 45%;
+    align-self: center;
 }
