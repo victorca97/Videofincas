@@ -1,6 +1,7 @@
 import Logo from "../componentes/logo";
 import { Fincas } from "../componentes/Fincas";
 import ListaSecciones from "../componentes/ListaSecciones";
+import SubirImg from "../componentes/SubirImg";
 import '../App.css';
 
 function Admin() {
@@ -17,6 +18,7 @@ function Admin() {
                 </div>
             </form>
             <ListaSecciones />
+            <SubirImg />
         </>
     );
 }
