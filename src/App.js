@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
-import Admin from './pages/Admin';
+import Login from './pages/Login';
+import Recibo from './pages/Recibo';
 import Propietario from './pages/Propietario';
 import Finca from './pages/Finca';
 
@@ -9,14 +10,10 @@ function App() {
     <>
       <Switch>
         <Route exact path='/'>
-          <>
-            <div>
-              Pantalla inicial
-            </div>
-          </>
+          <Login />
         </Route>
-        <Route path='/administrador'>
-          <Admin />
+        <Route path='/recibo'>
+          <Recibo />
         </Route>
         <Route path='/propietario'>
           <Propietario />

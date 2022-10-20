@@ -4,12 +4,12 @@ import SubirImg from '../componentes/SubirImg';
 import Logo from "../componentes/logo";
 import '../App.css';
 
-function Propietario () {
+function Finca () {
     return (
         <>
             <div className="contenedor-cabecera">
                <Logo 
-                 nombre='Formulario de las fincas'/>
+                 nombre='Formulario de las Fincas'/>
             </div>
             <FormPropietario
                 nombre='Nombres de la Finca:' />
@@ -21,4 +21,4 @@ function Propietario () {
     );
 }
 
-export default Propietario;
+export default Finca;

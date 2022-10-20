@@ -31,7 +31,7 @@ h3 {
   color: #294A98;
   font-size: 25px;
   margin: 10px 10px;
-  align-self: center;
+  text-align: left;
 }
 
 .nombre-finca-formulario {
