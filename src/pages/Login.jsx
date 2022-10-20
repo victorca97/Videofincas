@@ -71,11 +71,11 @@ const Login = () => {
             ) : (
                 <div id="contenedor-login">
                     <div className='contenedor-cabecera'>
-                        <Logo nombre='Login'/>
+                        <Logo nombre=''/>
                     </div>
                     <section>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                        <h1 id='titulo-login'>Iniciar Sesion</h1>
+                        <h1 id='titulo-login'>Inicio de Sesión</h1>
                         <form id="form-login" onSubmit={handleSubmit}>
                             <label htmlFor="username">Usuario:</label>
                             <input

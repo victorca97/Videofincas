@@ -8,7 +8,7 @@ section {
     width: 100%;
     max-width: 420px;
     min-height: 400px;
-    margin-top: 60px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -48,6 +48,7 @@ textarea {
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
+  margin-bottom: 15px;
 }
 
 label[htmlFor="username"],
