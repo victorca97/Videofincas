@@ -18,7 +18,6 @@ function Admin() {
                 </div>
             </form>
             <ListaSecciones />
-            <SubirImg />
         </>
     );
 }

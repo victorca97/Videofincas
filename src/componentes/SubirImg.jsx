@@ -1,96 +1,44 @@
-import React, { useRef } from "react";
-import { useState } from "react";
+import React, { Component, useRef } from "react";
+import '../estilos/SubirImg.css';
 
-function SubirImg() {
-    const [images, setimages] = useState([]);
-  
-    const changeInput = (e) => {
-      //esto es el indice que se le dará a cada imagen, a partir del indice de la ultima foto
-      let indexImg;
-  
-      //aquí evaluamos si ya hay imagenes antes de este input, para saber en dónde debe empezar el index del proximo array
-      if (images.length > 0) {
-        indexImg = images[images.length - 1].index + 1;
-      } else {
-        indexImg = 0;
+export class SubirImg extends Component {
+  state = {
+    defaultImg : 'https://images.vexels.com/media/users/3/157613/isolated/lists/9aa6a8344b89e45d1adbe578dd0fc2dd-icono-de-casa-de-edificio-alto.png'
+  }
+
+  imageHandler = (e) =>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2){
+        this.setState({defaultImg: reader.result})
       }
-  
-      // let newImgsToState = readmultifiles(e, indexImg);
-      let newImgsState = [images[0]];
-      setimages(newImgsState);
-  
-      console.log(newImgsState);
-    };
-  
-    function readmultifiles(e, indexInicial) {
-      const files = e.currentTarget.files;
-  
-      //el array con las imagenes nuevas
-      const arrayImages = [];
-  
-      Object.keys(files).forEach((i) => {
-        const file = files[i];
-  
-        let url = URL.createObjectURL(file);
-  
-        //console.log(file);
-        arrayImages.push({
-          index: indexInicial,
-          name: file.name,
-          url,
-          file
-        });
-  
-        indexInicial++;
-      });
-  
-      //despues de haber concluido el ciclo retornamos las nuevas imagenes
-      return arrayImages;
     }
-  
-    function deleteImg(indice) {
-      //console.log("borrar img " + indice);
-  
-      const newImgs = images.filter(function (element) {
-        return element.index !== indice;
-      });
-      console.log(newImgs);
-      setimages(newImgs);
-    }
-  
+    reader.readAsDataURL(e.target.files[0])
+  }
+
+  render() {
+    const {defaultImg} = this.state
+    
     return (
-      <div className="container-fluid">
-        <br></br>
-        {/* INPUT IMAGES */}
-        <label className="btn btn-warning">
-          <span>Seleccionar imagen </span>
-          <input hidden type="file" multiple onChange={changeInput}></input>
-        </label>
-  
-        {/* VIEW IMAGES */}
-        <div className="row">
-          {images.map((imagen) => (
-            <div className="col-6 col-sm-4 col-lg-3 square" key={imagen.index}>
-              <div className="content_img">
-                <button
-                  className="position-absolute btn btn-danger"
-                  onClick={deleteImg.bind(this, imagen.index)}
-                >
-                  x
-                </button>
-                <img
-                  alt="algo"
-                  src={imagen.url}
-                  data-toggle="modal"
-                  data-target="#ModalPreViewImg"
-                  className="img-responsive"
-                ></img>
-              </div>
+      <div className="contenedor-img">
+        <div className="contenedor-subirimg">
+            <div className="contenedor-mensaje-subirimg">
+              <h1 className="mensaje-subirimg"> Foto de la Finca </h1>
             </div>
-          ))}
+            <div className="img-holder">
+              <img src={defaultImg} alt="" id="img" className="img" />
+            </div>
+            <input type="file" name="img-upload" id="input" accept="image/*" onChange={this.imageHandler}/>
+            <div className="label">
+              <label htmlFor="input" className="image-upload">
+                <i className="material-icons">add_photo_alternate</i>
+                Seleccionar imagen
+              </label>
+            </div>
         </div>
       </div>
     );
   }
+}
 
 export default SubirImg;

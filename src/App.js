@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import Admin from './pages/Admin';
 import Propietario from './pages/Propietario';
+import Finca from './pages/Finca';
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path='/propietario'>
           <Propietario />
+        </Route>
+        <Route path='/finca'>
+          <Finca />
         </Route>
       </Switch>
     </>
