@@ -57,10 +57,10 @@ const Login = () => {
             errRef.current.focus();
         }
     }
-
+    
     return (
         <>
-            {success ? (
+            {/* {success ? (
                 <section>
                     <h1>Te has logeado satisfactoriamente</h1>
                     <br />
@@ -68,15 +68,16 @@ const Login = () => {
                         <a href="#">Menu Principal</a>
                     </p>
                 </section>
-            ) : (
+            ) : ( */}
                 <div id="contenedor-login">
                     <div className='contenedor-cabecera'>
                         <Logo nombre=''/>
                     </div>
                     <section>
-                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                         <h1 id='titulo-login'>Inicio de Sesión</h1>
-                        <form id="form-login" onSubmit={handleSubmit}>
+                        <form id="form-login" > 
+                        {/* onSubmit={handleSubmit} */}
                             <label htmlFor="username">Usuario:</label>
                             <input
                                 type="text"
@@ -96,12 +97,12 @@ const Login = () => {
                                 value={pwd}
                                 required
                             />
-                            <button id="btn-login">Ingresar</button>
+                            <a id="btn-login" href="http://localhost:3000/Videofincas/#/home">Ingresar</a>
                         </form>
                     </section>
-                    <div id='rellenuto'>‎ </div>
+                    <div id='footer'>‎ </div>
                 </div>
-            )}
+            {/* )} */}
         </>
     );
 }
