@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../componentes/AuthProvider";
 import '../estilos/Login.css';
 import '../App.css';
@@ -57,6 +58,13 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+
+    const navigate = useNavigate();
+
+    const abrirMenu = e => {
+        e.preventDefault();                               
+        navigate("/Videofincas/home");
+    };
     
     return (
         <>
@@ -76,7 +84,7 @@ const Login = () => {
                     <section>
                         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                         <h1 id='titulo-login'>Inicio de Sesión</h1>
-                        <form id="form-login" action="https://victorca97.github.io/Videofincas/home"> 
+                        <form id="form-login" onSubmit={abrirMenu}> 
                         {/* onSubmit={handleSubmit} */}
                             <label htmlFor="username">Usuario:</label>
                             <input

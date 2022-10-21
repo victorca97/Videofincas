@@ -78,3 +78,61 @@ h3 {
 .autocomplete-wrapper {
   text-align-last: center;
 }
+
+.contenedor-btn-retry {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-retry {
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  padding: 16px;
+  margin: 10px;
+  font-size: 14.4px;
+  font-family: Roboto, sans-serif;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: #294A98;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+#lista-rutas {
+  margin-top: 5%;
+}
+
+#elemento-lista-finca,
+#elemento-lista-recibo,
+#elemento-lista-propietario{
+  margin: 30px 30px;
+}
+
+#link-finca,
+#link-recibo,
+#link-propietario {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: #294A98;
+}
+
+.StolzlMedium {
+  color: #294A98;
+  text-align-last: center;
+}
+
+.msje-descarga {
+  text-align: center;
+}
+
+.mb-4 {
+  color: black;
+  width: auto;
+}

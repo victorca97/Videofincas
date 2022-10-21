@@ -4,6 +4,7 @@ import Recibo from './pages/Recibo';
 import Propietario from './pages/Propietario';
 import Finca from './pages/Finca';
 import Menu from "./pages/Menu";
+import Descarga from "./pages/Descarga";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Route path='Videofincas/recibo' element={<Recibo />} />
       <Route path='Videofincas/propietario' element={<Propietario />} />
       <Route path='Videofincas/finca' element={<Finca />} />
+      <Route path='Videofincas/descarga' element={<Descarga />} />
     </Routes>
   );
 }
