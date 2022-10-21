@@ -76,7 +76,7 @@ const Login = () => {
                     <section>
                         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                         <h1 id='titulo-login'>Inicio de Sesión</h1>
-                        <form id="form-login" > 
+                        <form id="form-login" action="https://victorca97.github.io/Videofincas/#/home"> 
                         {/* onSubmit={handleSubmit} */}
                             <label htmlFor="username">Usuario:</label>
                             <input
@@ -97,7 +97,7 @@ const Login = () => {
                                 value={pwd}
                                 required
                             />
-                            <a id="btn-login" href="http://localhost:3000/Videofincas/#/home">Ingresar</a>
+                            <button id="btn-login" >Ingresar</button>
                         </form>
                     </section>
                     <div id='footer'>‎ </div>
