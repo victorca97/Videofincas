@@ -7,14 +7,14 @@ function ListaSecciones({listaSecciones,setListaSecciones}) {
     //const [update,setUpdate] = useState(fincaSelect);
     const agregarSeccion = seccion => {
         console.log(secciones)
-        if (seccion.texto.trim()) {
-            seccion.texto = seccion.texto.trim();
+        if (seccion.nombre.trim()) {
+            seccion.nombre = seccion.nombre.trim();
             const seccionesActualizadas = [...listaSecciones, seccion];
             setListaSecciones(seccionesActualizadas);
         }
     }
-    const eliminarSeccion = id => {
-        const seccionesActualizadas = listaSecciones.filter(seccion => seccion.id !== id);
+    const eliminarSeccion = ID_Seccion => {
+        const seccionesActualizadas = listaSecciones.filter(seccion => seccion.ID_Seccion !== ID_Seccion);
         setListaSecciones(seccionesActualizadas);
     }
 
@@ -25,9 +25,10 @@ function ListaSecciones({listaSecciones,setListaSecciones}) {
                 {
                     listaSecciones.map((seccion) =>                    
                     <Seccion
-                        key={seccion.id}
-                        id={seccion.id}
-                        texto={seccion.texto}
+                        key={seccion.ID_Seccion}
+                        ID_Seccion={seccion.ID_Seccion}
+                        nombre={seccion.nombre}
+                        Subsecciones ={seccion.Subsecciones}
                         eliminarSeccion={eliminarSeccion}
                     />
                     )

@@ -13,8 +13,9 @@ function FormSeccion (props) {
   const manejarEnvioSeccion = e => {
     e.preventDefault();
     const seccionNueva = {
-      id: uuidv4(),
-      texto: input
+      ID_Seccion: uuidv4(),
+      nombre: input,
+      Subsecciones: []
     }
     props.onSubmit(seccionNueva);
   }
