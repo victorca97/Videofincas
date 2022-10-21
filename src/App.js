@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import Login from './pages/Login';
 import Recibo from './pages/Recibo';
 import Propietario from './pages/Propietario';
@@ -8,23 +8,13 @@ import Menu from "./pages/Menu";
 function App() {
 
   return (
-      <Switch>
-        <Route exact path='/'>
-          <Login />
-        </Route>
-        <Route path='/home'>
-          <Menu />
-        </Route>
-        <Route path='/recibo'>
-          <Recibo />
-        </Route>
-        <Route path='/propietario'>
-          <Propietario />
-        </Route>
-        <Route path='/finca'>
-          <Finca />
-        </Route>
-      </Switch>
+    <Routes>
+      <Route path='Videofincas/' element={<Login />} />
+      <Route path='Videofincas/home' element={<Menu />} />
+      <Route path='Videofincas/recibo' element={<Recibo />} />
+      <Route path='Videofincas/propietario' element={<Propietario />} />
+      <Route path='Videofincas/finca' element={<Finca />} />
+    </Routes>
   );
 }
 
