@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import FormSeccion from './FormSeccion';
 import Seccion from './Seccion';
 
-function ListaSecciones() {
-    const [secciones, setSecciones] = useState([]);
-
+function ListaSecciones({listaSecciones,setListaSecciones}) {
+    const [secciones, setSecciones] = useState([]); 
+    //const [update,setUpdate] = useState(fincaSelect);
     const agregarSeccion = seccion => {
-
+        console.log(secciones)
         if (seccion.texto.trim()) {
             seccion.texto = seccion.texto.trim();
-
-            const seccionesActualizadas = [...secciones, seccion];
-            setSecciones(seccionesActualizadas);
-
+            const seccionesActualizadas = [...listaSecciones, seccion];
+            setListaSecciones(seccionesActualizadas);
         }
-
     }
-
     const eliminarSeccion = id => {
-        const seccionesActualizadas = secciones.filter(seccion => seccion.id !== id);
-        setSecciones(seccionesActualizadas);
+        const seccionesActualizadas = listaSecciones.filter(seccion => seccion.id !== id);
+        setListaSecciones(seccionesActualizadas);
     }
-    
+
     return(
         <>
             <FormSeccion onSubmit={agregarSeccion}/>
             <div className='contenedor-secciones'>
                 {
-                    secciones.map((seccion) =>
+                    listaSecciones.map((seccion) =>                    
                     <Seccion
                         key={seccion.id}
                         id={seccion.id}
