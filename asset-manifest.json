@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Videofincas/static/css/main.156f0afc.css",
-    "main.js": "/Videofincas/static/js/main.563fc1ce.js",
+    "main.js": "/Videofincas/static/js/main.7d062db4.js",
     "static/media/finca-background.jpg": "/Videofincas/static/media/finca-background.013113f3f5bc7f4dd22d.jpg",
     "static/media/logo_videofinca.png": "/Videofincas/static/media/logo_videofinca.c282b7d39603dad39d96.png",
     "index.html": "/Videofincas/index.html",
     "main.156f0afc.css.map": "/Videofincas/static/css/main.156f0afc.css.map",
-    "main.563fc1ce.js.map": "/Videofincas/static/js/main.563fc1ce.js.map"
+    "main.7d062db4.js.map": "/Videofincas/static/js/main.7d062db4.js.map"
   },
   "entrypoints": [
     "static/css/main.156f0afc.css",
-    "static/js/main.563fc1ce.js"
+    "static/js/main.7d062db4.js"
   ]
 }
