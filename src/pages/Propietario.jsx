@@ -2,8 +2,8 @@ import React from 'react';
 import FormPropietario from "../componentes/FormPropietario";
 import { TipoDoc } from '../componentes/TipoDoc';
 import Logo from "../componentes/logo";
+import Regresar from '../componentes/Regresar';
 import '../App.css';
-import {FcUndo} from "react-icons/fc";
 
 function Propietario () {
     return (
@@ -12,9 +12,8 @@ function Propietario () {
                <Logo 
                  nombre='Formulario del Propietario'/>
             </div>
-            <div className="contenedor-btn-retry">
-                <FcUndo className="btn-retry" />
-            </div>
+            <Regresar
+                ruta='home'/>
             <FormPropietario
                 nombre='Nombres y Apellidos:' />
             <form className="tipodoc-formulario">
@@ -40,7 +39,9 @@ function Propietario () {
             <FormPropietario
                 nombre='Participación (%):'
                 longitud={5} />
-            <button className='btn-guardar'>GUARDAR</button>
+            <div className='contenedor-btn-guardar'>
+                <button className='btn-guardar'>GUARDAR</button>
+            </div>
         </>    
     );
 }

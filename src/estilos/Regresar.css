@@ -1,0 +1,13 @@
+#btn-regresar {
+    padding: 12px;
+    margin: 2rem;
+    font-size: 14.4px;
+    font-family: Roboto, sans-serif;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
+    background: #294A98;
+    color: #fff;
+    text-transform: capitalize;
+}

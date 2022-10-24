@@ -5,11 +5,11 @@ import Axios from 'axios'
 
 import {MdPictureAsPdf} from 'react-icons/md'
 import {SiMicrosoftexcel} from 'react-icons/si'
-import {FcUndo} from "react-icons/fc";
 import { Link } from 'react-router-dom';
 
 //Assets
 import DownArrow from '../imagenes/Arrow-down.svg';
+import Regresar from '../componentes/Regresar.jsx';
 
 export default function Descarga() {
 
@@ -70,9 +70,8 @@ export default function Descarga() {
             <div className='contenedor-cabecera'>
                 <Logo nombre='Formulario para Recibos' />
             </div>
-            <div className="contenedor-btn-retry">
-                <FcUndo className="btn-retry" />
-            </div>
+            <Regresar 
+                ruta="recibo"/>
             <div >
                 <h1 className="StolzlMedium">El proceso se realizó exitosamente</h1>
                 <h2>Su Ticket es el Número:</h2>

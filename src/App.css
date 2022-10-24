@@ -16,7 +16,7 @@ h1 {
   color: white;
   font-size: 40px;
   font-family: Century,Arial,Helvetica,sans-serif;
-  text-align: right;
+  /* text-align: right; */
   margin: 32.5px 30px;
 }
 
@@ -59,6 +59,7 @@ h3 {
   width: 100%;
   margin: 20px;
   display: flex;
+  justify-content: space-between;
 }
 
 .videofincas-logo {
@@ -69,9 +70,9 @@ h3 {
 }
 
 .titulo-principal {
-  width: 1040px;
+  width: auto;
   height: 100px;
-  align-items: right;
+  /* align-items: right; */
   justify-content: right;
 }
 
@@ -79,16 +80,8 @@ h3 {
   text-align-last: center;
 }
 
-.contenedor-btn-retry {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.btn-retry {
-  width: 50px;
-  height: 50px;
-  margin: 10px 10px;
-  cursor: pointer;
+.contenedor-btn-guardar {
+  text-align: center;
 }
 
 .btn-guardar {
@@ -107,6 +100,7 @@ h3 {
 
 #lista-rutas {
   margin-top: 5%;
+  text-align-last: center;
 }
 
 #elemento-lista-finca,

@@ -81,34 +81,37 @@ const Login = () => {
                     <div className='contenedor-cabecera'>
                         <Logo nombre=''/>
                     </div>
-                    <section>
-                        {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-                        <h1 id='titulo-login'>Inicio de Sesión</h1>
-                        <form id="form-login" onSubmit={abrirMenu}> 
-                        {/* onSubmit={handleSubmit} */}
-                            <label htmlFor="username">Usuario:</label>
-                            <input
-                                type="text"
-                                id="username"
-                                ref={userRef}
-                                autoComplete="off"
-                                onChange={(e) => setUser(e.target.value)}
-                                value={user}
-                                required
-                            />
+                    <div className='contenedor-seccion'>
+                        <div id='footer'>‎ </div>
+                        <div className='seccion'>
+                            {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+                            <h1 id='titulo-login'>Inicio de Sesión</h1>
+                            <form id="form-login" onSubmit={abrirMenu}> 
+                            {/* onSubmit={handleSubmit} */}
+                                <label htmlFor="username">Usuario:</label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    ref={userRef}
+                                    autoComplete="off"
+                                    onChange={(e) => setUser(e.target.value)}
+                                    value={user}
+                                    required
+                                />
 
-                            <label htmlFor="password">Contraseña:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                onChange={(e) => setPwd(e.target.value)}
-                                value={pwd}
-                                required
-                            />
-                            <button id="btn-login" >Ingresar</button>
-                        </form>
-                    </section>
-                    <div id='footer'>‎ </div>
+                                <label htmlFor="password">Contraseña:</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    onChange={(e) => setPwd(e.target.value)}
+                                    value={pwd}
+                                    required
+                                />
+                                <button id="btn-login" >Ingresar</button>
+                            </form>
+                        </div>
+                        <div id='footer'>‎ </div>
+                    </div>
                 </div>
             {/* )} */}
         </>

@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-#contenedor-login {
+.contenedor-seccion {
     background-image: url(../imagenes/finca-background.jpg);
+    text-align: -webkit-center; 
 }
 
-section {
-    width: 100%;
+.seccion {
+    width: auto;
     max-width: 420px;
     min-height: 400px;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    /* justify-content: center; */
     padding: 1rem;
     background-color: #294A98;
     border-radius: 20.8px;
@@ -20,7 +21,7 @@ section {
 }
 
 #footer{
-    margin-top: 33px;
+    height: 25px;
 }
 
 
@@ -49,6 +50,7 @@ textarea {
   padding: 0.25rem;
   border-radius: 0.5rem;
   margin-bottom: 15px;
+  text-align: -webkit-center;
 }
 
 label[htmlFor="username"],
