@@ -8,13 +8,14 @@ function FormSeccion (props) {
 
   const manejarCambioSeccion = e => {
     setInput(e.target.value);
-  }
+    }
 
   const manejarEnvioSeccion = e => {
     e.preventDefault();
     const seccionNueva = {
-      id: uuidv4(),
-      texto: input
+      ID_Seccion: uuidv4(),
+      nombre: input,
+      Subsecciones: []
     }
     props.onSubmit(seccionNueva);
   }

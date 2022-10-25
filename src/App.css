@@ -14,14 +14,22 @@ body {
 
 h1 {
   color: white;
-  font-size: 50px;
+  font-size: 40px;
   font-family: Century,Arial,Helvetica,sans-serif;
   text-align: right;
-  margin: 32.5px 20px;
+  margin: 32.5px 30px;
 }
 
 h2 {
   color: #294A98;
+  font-size: 27.5px;
+  margin: 10px 10px;
+  align-self: center;
+}
+
+h3 {
+  color: #294A98;
+  font-size: 25px;
   margin: 10px 10px;
   align-self: center;
 }
@@ -30,6 +38,13 @@ h2 {
   display: flex;
   justify-content: center;
   margin: 25px 20px;
+}
+
+.tipodoc-formulario {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px;
+  margin-left: 30%;
 }
 
 .contenedor-cabecera {
@@ -47,15 +62,19 @@ h2 {
 }
 
 .videofincas-logo {
-  width: 371px;
-  height: 125px;
+  width: 296.8px;
+  height: 100px;
   align-items: left;
   justify-content: left;
 }
 
 .titulo-principal {
-  width: 1300px;
-  height: 125px;
+  width: 1040px;
+  height: 100px;
   align-items: right;
   justify-content: right;
+}
+
+.autocomplete-wrapper {
+  text-align-last: center;
 }
