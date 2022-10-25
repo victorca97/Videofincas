@@ -8,7 +8,7 @@ function FormSeccion (props) {
 
   const manejarCambioSeccion = e => {
     setInput(e.target.value);
-  }
+    }
 
   const manejarEnvioSeccion = e => {
     e.preventDefault();

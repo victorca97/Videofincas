@@ -1,15 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+.contenedor-login{
+    height: 100vh;
+}
+
 .contenedor-seccion {
     background-image: url(../imagenes/finca-background.jpg);
+    background-repeat: no-repeat;
     text-align: -webkit-center; 
+    height: 100vh;
 }
 
 .seccion {
     width: auto;
     max-width: 420px;
     min-height: 400px;
-    /* margin-top: 25px; */
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */

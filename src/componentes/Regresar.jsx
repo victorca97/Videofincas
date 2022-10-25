@@ -12,9 +12,11 @@ function Regresar(props) {
     };
 
     return (
-        <button id="btn-regresar" onClick={linkear}>
-            Regresar
-        </button>
+        <div className="contenedor-btn-regresar">
+            <button id="btn-regresar" onClick={linkear}>
+                ← Regresar
+            </button>
+        </div>
     );
 }
 

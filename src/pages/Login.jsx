@@ -81,8 +81,8 @@ const Login = () => {
                     <div className='contenedor-cabecera'>
                         <Logo nombre=''/>
                     </div>
-                    <div className='contenedor-seccion'>
-                        <div id='footer'>‎ </div>
+                    <div className='contenedor-seccion img-thumbnail'>
+                        {/* <div id='footer'>‎ </div> */}
                         <div className='seccion'>
                             {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                             <h1 id='titulo-login'>Inicio de Sesión</h1>
@@ -110,7 +110,7 @@ const Login = () => {
                                 <button id="btn-login" >Ingresar</button>
                             </form>
                         </div>
-                        <div id='footer'>‎ </div>
+                        {/* <div id='footer'>‎ </div> */}
                     </div>
                 </div>
             {/* )} */}
