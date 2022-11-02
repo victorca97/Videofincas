@@ -5,10 +5,11 @@
 }
 
 .contenedor-seccion {
-    background-image: url(../imagenes/finca-background.jpg);
+    /* background-image: url(../imagenes/finca-background.jpg); */
+    background-image: url('../imagenes/pexels-expect-best-323780.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
     text-align: -webkit-center; 
-    height: 100vh;
 }
 
 .seccion {
@@ -18,12 +19,14 @@
     margin-top: 6rem;
     display: flex;
     flex-direction: column;
+    position: relative;
     /* justify-content: center; */
     padding: 1rem;
     background-color: #294A98;
     border-radius: 20.8px;
     border-style: solid;
     border-color: rgb(0, 0, 0);
+    height: 60vh;
 }
 
 #footer{
