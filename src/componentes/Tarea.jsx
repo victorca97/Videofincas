@@ -11,25 +11,6 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
         onClick={() => completarTarea(id)}>
         {texto.charAt(0).toUpperCase() + texto.slice(1)}
       </div>
-      {/* <div
-        className='desde-contenedor'>
-        <input 
-          className='desde-input' 
-          type="date" 
-          name='periodo' 
-          placeholder="Ingresar periodo"
-        />
-      </div>
-      <p >al</p>
-      <div
-        className='hasta-contenedor'>
-        <input 
-          className='hasta-input' 
-          type="date" 
-          name='periodo' 
-          placeholder="Ingresar periodo"
-        />
-      </div> */}
       <div
         className='periodo-contenedor'>
         <input
@@ -38,7 +19,6 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
           name='periodo'
           placeholder='Ingresar periodo'
         />
-
       </div>
       <div
         className='importe-contenedor'>

@@ -8,7 +8,7 @@ function FormPropietario (props) {
             <h2 className='h2-propietario'> {props.nombre} </h2>
             <input 
                 className='input-propietario'
-                type='text'
+                type={props.tipo}
                 placeholder=''
                 maxLength={props.longitud}/>
         </form>
