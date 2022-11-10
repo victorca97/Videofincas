@@ -3,12 +3,13 @@ import ListaTareas from './ListaTareas';
 import '../estilos/Seccion.css';
 import { BsFillTrashFill } from "react-icons/bs";
 import axios from 'axios';
-
+import GetURLAPI from '../utilidades/parametros';
 
 function Seccion({fincaSelect,ID_Seccion, nombre, Subseccion,eliminarSeccion}) {
     const [listaTareas,setListaTareas]= useState([]);
     const getSubSecciones = async(fincaSelect,nombre) => {
-        const api_plantilla = await axios.get(`http://127.0.0.1:4000/plantilla/${fincaSelect}`)
+        const url_base = GetURLAPI()
+        const api_plantilla = await axios.get(url_base+`plantilla/${fincaSelect}`)
         const listaTareas = api_plantilla.data[0].Seccion.map(sec=>{
             if (sec.nombre === nombre){
                 console.log('sec',sec.Subsecciones)

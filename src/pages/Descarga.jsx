@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../componentes/logo.jsx'
 import {useHistory,useLocation} from 'react-router-dom';
 import Axios from 'axios'
-
+import GetURLAPI from '../utilidades/parametros';
 import {MdPictureAsPdf} from 'react-icons/md'
 import {SiMicrosoftexcel} from 'react-icons/si'
 import { Link } from 'react-router-dom';
@@ -63,6 +63,42 @@ export default function Descarga() {
                     link.parentNode.removeChild(link) 
     }
 
+    function send(){
+        //const data = [nombre,direccion]
+        const data_POST =  {
+            "_id" : "Finca0001",
+            "Admin_Id" : "Admin0001",
+            // "Nombre" : nombre,
+            // direccion,
+            // pisos,
+            // dptos
+        }
+        const url_base = GetURLAPI()
+        const URL = url_base +"recibos"
+        Axios.post(URL,data_POST).then(
+            res=>{
+                if(res.status==200){
+                    console.log(res.data)
+                    alert("Mensaje enviado")
+                    // const url = res.data.url
+                    // const link = document.createElement('a');            //Crea un elemento html <a>
+                    // link.href = url; 
+                    // link.target = '_blank';
+                    //                                     //Asigna al atributo href la url creada
+                    // link.setAttribute('download', `Ticket.${id}`);           //Añade el atributo download al elemento <a>
+                    // document.body.appendChild(link);                     //Agrega el elemento <a> como hijo del Body
+                    // link.click();                                        //Detona el evento click del elemento <a> iniciado la descarga
+                    // link.parentNode.removeChild(link)
+                    // setNombre("")
+                    // setDireccion("")
+                    // setPisos(0)
+                    // setDptos(0)
+                }else(console.log(res))
+            }
+        )
+        console.log(data_POST)
+    }
+
 
 
     return (
@@ -92,6 +128,12 @@ export default function Descarga() {
                             className='downloadexcel'
                         />
                         <span onClick={()=>downloadHandle("xlsx")}>Descargar EXCEL</span>
+                    </div>
+                    <div className='mb-4' style={{cursor:"pointer"}}>
+                        <SiMicrosoftexcel
+                            className='downloadPrueba'
+                        />
+                        <span onClick={()=>send()}>Descargar Prueba</span>
                     </div>
                 </div>
             </div>

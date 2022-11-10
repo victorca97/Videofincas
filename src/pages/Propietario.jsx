@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FormPropietario from "../componentes/FormPropietario";
 import { TipoDoc } from '../componentes/TipoDoc';
 import Logo from "../componentes/logo";
@@ -6,33 +6,58 @@ import Regresar from '../componentes/Regresar';
 import GetURLAPI from '../utilidades/parametros';
 import '../App.css';
 import '../estilos/FormPropietario.css';
+import '../estilos/TipoDoc.css';
+import ReactSelect from 'react-select';
 
-import Axios from 'axios';
+import axios from 'axios';
 
 function Propietario () {
 
+    const doc = [
+        { id: 'D', name: 'D.N.I.', adress: 'dni' },
+        { id: 'CE', name: 'Carnet de Extranjería', adress: 'ce' },
+        { id: 'PS', name: 'Nro. Pasaporte', adress: 'passport' }
+    ]
+
     const [nombres,setNombres] = useState("")
-    const [tdoc,setTdoc] = useState("")
+    const [listatdoc,setListatdoc] = useState(doc)
+    const [tdocSelect,setTdocSelect] = useState("")
     const [ndoc,setNdoc] = useState("")
     const [correo,setCorreo] = useState("")
     const [ncel,setNcel] = useState("")
-    const [finca,setFinca] = useState("")
     const [dep,setDep] = useState([])
     const [estacionamiento,setEstacionamiento] = useState([])
     const [part,setPart] = useState(0)
+    const [fincaSelect,setFincaSelect] = useState("")
+    const [listafincas, setListafincas] = useState([])
 
+    useEffect(() => {
+        getFincas();
+        console.log(fincaSelect);
+    }, [fincaSelect]);
+
+
+
+    const getFincas = async() => {
+        const url_base = GetURLAPI()
+        const resp = await axios.get(url_base+'propiedades')
+        console.log(resp.data)
+        setListafincas(resp.data);
+
+    };
 
     function handlesubmit(e){
         e.preventDefault()
     }
 
     function send(){
-        const data = [nombres,tdoc,ndoc,correo,ncel,finca,dep,estacionamiento,part]
+        const data = [nombres,tdocSelect,ndoc,correo,ncel,fincaSelect,dep,estacionamiento,part]
+        console.log(fincaSelect);
         const data_POST =  {
-            "_id" : "0008",
-            "Finca" : finca,
+            "_id" : tdocSelect+ndoc,
+            "Finca" : fincaSelect,
             "Nombres_y_Apellidos" : nombres,
-            "Tipo_Documento": tdoc,
+            "Tipo_Documento": tdocSelect,
             "Nro_Documento": ndoc,
             "Correo" : correo,
             "Telefono" : ncel,
@@ -42,23 +67,25 @@ function Propietario () {
         const url_base = GetURLAPI()
         const URL = url_base +"propietarios"
         try{
-            Axios.post(URL,data_POST).then(
+            axios.post(URL,data_POST).then(
                 res=>{
-                    if(res.status==200){
-                        alert("Mensaje enviado")
+                    if(res.data.status==201){
+                        alert(res.data.mensaje)
+                        console.log(res)
+                        console.log(res.data);
                         setNombres("")
-                        setTdoc("")
+                        setTdocSelect("")
                         setNdoc("")
                         setCorreo("")
                         setNcel("")
-                        setFinca("")
+                        setFincaSelect("")
                         setDep([])
                         setEstacionamiento([])
                         setPart(0)
                     }else{
                         console.log("Entro al else")
-                        alert(res)
-                        console.log(res)
+                        alert(res.data.mensaje)
+                        console.log(res.data)
                     }
                 }
             )}
@@ -89,7 +116,7 @@ function Propietario () {
                     value={nombres}
                     onChange={e=>setNombres(e.target.value)}
                     />
-                <h2 className='h2-propietario'> Tipo de Documento: </h2>
+                {/* <h2 className='h2-propietario'> Tipo de Documento: </h2>
                 <input 
                     className='input-propietario'
                     type='text'
@@ -97,7 +124,18 @@ function Propietario () {
                     name={"tdoc"}
                     value={tdoc}
                     onChange={e=>setTdoc(e.target.value)}
+                    /> */}
+                <h2 className='h2-propietario'> Tipo de Documento: </h2>
+                <div className='input-select'>
+                    <ReactSelect
+                        onChange={
+                            (seleccion)=>{
+                            setTdocSelect(seleccion.value)
+                            }
+                        }
+                        options = { listatdoc.map(sup => ({ label: sup.name, value: sup.id })) }
                     />
+                </div>
                 <h2 className='h2-propietario'> Nro. de Documento: </h2>
                 <input 
                     className='input-propietario'
@@ -125,7 +163,7 @@ function Propietario () {
                     value={ncel}
                     onChange={e=>setNcel(e.target.value)}
                     />
-                <h2 className='h2-propietario'> Finca: </h2>
+                {/* <h2 className='h2-propietario'> Finca: </h2>
                 <input 
                     className='input-propietario'
                     type='text'
@@ -133,7 +171,18 @@ function Propietario () {
                     name={"finca"}
                     value={finca}
                     onChange={e=>setFinca(e.target.value)}
+                    /> */}
+                <h2 className='h2-propietario'> Finca: </h2>
+                <div className='input-select'>
+                    <ReactSelect
+                        onChange={
+                            (seleccion)=>{
+                            setFincaSelect(seleccion.value)
+                            }
+                        }
+                        options = { listafincas.map(sup => ({ label: sup.Nombre, value: sup._id})) }
                     />
+                </div>
                 <h2 className='h2-propietario'> Departamento: </h2>
                 <input 
                     className='input-propietario'

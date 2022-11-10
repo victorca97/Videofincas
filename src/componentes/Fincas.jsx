@@ -2,17 +2,20 @@ import React,{useEffect,useRef,useState} from 'react';
 import '../estilos/Fincas.css';
 import ReactSelect from 'react-select';
 import axios from 'axios';
-
+import GetURLAPI from '../utilidades/parametros';
 
 export const Fincas = ({setFincaSelect, getPlantilla}) => {
     // ====== CONEXION CON LA API ======
     const [fincas, setFincas] = useState([]);
+
+
     useEffect(() => {
         getFincas();
     }, []);
 
     const getFincas = async() => {
-        const resp = await axios.get('http://127.0.0.1:4000/propiedades')
+        const url_base = GetURLAPI()
+        const resp = await axios.get(url_base+'propiedades')
         setFincas(resp.data);
     };
 

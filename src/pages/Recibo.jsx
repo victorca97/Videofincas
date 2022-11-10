@@ -31,13 +31,15 @@ import Regresar from "../componentes/Regresar";
 import '../App.css';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import GetURLAPI from '../utilidades/parametros';
 
 function Recibo() {
     const [fincaSelect,setFincaSelect]= useState("");
     const [listaSecciones,setListaSecciones]= useState([]);
+    const url_base = GetURLAPI()
 
     const getPlantilla = async(fincaOption) => {
-        const api_plantilla = await axios.get(`http://127.0.0.1:4000/plantilla/${fincaOption}`)
+        const api_plantilla = await axios.get(url_base+`plantilla/${fincaOption}`)
         const lista_result = api_plantilla.data[0].Seccion.map(sec=>{
             let a_objeto = {
                 ID_Seccion: uuidv4(),
@@ -54,7 +56,7 @@ function Recibo() {
 
     const putPlantilla = async() => {
         console.log('lista',listaSecciones)
-        await axios.put('http://127.0.0.1:4000/plantilla',{
+        await axios.put(url_base+'plantilla',{
         '_id': fincaSelect,
         'Finca': fincaSelect,
         'Seccion':listaSecciones

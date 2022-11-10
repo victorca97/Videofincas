@@ -1,5 +1,5 @@
 import React from 'react';
-import shortid from 'shortid' //https://www.npmjs.com/package/shortid
+import shortid from 'shortid'
 
 function Propietario() {
 
