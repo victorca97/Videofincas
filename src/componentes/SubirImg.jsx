@@ -1,44 +1,66 @@
-import React, { Component, useRef } from "react";
+import { useState, useRef, useEffect } from 'react';
+
 import '../estilos/SubirImg.css';
 
-export class SubirImg extends Component {
-  state = {
-    defaultImg : 'https://images.vexels.com/media/users/3/157613/isolated/lists/9aa6a8344b89e45d1adbe578dd0fc2dd-icono-de-casa-de-edificio-alto.png'
-  }
+const defaultImg = 'https://images.vexels.com/media/users/3/157613/isolated/lists/9aa6a8344b89e45d1adbe578dd0fc2dd-icono-de-casa-de-edificio-alto.png'
 
-  imageHandler = (e) =>{
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2){
-        this.setState({defaultImg: reader.result})
-      }
+export const SubirImg = () => {
+
+  const [imagen, setImagen] = useState()
+  const [preview, setPreview] = useState()
+  const fileInputRef = useRef();
+  const [idenImg, setIdenImg] = useState('')
+
+  const imageHandler = (e) => {
+    const file = e.target.files[0]
+    setIdenImg(file.name)
+    if (file && file.type.substr(0, 5) === 'image') {
+      setImagen(file)
+    } else {
+      setImagen(defaultImg)
     }
-    reader.readAsDataURL(e.target.files[0])
   }
 
-  render() {
-    const {defaultImg} = this.state
+  const aniadirImagen = (e) => {
+    e.preventDefault()
+    fileInputRef.current.click()
+  }
+
+  useEffect(() => {
+    const reader = new FileReader()
+    if (imagen) {
+      reader.onloadend = () => {
+        setPreview(reader.result)
+        console.log(typeof reader.result)
+      }
+      reader.readAsDataURL(imagen)
+    } else {
+      setPreview(defaultImg)
+    }
     
-    return (
+  }, [imagen])
+
+  return (
+    <>
+      <p style={{color : "black"}}>{idenImg}</p>
+      {/*<p style={{color : "black"}}>{preview}</p>*/}
       <div className="contenedor-img">
         <div className="contenedor-subirimg">
-            <div className="contenedor-mensaje-subirimg">
-              <h1 className="mensaje-subirimg"> Foto de la Finca </h1>
-            </div>
-            <div className="img-holder">
-              <img src={defaultImg} alt="" id="img" className="img" />
-            </div>
-            <input type="file" name="img-upload" id="input" accept="image/*" onChange={this.imageHandler}/>
-            <div className="label">
-              <label htmlFor="input" className="image-upload">
-                <i className="material-icons">add_photo_alternate</i>
-                Seleccionar imagen
-              </label>
-            </div>
+          <div className="contenedor-mensaje-subirimg">
+            <h1 className="mensaje-subirimg"> Foto de la Finca </h1>
+          </div>
+          <div className="img-holder">
+            <img src={preview} alt="" id="img" className="img" />
+          </div>
+          <input type="file" ref={fileInputRef} onChange={imageHandler} name="img-upload" id="input" accept="image/*" />
+          <button onClick={aniadirImagen}>
+            Añadir imagen
+          </button>
         </div>
       </div>
-    );
-  }
+    </>
+
+  )
 }
 
-export default SubirImg;
+

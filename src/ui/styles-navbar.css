@@ -1,0 +1,26 @@
+.contenedor-cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #294A98;
+  }
+
+.videofincas-logo-contenedor {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .videofincas-logo {
+    width: 296.8px;
+    height: 100px;
+    align-items: left;
+    justify-content: left;
+  }
+  
+  .titulo-principal {
+    width: auto;
+    height: 100px;
+    /* align-items: right; */
+    justify-content: right;
+  }

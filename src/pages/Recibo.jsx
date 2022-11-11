@@ -1,5 +1,5 @@
-import Logo from "../componentes/logo";
-import {useState,useEffect} from 'react';
+
+import {useState} from 'react';
 import { Fincas } from "../componentes/Fincas";
 import ListaSecciones from "../componentes/ListaSecciones";
 import Regresar from "../componentes/Regresar";
@@ -40,10 +40,7 @@ function Recibo() {
 
     return (
         <>
-            <div className="contenedor-cabecera">
-                <Logo 
-                    nombre='Formulario del Administrador'/>
-            </div>
+            
             <Regresar
                 ruta='home'/>
             <form className="nombre-finca-formulario">

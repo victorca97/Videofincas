@@ -103,9 +103,7 @@ export default function Descarga() {
 
     return (
         <div style={{textAlign:"center"}}>
-            <div className='contenedor-cabecera'>
-                <Logo nombre='Formulario para Recibos' />
-            </div>
+            
             <Regresar 
                 ruta="recibo"/>
             <div >

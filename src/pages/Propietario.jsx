@@ -1,7 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import FormPropietario from "../componentes/FormPropietario";
-import { TipoDoc } from '../componentes/TipoDoc';
-import Logo from "../componentes/logo";
 import Regresar from '../componentes/Regresar';
 import GetURLAPI from '../utilidades/parametros';
 import '../App.css';
@@ -51,7 +48,7 @@ function Propietario () {
     }
 
     function send(){
-        const data = [nombres,tdocSelect,ndoc,correo,ncel,fincaSelect,dep,estacionamiento,part]
+       
         console.log(fincaSelect);
         const data_POST =  {
             "_id" : tdocSelect+ndoc,
@@ -69,7 +66,7 @@ function Propietario () {
         try{
             axios.post(URL,data_POST).then(
                 res=>{
-                    if(res.data.status==201){
+                    if(res.data.status===201){
                         alert(res.data.mensaje)
                         console.log(res)
                         console.log(res.data);
@@ -100,10 +97,7 @@ function Propietario () {
 
     return (
         <>
-            <div className="contenedor-cabecera">
-               <Logo 
-                 nombre='Formulario del Propietario'/>
-            </div>
+            
             <Regresar
                 ruta='home'/>
             <form className="form-propietarios" onSubmit={handlesubmit}>

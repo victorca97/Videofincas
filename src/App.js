@@ -5,10 +5,14 @@ import Propietario from './pages/Propietario';
 import Finca from './pages/Finca';
 import Menu from "./pages/Menu";
 import Descarga from "./pages/Descarga";
+import { NavBar } from "./ui/components/NavBar";
 
 function App() {
 
   return (
+
+    <>
+    <NavBar />
     <Routes>
       <Route path='Videofincas/' element={<Login />} />
       <Route path='Videofincas/home' element={<Menu />} />
@@ -17,6 +21,8 @@ function App() {
       <Route path='Videofincas/finca' element={<Finca />} />
       <Route path='Videofincas/descarga' element={<Descarga />} />
     </Routes>
+    </>
+    
   );
 }
 

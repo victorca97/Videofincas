@@ -5,7 +5,6 @@ import '../estilos/Login.css';
 import '../App.css';
 
 import axios from '../api/axios';
-import Logo from '../componentes/logo';
 const LOGIN_URL = '/auth';
 
 const Login = () => {
@@ -62,10 +61,10 @@ const Login = () => {
     const navigate = useNavigate();
 
     const abrirMenu = e => {
-        e.preventDefault();                               
+        e.preventDefault();
         navigate("/Videofincas/home");
     };
-    
+
     return (
         <>
             {/* {success ? (
@@ -77,42 +76,40 @@ const Login = () => {
                     </p>
                 </section>
             ) : ( */}
-                <div id="contenedor-login">
-                    <div className='contenedor-cabecera'>
-                        <Logo nombre=''/>
-                    </div>
-                    <div className='contenedor-seccion img-thumbnail'>
-                        {/* <div id='footer'>‎ </div> */}
-                        <div className='seccion'>
-                            {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-                            <h1 id='titulo-login'>Inicio de Sesión</h1>
-                            <form id="form-login" onSubmit={abrirMenu}> 
-                            {/* onSubmit={handleSubmit} */}
-                                <label htmlFor="username">Usuario:</label>
-                                <input
-                                    type="text"
-                                    id="username"
-                                    ref={userRef}
-                                    autoComplete="off"
-                                    onChange={(e) => setUser(e.target.value)}
-                                    value={user}
-                                    required
-                                />
+            <div id="contenedor-login">
+               
+                <div className='contenedor-seccion img-thumbnail'>
 
-                                <label htmlFor="password">Contraseña:</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    onChange={(e) => setPwd(e.target.value)}
-                                    value={pwd}
-                                    required
-                                />
-                                <button id="btn-login" >Ingresar</button>
-                            </form>
-                        </div>
-                        {/* <div id='footer'>‎ </div> */}
+                    <div className='seccion'>
+                        {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+                        <h1 id='titulo-login'>Inicio de Sesión</h1>
+                        <form id="form-login" onSubmit={abrirMenu}>
+                            {/* onSubmit={handleSubmit} */}
+                            <label htmlFor="username">Usuario:</label>
+                            <input
+                                type="text"
+                                id="username"
+                                ref={userRef}
+                                autoComplete="off"
+                                onChange={(e) => setUser(e.target.value)}
+                                value={user}
+                                required
+                            />
+
+                            <label htmlFor="password">Contraseña:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                onChange={(e) => setPwd(e.target.value)}
+                                value={pwd}
+                                required
+                            />
+                            <button id="btn-login" >Ingresar</button>
+                        </form>
                     </div>
+
                 </div>
+            </div>
             {/* )} */}
         </>
     );
