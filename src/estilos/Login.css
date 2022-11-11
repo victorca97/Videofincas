@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.contenedor-login{
+    height: 100vh;
+}
+
+.contenedor-seccion {
+    /* background-image: url(../imagenes/finca-background.jpg); */
+    background-image: url('../imagenes/pexels-expect-best-323780.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: -webkit-center; 
+}
+
+.seccion {
+    width: auto;
+    max-width: 420px;
+    min-height: 400px;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* justify-content: center; */
+    padding: 1rem;
+    background-color: #294A98;
+    border-radius: 20.8px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    height: 60vh;
+}
+
+#footer{
+    height: 25px;
+}
+
+
+#form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+#titulo-login{
+    text-align: center;
+}
+
+a, a:visited {
+    color: #fff;
+}
+
+#username,
+#password,
+#btn-login,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 15px;
+  text-align: -webkit-center;
+}
+
+label[htmlFor="username"],
+label[htmlFor="password"],
+#btn-login {
+  margin-top: 1rem;
+}
+
+#btn-login {
+  padding: 0.5rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+}

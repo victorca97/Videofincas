@@ -25,3 +25,17 @@
     margin-right: 45%;
     align-self: center;
 }
+
+.input-select {
+    width: 280px;
+    height: 35px;
+    font-size: 14.4px;
+    font-family: Lato, sans-serif;
+    min-width: 240px;
+    padding: 3.5px 8px 3.5px 4px;
+    color: black;
+    outline: none;
+    margin-left: auto;
+    margin-right: 45%;
+    align-self: center;
+}

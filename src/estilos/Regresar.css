@@ -1,0 +1,18 @@
+.contenedor-btn-regresar{
+    text-align: left;
+    position: absolute;
+}
+
+#btn-regresar {
+    padding: 12px;
+    margin: 2rem;
+    font-size: 14.4px;
+    font-family: Roboto, sans-serif;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    background: #294A98;
+    color: #fff;
+    text-transform: capitalize;
+}
