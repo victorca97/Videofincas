@@ -5,10 +5,13 @@ import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import ReactSelect from 'react-select';
+import { useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 
 function Propietario () {
+
+    const location = useLocation();
 
     const doc = [
         { id: 'D', name: 'D.N.I.', adress: 'dni' },
@@ -26,28 +29,13 @@ function Propietario () {
     const [estacionamiento,setEstacionamiento] = useState([])
     const [part,setPart] = useState(0)
     const [fincaSelect,setFincaSelect] = useState("")
-    const [listafincas, setListafincas] = useState([])
-
-    useEffect(() => {
-        getFincas();
-        console.log(fincaSelect);
-    }, [fincaSelect]);
-
-
-
-    const getFincas = async() => {
-        const url_base = GetURLAPI()
-        const resp = await axios.get(url_base+'propiedades')
-        console.log(resp.data)
-        setListafincas(resp.data);
-
-    };
+    
 
     function handlesubmit(e){
         e.preventDefault()
     }
 
-    function send(){
+    function enviarPropietario(){
        
         console.log(fincaSelect);
         const data_POST =  {
@@ -95,11 +83,16 @@ function Propietario () {
         console.log(data_POST)
     }
 
+    useEffect(() => {
+      console.log('location', location)
+    }, [])
+    
+
     return (
         <>
             
             <Regresar
-                ruta='home'/>
+                ruta='propietarios'/>
             <form className="form-propietarios" onSubmit={handlesubmit}>
                 <h2 className='h2-propietario'> Nombres y Apellidos: </h2>
                 <input 
@@ -110,15 +103,6 @@ function Propietario () {
                     value={nombres}
                     onChange={e=>setNombres(e.target.value)}
                     />
-                {/* <h2 className='h2-propietario'> Tipo de Documento: </h2>
-                <input 
-                    className='input-propietario'
-                    type='text'
-                    placeholder=''
-                    name={"tdoc"}
-                    value={tdoc}
-                    onChange={e=>setTdoc(e.target.value)}
-                    /> */}
                 <h2 className='h2-propietario'> Tipo de Documento: </h2>
                 <div className='input-select'>
                     <ReactSelect
@@ -157,15 +141,6 @@ function Propietario () {
                     value={ncel}
                     onChange={e=>setNcel(e.target.value)}
                     />
-                {/* <h2 className='h2-propietario'> Finca: </h2>
-                <input 
-                    className='input-propietario'
-                    type='text'
-                    placeholder=''
-                    name={"finca"}
-                    value={finca}
-                    onChange={e=>setFinca(e.target.value)}
-                    /> */}
                 <h2 className='h2-propietario'> Finca: </h2>
                 <div className='input-select'>
                     <ReactSelect
@@ -174,7 +149,7 @@ function Propietario () {
                             setFincaSelect(seleccion.value)
                             }
                         }
-                        options = { listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id})) }
+                        options = { location.state.listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id})) }
                     />
                 </div>
                 <h2 className='h2-propietario'> Departamento: </h2>
@@ -205,7 +180,7 @@ function Propietario () {
                     onChange={e=>setPart(e.target.value)}
                     />
             </form> 
-            <div className='contenedor-btn-guardar' onClick={()=>send()}>
+            <div className='contenedor-btn-guardar' onClick={()=>enviarPropietario()}>
                 <button className='btn-guardar'>GUARDAR</button>
             </div>
         </>    

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-.contenedor-login{
-    height: 100vh;
+#contenedor-login{
+    height: 100%;
 }
 
 .contenedor-seccion {
@@ -9,14 +9,18 @@
     background-image: url('../imagenes/pexels-expect-best-323780.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    text-align: -webkit-center; 
+    text-align: -webkit-center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .seccion {
     width: auto;
     max-width: 420px;
     min-height: 400px;
-    margin-top: 6rem;
+    /* margin-top: 6rem; */
     display: flex;
     flex-direction: column;
     position: relative;

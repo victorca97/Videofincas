@@ -78,7 +78,7 @@ const Login = () => {
             ) : ( */}
             <div id="contenedor-login">
                
-                <div className='contenedor-seccion img-thumbnail'>
+                <div className='contenedor-seccion'>
 
                     <div className='seccion'>
                         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}

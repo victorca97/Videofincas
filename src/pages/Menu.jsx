@@ -14,7 +14,7 @@ function Menu() {
                     <Link id="link-recibo" to="/Videofincas/recibo">Generar Recibos</Link>
                 </li>
                 <li id="elemento-lista-propietario">
-                    <Link id="link-propietario" to="/Videofincas/propietario">Registrar Propietarios</Link>
+                    <Link id="link-propietario" to="/Videofincas/propietarios">Propietarios</Link>
                 </li>
             </ul>
         </>

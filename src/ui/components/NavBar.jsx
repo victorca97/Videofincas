@@ -30,19 +30,28 @@ export const NavBar = () => {
   return (
     <div className='contenedor-cabecera'>
 
-      <div className='videofincas-logo-contenedor'>
-        <Link to='Videofincas/home' >
+      <div className='videofincas-logo-contenedor row'>
+        <Link to='Videofincas/home' className='col-xs-12 col-sm-4'>
           <img
             src={videoFincaLogo}
             className='videofincas-logo'
-            />
+          />
         </Link>
 
-        <div className='titulo-principal'>
+
+        <div className='titulo-principal col-xs-12 col-sm-6'>
           <h1>
             {name}
           </h1>
         </div>
+
+        <Link to='/Videofincas' className='d-flex col-sm-2 align-items-center justify-content-end'>
+          Salir
+        </Link>
+
+
+
+
       </div>
     </div>
 

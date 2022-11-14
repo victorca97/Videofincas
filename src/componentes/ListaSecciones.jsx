@@ -6,8 +6,6 @@ import GetURLAPI from '../utilidades/parametros';
 
 function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreglo}) {
     
-    console.log(setArreglo)
-
     const agregarSeccion = seccion => {
         if (seccion.nombre.trim()) {
             seccion.nombre = seccion.nombre.trim();
