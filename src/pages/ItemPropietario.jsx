@@ -1,5 +1,5 @@
 
-export const ItemPropietario = ({ _id, Nombres_y_Apellidos, Nro_Documento, Telefono, Departamentos, Estacionamientos }) => {
+export const ItemPropietario = ({ _id, Nombres_y_Apellidos, Departamentos, Estacionamientos }) => {
 
         return (
 
@@ -8,8 +8,6 @@ export const ItemPropietario = ({ _id, Nombres_y_Apellidos, Nro_Documento, Telef
                         <div className="card-body">
                                 <p>id: {_id}</p>
                                 <p>Nombres y Apellidos: {Nombres_y_Apellidos}</p>
-                                <p>N° de Documento: {Nro_Documento}</p>
-                                <p>Teléfono: {Telefono}</p>
                                 <p>Departamentos:</p>
                                 <ul>
                                         {

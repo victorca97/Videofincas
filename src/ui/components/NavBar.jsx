@@ -31,7 +31,7 @@ export const NavBar = () => {
     <div className='contenedor-cabecera'>
 
       <div className='videofincas-logo-contenedor row'>
-        <Link to='Videofincas/home' className='col-xs-12 col-sm-4'>
+        <Link to='/Videofincas/home' className='col-xs-12 col-sm-4' alt='home'>
           <img
             src={videoFincaLogo}
             className='videofincas-logo'
