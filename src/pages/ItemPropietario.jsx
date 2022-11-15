@@ -1,43 +1,30 @@
 
-export const ItemPropietario = ({ _id, Nombres_y_Apellidos, Departamentos, Estacionamientos }) => {
+export const ItemPropietario = ({ Nombres_y_Apellidos, Departamentos, Estacionamientos, contador }) => {
 
         return (
 
+                <tr>
+                        <th scope="row">{contador + 1}</th>
+                        <td >{Nombres_y_Apellidos}</td>
 
-                <div className="card mb-1">
-                        <div className="card-body">
-                                <p>id: {_id}</p>
-                                <p>Nombres y Apellidos: {Nombres_y_Apellidos}</p>
-                                <p>Departamentos:</p>
-                                <ul>
-                                        {
-                                                Departamentos.map((departamento) => (
-                                                        <>
-                                                                <li>id departamento: {departamento.ID_Departamentos}</li>
-                                                                <li>Porcentaje de Participacion: {departamento.Porcentaje_Participacion}</li>
-                                                        </>
-
-                                                ))
-                                        }
-
-                                </ul>
-                                <p>Estacionamientos:</p>
-                                <ul>
-                                        {
-                                                Estacionamientos.map((estacionamiento) => (
-                                                        <>
-                                                                <li>Número de estacionamiento: {estacionamiento.Numero_Estacionamiento}</li>
-                                                        </>
-
-                                                ))
-                                        }
-
-                                </ul>
-                        </div>
+                        {Departamentos.map((departamento) => (
+                                <>
+                                        <td>{departamento.ID_Departamentos}</td>
+                                        <td>{departamento.Porcentaje_Participacion}</td>
+                                </>
 
 
+                        ))}
 
-                </div>
+
+                        {
+                                Estacionamientos.map((estacionamiento) => (
+                                        <td>{estacionamiento.Numero_Estacionamiento}</td>
+                                ))
+                        }
+
+                </tr>
+
 
 
         )

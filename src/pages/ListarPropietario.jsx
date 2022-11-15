@@ -70,63 +70,28 @@ export const ListarPropietario = () => {
                 </div>
 
                 <div className='col-12'>
+                    {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> :
 
-                    {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> : (
-                        propietariosPorFinca?.map((pro) => (
-                            <ItemPropietario key={pro._id} {...pro} />
-                        ))
-                    )
+                        (<table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombres y Apellidos</th>
+                                    <th scope="col">N° Departamentos</th>
+                                    <th scope="col">N° Estacionamientos</th>
+                                </tr>
 
+                            </thead>
+                            <tbody>
+                                {propietariosPorFinca?.map((pro, contador) => (
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} />
+                                ))
+                                }
+                            </tbody>
+                        </table>
+                        )
                     }
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombres y Apellidos</th>
-                                <th scope="col">Departamentos</th>
-                                <th scope="col">Estacionamientos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Departamento</th>
-                                            <th scope="col">% de participacion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
 
-                                        <tr>
-                                            <td>203</td>
-                                            <td>20</td>
-                                        </tr>
-                                        <tr>
-                                            <td>204</td>
-                                            <td>5</td>
-
-                                        </tr>
-
-                                    </tbody>
-                                </td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
 
                 </div>
 
