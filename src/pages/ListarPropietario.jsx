@@ -6,7 +6,13 @@ import { ItemPropietario } from './ItemPropietario';
 import axios from '../api/axios';
 
 import '../App.css';
+import '../estilos/FormPropietario.css'
 import ReactSelect from 'react-select';
+
+const encabezadoCss={
+    background: '#294A98',
+    color: 'white'
+}
 
 export const ListarPropietario = () => {
 
@@ -32,7 +38,7 @@ export const ListarPropietario = () => {
         const propietarioEncontrado = propietarios.filter(propietario => propietario.Finca === id)
 
         setPropietariosPorFinca(propietarioEncontrado)
-        setMensaje('No hay finca')
+        setMensaje('No hay Propietarios')
     }
 
 
@@ -50,59 +56,81 @@ export const ListarPropietario = () => {
     }, []);
 
     return (
-        <div className='row'>
+        <div>
+            <div className='container-fluid' >
+                <div className='row'>
+                    <div className='col'>
+                        <Regresar
+                            ruta='home' />
+                    </div>
+                    <div className='col-6'>
+                        <form className='form-propietarios '>
+                            <h2 className='h2-propietario'> Finca: </h2>
+                            <div className='input-select mb-3'>
+                                <ReactSelect
+                                    onChange={
+                                        (seleccion) => {
 
-            <Regresar
-                ruta='home' />
+                                            buscarPropietarioPorFinca(seleccion.value)
+                                        }
+                                    }
+                                    options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
+                                />
+                            </div>
 
-            <form className='form-propietarios col-6'>
-                <h2 className='h2-propietario'> Finca: </h2>
-                <div className='input-select mb-3'>
-                    <ReactSelect
-                        onChange={
-                            (seleccion) => {
 
-                                buscarPropietarioPorFinca(seleccion.value)
-                            }
-                        }
-                        options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
-                    />
+
+
+                        </form>
+                    </div>
+
+                    <div className='col text-center' id='lateral-derecho'>
+                        <button type="button" class="btn btn-primary regular-button mt-5" id='boton-agregar'>
+                            <Link to="/Videofincas/propietario"
+                                state={{ listafincas: listafincas }}>Agregar</Link>
+                        </button>
+
+
+                    </div>
+
                 </div>
+            </div>
 
-                <div className='col-12'>
-                    {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> :
+            <div className='container-fluid ' >
+                <div className='col-12 pb-4 text-center'>
 
-                        (<table class="table table-dark table-striped">
+                    {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> : (
+                        <table class="table table-primary table-striped">
                             <thead>
-                                <tr>
+                                <tr style={encabezadoCss}>
                                     <th scope="col">#</th>
                                     <th scope="col">Nombres y Apellidos</th>
-                                    <th scope="col">N° Departamentos</th>
-                                    <th scope="col">N° Estacionamientos</th>
+                                    <th scope="col">N° Departamento</th>
+                                    <th scope='col'>% de participaciones</th>
+                                    <th scope="col">N° Estacionamiento</th>
+                                    <th scope='col'></th>
                                 </tr>
-
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
                                     <ItemPropietario key={pro._id} {...pro} contador={contador} />
                                 ))
                                 }
+
                             </tbody>
+
                         </table>
-                        )
+                    )
+
                     }
 
 
                 </div>
 
-
-            </form>
-
-            <div className='mt-3'>
-                <Link id="link-propietario" to="/Videofincas/propietario"
-                    state={{ listafincas: listafincas }}>Agregar</Link>
             </div>
 
+
         </div>
+
     )
 }
