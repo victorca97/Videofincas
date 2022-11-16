@@ -49,28 +49,31 @@ function Finca() {
                             ruta='home' />
                     </div>
 
-                    <div className='col-9'>
-                        <form className="form-propietarios" onSubmit={handlesubmit}>
-                            <h2 className='h2-propietario'> Nombre de la Finca: </h2>
-                            <input
-                                className='input-propietario'
-                                type='text'
-                                placeholder=''
-                                name={"nombre"}
-                                value={nombre}
-                                onChange={onInputChange}
-                            />
-                            <h2 className='h2-propietario'> Direccion de la Finca: </h2>
-                            <input
-                                className='input-propietario'
-                                type='text'
-                                placeholder=''
-                                name={"direccion"}
-                                value={direccion}
-                                onChange={onInputChange}
-                            />
-                           
-                        </form>
+                    <div className='col-6 vh-200 justify-content-center align-items-center'>
+                        
+                            <div className="form-group text-center " >
+                                <label className="col col-form-label">Nombre de la Finca :</label>
+                                <input type='text'
+                                    className='form-control col-8 '
+                                    id='subtitulo-finca'
+                                    placeholder=""
+                                    name={"nombre"}
+                                    value={nombre}
+                                    onChange={onInputChange} />
+                            </div>
+                            <div className="form-group text-center" >
+                                <label className="col col-form-label " id='textito'>Direccion de la Finca :</label>
+                                <input type='text'
+                                    className='form-control col-8 '
+                                    id='subtitulo-finca'
+                                    placeholder=""
+                                    name={"direccion"}
+                                    value={direccion}
+                                    onChange={onInputChange}
+                                />
+                            </div>
+
+                        
                     </div>
                 </div>
             </div>
@@ -78,8 +81,8 @@ function Finca() {
             <div className='container-fluid' >
                 <SubirImg />
                 <div className='contenedor-btn-guardar' onClick={handlesubmit}>
-                                <button className='btn-guardar'>GUARDAR</button>
-                            </div>
+                    <button className='btn-guardar'>GUARDAR</button>
+                </div>
 
             </div>
         </>

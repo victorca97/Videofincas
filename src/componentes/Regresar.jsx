@@ -8,7 +8,9 @@ function Regresar(props) {
 
     const linkear = e => {
         e.preventDefault();                               
-        navigate(`/Videofincas/${props.ruta}`);
+        navigate(`/Videofincas/${props.ruta}`,{
+            replace: true
+        });
     };
 
     return (

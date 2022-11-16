@@ -7,6 +7,7 @@ import Menu from "./pages/Menu";
 import Descarga from "./pages/Descarga";
 import { NavBar } from "./ui/components/NavBar";
 import { ListarPropietario } from "./pages/ListarPropietario";
+import UpdatePropietario from "./pages/UpdatePropietario";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='Videofincas/home' element={<Menu />} />
         <Route path='Videofincas/recibo' element={<Recibo />} />
         <Route path='Videofincas/propietarios' element={<ListarPropietario />} />
+        <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
         <Route path='Videofincas/propietario' element={<Propietario />} />
         <Route path='Videofincas/finca' element={<Finca />} />
         <Route path='Videofincas/descarga' element={<Descarga />} />

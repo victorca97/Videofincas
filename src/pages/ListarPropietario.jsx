@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Regresar from '../componentes/Regresar'
+
 import GetURLAPI from '../utilidades/parametros';
-import { ItemPropietario } from './ItemPropietario';
 import axios from '../api/axios';
 
 import '../App.css';
 import '../estilos/FormPropietario.css'
 import ReactSelect from 'react-select';
+import Regresar from '../componentes/Regresar';
+import { ItemPropietario } from '../componentes/ItemPropietario';
 
 const encabezadoCss={
     background: '#294A98',
@@ -22,22 +23,17 @@ export const ListarPropietario = () => {
     const [listafincas, setListafincas] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
 
-    useEffect(() => {
-        getFincas();
-    }, []);
-
-
     const getPropietarios = async () => {
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base + 'propietarios')
-        console.log(resp.data)
+       /*  console.log(resp.data) */
         setPropietarios(resp.data);
     };
 
     const buscarPropietarioPorFinca = (id) => {
-        const propietarioEncontrado = propietarios.filter(propietario => propietario.Finca === id)
-
-        setPropietariosPorFinca(propietarioEncontrado)
+        console.log('Entro a buscarpropietario')
+        const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
+        setPropietariosPorFinca(propietariosEncontrado)
         setMensaje('No hay Propietarios')
     }
 
@@ -51,8 +47,13 @@ export const ListarPropietario = () => {
     };
 
     useEffect(() => {
-        getPropietarios();
+        console.log('entro a useEffect getfincas')
+        getFincas();
+    }, []);
 
+    useEffect(() => {
+        console.log('entro a useEffect getpropietarios')
+        getPropietarios();
     }, []);
 
     return (
@@ -85,7 +86,7 @@ export const ListarPropietario = () => {
                     </div>
 
                     <div className='col text-center' id='lateral-derecho'>
-                        <button type="button" class="btn btn-primary regular-button mt-5" id='boton-agregar'>
+                        <button type="button" className="btn btn-primary regular-button mt-5" id='boton-agregar'>
                             <Link to="/Videofincas/propietario"
                                 state={{ listafincas: listafincas }}>Agregar</Link>
                         </button>
@@ -113,7 +114,7 @@ export const ListarPropietario = () => {
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} />
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro}/>
                                 ))
                                 }
 
