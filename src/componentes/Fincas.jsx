@@ -14,6 +14,7 @@ export const Fincas = ({setFincaSelect, getPlantilla, getFincasBySelector, setOb
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base+'finca')
         setFincas(resp.data);
+        console.log(resp.data)
     };
 
     const obtenerId = async(nombre) => {

@@ -66,6 +66,10 @@ textarea {
   text-align: -webkit-center;
 }
 
+#btn-login:hover{
+    background-color: skyblue;
+}
+
 label[htmlFor="username"],
 label[htmlFor="password"],
 #btn-login {

@@ -7,6 +7,10 @@ import '../App.css';
 import axios from '../api/axios';
 const LOGIN_URL = '/auth';
 
+const textLogin = {
+    color: 'white'
+}
+
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
@@ -82,10 +86,10 @@ const Login = () => {
 
                     <div className='seccion'>
                         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-                        <h1 id='titulo-login'>Inicio de Sesión</h1>
+                        <h1 id='titulo-login' style={textLogin}>Inicio de Sesión</h1>
                         <form id="form-login" onSubmit={abrirMenu}>
                             {/* onSubmit={handleSubmit} */}
-                            <label htmlFor="username">Usuario:</label>
+                            <label htmlFor="username" style={textLogin}>Usuario:</label>
                             <input
                                 type="text"
                                 id="username"
@@ -96,7 +100,7 @@ const Login = () => {
                                 required
                             />
 
-                            <label htmlFor="password">Contraseña:</label>
+                            <label htmlFor="password" style={textLogin}>Contraseña:</label>
                             <input
                                 type="password"
                                 id="password"
@@ -110,7 +114,7 @@ const Login = () => {
 
                 </div>
             </div>
-            {/* )} */}
+            
         </>
     );
 }

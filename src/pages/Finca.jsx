@@ -10,7 +10,7 @@ import { SubirImg } from '../componentes/SubirImg';
 
 function Finca() {
 
-    const {nombre, direccion, onInputChange, onResetForm} = useForm({
+    const { nombre, direccion, onInputChange, onResetForm } = useForm({
         nombre: '',
         direccion: '',
         imagen: ''
@@ -32,7 +32,7 @@ function Finca() {
                 if (res.status == 200) {
                     alert("Mensaje enviado")
                     onResetForm()
-                   
+
                 } else (console.log(res))
             }
         )
@@ -42,33 +42,46 @@ function Finca() {
 
     return (
         <>
+            <div className='container-fluid' >
+                <div className='row'>
+                    <div className='col-3'>
+                        <Regresar
+                            ruta='home' />
+                    </div>
 
-            <Regresar ruta='home' />
-            <form className="form-propietarios" onSubmit={handlesubmit}>
-                <h2 className='h2-propietario'> Nombre de la Finca: </h2>
-                <input
-                    className='input-propietario'
-                    type='text'
-                    placeholder=''
-                    name={"nombre"}
-                    value={nombre}
-                    onChange={onInputChange}
-                />
-                <h2 className='h2-propietario'> Direccion de la Finca: </h2>
-                <input
-                    className='input-propietario'
-                    type='text'
-                    placeholder=''
-                    name={"direccion"}
-                    value={direccion}
-                    onChange={onInputChange}
-                />
+                    <div className='col-9'>
+                        <form className="form-propietarios" onSubmit={handlesubmit}>
+                            <h2 className='h2-propietario'> Nombre de la Finca: </h2>
+                            <input
+                                className='input-propietario'
+                                type='text'
+                                placeholder=''
+                                name={"nombre"}
+                                value={nombre}
+                                onChange={onInputChange}
+                            />
+                            <h2 className='h2-propietario'> Direccion de la Finca: </h2>
+                            <input
+                                className='input-propietario'
+                                type='text'
+                                placeholder=''
+                                name={"direccion"}
+                                value={direccion}
+                                onChange={onInputChange}
+                            />
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div className='container-fluid' >
                 <SubirImg />
                 <div className='contenedor-btn-guardar' onClick={handlesubmit}>
-                    <button className='btn-guardar'>GUARDAR</button>
-                </div>
-            </form>
+                                <button className='btn-guardar'>GUARDAR</button>
+                            </div>
 
+            </div>
         </>
     );
 }
