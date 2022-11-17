@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState  } from 'react';
 import Regresar from '../componentes/Regresar';
 import GetURLAPI from '../utilidades/parametros';
 import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
-import ReactSelect from 'react-select';
+import Select from 'react-select';
 import { useLocation } from 'react-router-dom';
 
 import axios from 'axios';
@@ -25,8 +25,8 @@ function Propietario() {
     const [ndoc, setNdoc] = useState("")
     const [correo, setCorreo] = useState("")
     const [ncel, setNcel] = useState("")
-    const [dep, setDep] = useState([])
-    const [estacionamiento, setEstacionamiento] = useState([])
+    const [dep, setDep] = useState("")
+    const [estacionamiento, setEstacionamiento] = useState("")
     const [part, setPart] = useState(0)
     const [fincaSelect, setFincaSelect] = useState("")
 
@@ -64,11 +64,12 @@ function Propietario() {
                         setCorreo("")
                         setNcel("")
                         setFincaSelect("")
-                        setDep([])
-                        setEstacionamiento([])
+                        setDep('')
+                        setEstacionamiento('')
                         setPart(0)
                     } else {
                         console.log("Entro al else")
+                        console.log(res.data.status)
                         alert(res.data.mensaje)
                         console.log(res.data)
                     }
@@ -84,11 +85,6 @@ function Propietario() {
         console.log(data_POST)
     }
 
-    useEffect(() => {
-        console.log('location', location)
-    }, [])
-
-
     return (
         <>
             <div className='container-fluid' >
@@ -99,8 +95,8 @@ function Propietario() {
                     </div>
                     <div className='col-9'>
                         <form className="form-propietarios" onSubmit={handlesubmit}>
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -112,10 +108,10 @@ function Propietario() {
                                     }
                                     } />
                             </div>
-                            <div class="form-group row">
-                                <label for="exampleFormControlSelect1" className="col-3 col-form-label">Tipo:</label>
+                            <div className="form-group row">
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Tipo:</label>
                                 <div className='input-select col-4'>
-                                    <ReactSelect
+                                    <Select
                                         onChange={
                                             (seleccion) => {
                                                 setTdocSelect(seleccion.value)
@@ -131,8 +127,8 @@ function Propietario() {
                             </div>
 
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -141,8 +137,8 @@ function Propietario() {
                                     value={ndoc}
                                     onChange={e => setNdoc(e.target.value)} />
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -151,8 +147,8 @@ function Propietario() {
                                     value={correo}
                                     onChange={e => setCorreo(e.target.value)} />
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -162,10 +158,10 @@ function Propietario() {
                                     onChange={e => setNcel(e.target.value)} />
                             </div>
 
-                            <div class="form-group row">
-                                <label for="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
+                            <div className="form-group row">
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
                                 <div className='input-select col-4'>
-                                    <ReactSelect
+                                    <Select
                                         onChange={
                                             (seleccion) => {
                                                 setFincaSelect(seleccion.value)
@@ -176,8 +172,8 @@ function Propietario() {
 
                             </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Departamento :</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Departamento :</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -186,8 +182,8 @@ function Propietario() {
                                     value={dep}
                                     onChange={e => setDep(e.target.value)} />
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"
@@ -196,8 +192,8 @@ function Propietario() {
                                     value={estacionamiento}
                                     onChange={e => setEstacionamiento(e.target.value)} />
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
                                 <input type='text'
                                     className='form-control col-4'
                                     id="inputEmail3"

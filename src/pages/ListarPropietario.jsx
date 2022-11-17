@@ -19,6 +19,7 @@ export const ListarPropietario = () => {
 
     console.log(':C')
     const [propietarios, setPropietarios] = useState([])
+
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
     const [listafincas, setListafincas] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
@@ -26,12 +27,11 @@ export const ListarPropietario = () => {
     const getPropietarios = async () => {
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base + 'propietarios')
-       /*  console.log(resp.data) */
+       console.log(resp.data) 
         setPropietarios(resp.data);
     };
 
     const buscarPropietarioPorFinca = (id) => {
-        console.log('Entro a buscarpropietario')
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
         setPropietariosPorFinca(propietariosEncontrado)
         setMensaje('No hay Propietarios')
@@ -101,7 +101,7 @@ export const ListarPropietario = () => {
                 <div className='col-12 pb-4 text-center'>
 
                     {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> : (
-                        <table class="table table-primary table-striped">
+                        <table className="table table-primary table-striped">
                             <thead>
                                 <tr style={encabezadoCss}>
                                     <th scope="col">#</th>
@@ -114,7 +114,7 @@ export const ListarPropietario = () => {
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro}/>
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas}/>
                                 ))
                                 }
 

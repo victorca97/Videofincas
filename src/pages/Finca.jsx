@@ -30,7 +30,7 @@ function Finca() {
         Axios.post(URL, data_POST).then(
             res => {
                 if (res.status == 200) {
-                    alert("Mensaje enviado")
+                    alert("Finca registrada")
                     onResetForm()
 
                 } else (console.log(res))

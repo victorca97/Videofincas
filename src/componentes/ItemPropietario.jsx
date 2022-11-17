@@ -1,13 +1,10 @@
 
 import {Link, useLocation } from 'react-router-dom';
 
-export const ItemPropietario = ({pro, contador }) => {
+export const ItemPropietario = ({pro,listafincas, contador }) => {
 
         const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos} = pro;
 
-        const location = useLocation();
-
-       
         const updatePropietario = (id) => {
                 console.log('id', id)
         }
@@ -37,7 +34,7 @@ export const ItemPropietario = ({pro, contador }) => {
                                 <button onClick={() => updatePropietario(_id)} type="button" className="btn btn-warning mr-3">
                                         <Link 
                                                 to={`/Videofincas/propietarios/${_id}`}
-                                                state={{pro}}>
+                                                state={{pro, listafincas}}>
                                                         Editar
                                         </Link>
                                 </button>
