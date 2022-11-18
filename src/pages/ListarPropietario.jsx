@@ -10,7 +10,7 @@ import ReactSelect from 'react-select';
 import Regresar from '../componentes/Regresar';
 import { ItemPropietario } from '../componentes/ItemPropietario';
 
-const encabezadoCss={
+const encabezadoCss = {
     background: '#294A98',
     color: 'white'
 }
@@ -27,7 +27,7 @@ export const ListarPropietario = () => {
     const getPropietarios = async () => {
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base + 'propietarios')
-       console.log(resp.data) 
+        console.log(resp.data)
         setPropietarios(resp.data);
     };
 
@@ -86,12 +86,13 @@ export const ListarPropietario = () => {
                     </div>
 
                     <div className='col text-center' id='lateral-derecho'>
-                        <button type="button" className="btn btn-primary regular-button mt-5" id='boton-agregar'>
-                            <Link to="/Videofincas/propietario"
-                                state={{ listafincas: listafincas }}>Agregar</Link>
-                        </button>
 
-
+                        <Link to="/Videofincas/propietario" 
+                            state={{ listafincas: listafincas }}>
+                                <button type="button" className="btn-guardar" id='boton-agregar'>
+                                    Agregar
+                                </button>
+                        </Link>
                     </div>
 
                 </div>
@@ -114,7 +115,7 @@ export const ListarPropietario = () => {
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas}/>
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca}/>
                                 ))
                                 }
 

@@ -29,7 +29,7 @@ function Propietario() {
     const [estacionamiento, setEstacionamiento] = useState("")
     const [part, setPart] = useState(0)
     const [fincaSelect, setFincaSelect] = useState("")
-
+    const [data, setData] = useState({})
 
     function handlesubmit(e) {
         e.preventDefault()
@@ -54,10 +54,11 @@ function Propietario() {
         try {
             axios.post(URL, data_POST).then(
                 res => {
+                    console.log(res.data.status)
+                    setData(res.data)
                     if (res.data.status === 201) {
+                        console.log('entra al status 201')
                         alert(res.data.mensaje)
-                        console.log(res)
-                        console.log(res.data);
                         setNombres("")
                         setTdocSelect("")
                         setNdoc("")
@@ -68,23 +69,18 @@ function Propietario() {
                         setEstacionamiento('')
                         setPart(0)
                     } else {
-                        console.log("Entro al else")
-                        console.log(res.data.status)
                         alert(res.data.mensaje)
-                        console.log(res.data)
                     }
                 }
             )
         }
         catch (error) {
-            console.log("Entro al catch")
             alert("Hubo error en el servidor")
-            console.log(URL)
-            console.log(error)
         }
-        console.log(data_POST)
+
     }
 
+    
     return (
         <>
             <div className='container-fluid' >

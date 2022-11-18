@@ -1,13 +1,49 @@
 
-import {Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from '../api/axios';
+import GetURLAPI from '../utilidades/parametros';
 
-export const ItemPropietario = ({pro,listafincas, contador }) => {
+const url_base = GetURLAPI()
 
-        const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos} = pro;
+export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, contador }) => {
 
-        const updatePropietario = (id) => {
-                console.log('id', id)
+        const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos } = pro;
+
+        const eliminarPropietario = (id) => {
+                console.log(id)
+                const data_DELETE = {
+                        "_id": id
+                }
+
+                const URL = url_base + "propietario"
+                try {
+                        axios.delete(URL, {data: data_DELETE}).then(
+                                res => {
+                                        console.log('delete axios')
+                                        console.log(res.data)
+                                        actualizarTablaEliminada(id)
+                                }
+                        )
+
+                }
+                catch (error) {
+                        console.log("Entro al catch")
+                        alert("Hubo error en el servidor")
+                        console.log(error)
+                }
         }
+
+        const actualizarTablaEliminada = (id) => {
+                const tablaActualizada = propietariosPorFinca?.filter(pro=> pro._id !== id)
+                setPropietariosPorFinca(tablaActualizada)
+        }
+/* 
+        useEffect(() => {
+         console.log('entro al useEffect')
+                
+        }, []) */
+        
 
         return (
 
@@ -15,7 +51,7 @@ export const ItemPropietario = ({pro,listafincas, contador }) => {
                         <th scope="row">{contador + 1}</th>
                         <td>{Nombres_y_Apellidos}</td>
 
-                        {Departamentos.map((departamento) => (
+                        {Departamentos.map((departamento, id) => (
                                 <>
                                         <td>{departamento.ID_Departamentos}</td>
                                         <td>{departamento.Porcentaje_Participacion}</td>
@@ -23,24 +59,24 @@ export const ItemPropietario = ({pro,listafincas, contador }) => {
 
 
                         ))}
-
+                           
 
                         {
-                                Estacionamientos.map((estacionamiento) => (
+                                Estacionamientos.map((estacionamiento, id) => (
                                         <td>{estacionamiento.Numero_Estacionamiento}</td>
                                 ))
                         }
                         <td className="d-flex">
-                                <button onClick={() => updatePropietario(_id)} type="button" className="btn btn-warning mr-3">
-                                        <Link 
-                                                to={`/Videofincas/propietarios/${_id}`}
-                                                state={{pro, listafincas}}>
-                                                        Editar
-                                        </Link>
-                                </button>
-                        <button type="button" className="btn btn-danger">Eliminar</button>
-                </td>
-                        
+
+                                <Link
+                                        to={`/Videofincas/propietarios/${_id}`}
+                                        state={{ pro, listafincas }}>
+                                        <button type="button" className="btn btn-warning mr-3">Editar</button>
+                                </Link>
+                                <button type="button" className="btn btn-danger" onClick={() => eliminarPropietario(_id)}>Eliminar</button>
+
+                        </td>
+
 
                 </tr >
 
