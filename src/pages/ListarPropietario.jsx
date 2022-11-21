@@ -15,12 +15,12 @@ const encabezadoCss = {
     color: 'white'
 }
 
-export const ListarPropietario = () => {
+export const ListarPropietario = ({listafincas}) => {
 
     const [propietarios, setPropietarios] = useState([])
 
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
-    const [listafincas, setListafincas] = useState([])
+    /* const [listafincas, setListafincas] = useState([]) */
     const [mensaje, setMensaje] = useState('Buscar finca')
 
     const getPropietarios = async () => {
@@ -38,7 +38,7 @@ export const ListarPropietario = () => {
 
 
 
-    const getFincas = async () => {
+ /*    const getFincas = async () => {
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base + 'finca')
         console.log(resp.data)
@@ -47,7 +47,7 @@ export const ListarPropietario = () => {
 
     useEffect(() => {
         getFincas();
-    }, []);
+    }, []); */
 
     useEffect(() => {
         console.log('entro a useEffect getpropietarios')
@@ -86,7 +86,7 @@ export const ListarPropietario = () => {
                     <div className='col text-center' id='lateral-derecho'>
 
                         <Link to="/Videofincas/propietario" 
-                            state={{ listafincas: listafincas }}>
+                            state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
                                 <button type="button" className="btn-guardar" id='boton-agregar'>
                                     Agregar
                                 </button>

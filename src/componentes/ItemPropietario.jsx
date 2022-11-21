@@ -1,5 +1,4 @@
 
-import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from '../api/axios';
 import GetURLAPI from '../utilidades/parametros';

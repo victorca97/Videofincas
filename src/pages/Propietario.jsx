@@ -12,6 +12,8 @@ import axios from 'axios';
 function Propietario() {
 
     const location = useLocation();
+    const propietariosPorFinca = location.state.propietariosPorFinca;
+    console.log('locatioooon ', propietariosPorFinca)
 
     const doc = [
         { id: 'D', name: 'D.N.I.', adress: 'dni' },
@@ -48,6 +50,12 @@ function Propietario() {
             "Departamentos": [{ "ID_Departamentos": dep, "Porcentaje_Participacion": part }],
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
         }
+
+        const validarDepartamento = propietariosPorFinca.find(propietario => propietario.Departamentos.ID_Departamentos === dep)
+        console.log('Validar Departamento: ',validarDepartamento)
+        const validarFinca = propietariosPorFinca.find(propietario=> propietario.Finca === fincaSelect)
+        console.log('Validar Finca: ', validarFinca)
+        
         const url_base = GetURLAPI()
         const URL = url_base + "propietario"
         try {
@@ -67,6 +75,7 @@ function Propietario() {
                         setEstacionamiento('')
                         setPart(0)
                     } else {
+                        // if status === *   "No se pudo registrar por el N° Dep"
                         alert(res.data.mensaje)
                     }
                 }
@@ -77,7 +86,6 @@ function Propietario() {
         }
 
     }
-
     
     return (
         <>

@@ -1,20 +1,19 @@
-
 import Regresar from '../componentes/Regresar';
 import '../App.css';
 import '../estilos/FormPropietario.css';
 import GetURLAPI from '../utilidades/parametros';
-
 import Axios from 'axios';
-import { useForm } from '../hooks/useForm';
 import { SubirImg } from '../componentes/SubirImg';
+import { useForm } from '../hooks/useForm';
 
-function Finca() {
 
+export const Finca = () => {
     const { nombre, direccion, onInputChange, onResetForm } = useForm({
         nombre: '',
         direccion: '',
         imagen: ''
     })
+
 
     function handlesubmit(e) {
         e.preventDefault()
@@ -50,30 +49,29 @@ function Finca() {
                     </div>
 
                     <div className='col-6 vh-200 justify-content-center align-items-center'>
-                        
-                            <div className="form-group text-center " >
-                                <label className="col col-form-label">Nombre de la Finca :</label>
-                                <input type='text'
-                                    className='form-control col-8 '
-                                    id='subtitulo-finca'
-                                    placeholder=""
-                                    name={"nombre"}
-                                    value={nombre}
-                                    onChange={onInputChange} />
-                            </div>
-                            <div className="form-group text-center" >
-                                <label className="col col-form-label " id='textito'>Direccion de la Finca :</label>
-                                <input type='text'
-                                    className='form-control col-8 '
-                                    id='subtitulo-finca'
-                                    placeholder=""
-                                    name={"direccion"}
-                                    value={direccion}
-                                    onChange={onInputChange}
-                                />
-                            </div>
 
-                        
+                        <div className="form-group text-center " >
+                            <label className="col col-form-label">Nombre de la Finca :</label>
+                            <input type='text'
+                                className='form-control col-8 '
+                                id='subtitulo-finca'
+                                placeholder=""
+                                name={"nombre"}
+                                value={nombre}
+                                onChange={onInputChange} />
+                        </div>
+                        <div className="form-group text-center" >
+                            <label className="col col-form-label " id='textito'>Direccion de la Finca :</label>
+                            <input type='text'
+                                className='form-control col-8 '
+                                id='subtitulo-finca'
+                                placeholder=""
+                                name={"direccion"}
+                                value={direccion}
+                                onChange={onInputChange}
+                            />
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -86,7 +84,5 @@ function Finca() {
 
             </div>
         </>
-    );
+    )
 }
-
-export default Finca;

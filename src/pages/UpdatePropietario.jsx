@@ -6,7 +6,7 @@ import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
 /* import ReactSelect from 'react-select'; */
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -16,10 +16,7 @@ function UpdatePropietario() {
     const propietarioRecuperado = location.state.pro;
     const listaFincas = location.state.listafincas
     const navigate = useNavigate()
-    
-    /*  
-        const id_propietario_modificar = location.pathname.split('propietarios/')[1]
-     */
+
     const {
         _id,
         Finca,
@@ -38,19 +35,19 @@ function UpdatePropietario() {
         { id: 'PS', name: 'Nro. Pasaporte', adress: 'passport' }
     ]
 
-    const [nombres,setNombres] = useState(Nombres_y_Apellidos)
-    const [listatdoc,setListatdoc] = useState(doc)
-    const [tdocSelect,setTdocSelect] = useState(Tipo_Documento)
-    const [ndoc,setNdoc] = useState(Nro_Documento)
-    const [correo,setCorreo] = useState(Correo)
-    const [ncel,setNcel] = useState(Telefono)
-    const [dep,setDep] = useState(Departamentos[0].ID_Departamentos)
-    const [estacionamiento,setEstacionamiento] = useState( Estacionamientos[0].Numero_Estacionamiento)
-    const [part,setPart] = useState(Departamentos[0].Porcentaje_Participacion)
-    const [fincaSelect,setFincaSelect] = useState(Finca)
+    const [nombres, setNombres] = useState(Nombres_y_Apellidos)
+    const [listatdoc, setListatdoc] = useState(doc)
+    const [tdocSelect, setTdocSelect] = useState(Tipo_Documento)
+    const [ndoc, setNdoc] = useState(Nro_Documento)
+    const [correo, setCorreo] = useState(Correo)
+    const [ncel, setNcel] = useState(Telefono)
+    const [dep, setDep] = useState(Departamentos[0].ID_Departamentos)
+    const [estacionamiento, setEstacionamiento] = useState(Estacionamientos[0].Numero_Estacionamiento)
+    const [part, setPart] = useState(Departamentos[0].Porcentaje_Participacion)
+    const [fincaSelect, setFincaSelect] = useState(Finca)
     const [data, setData] = useState({})
-    const obtenerLabelDelTipoDocumentoSeleccionado = doc.find(d=> d.id === Tipo_Documento).name 
-    const obtenerLabelDeLaFincaSeleccionada = listaFincas.find(f => f._id === Finca ).Nombre
+    const obtenerLabelDelTipoDocumentoSeleccionado = doc.find(d => d.id === Tipo_Documento).name
+    const obtenerLabelDeLaFincaSeleccionada = listaFincas.find(f => f._id === Finca).Nombre
 
 
     function handlesubmit(e) {
@@ -73,7 +70,7 @@ function UpdatePropietario() {
         }
         console.log('data_PUT', data_PUT)
         const url_base = GetURLAPI()
-        const URL = url_base + "propietarios/" + _id
+        const URL = url_base + "propietarios"
         try {
 
             axios.put(URL, data_PUT).then(
@@ -98,108 +95,128 @@ function UpdatePropietario() {
     }, [data])
 
     return (
-        <div className='container-fluid row'>
-            <div className='col-3'>
-                <Regresar
-                    ruta='propietarios' />
-            </div>
-            <div className='col-6'>
-                <form className="form-propietarios" onSubmit={handlesubmit}>
-                    <h2 className='h2-propietario'> Nombres y Apellidos: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"nombres"}
-                        value={nombres}
-                        onChange={e => setNombres(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Tipo de Documento: </h2>
-                    <div className='input-select'>
-                        <Select
-                            onChange={
-                                (seleccion) => {
-                                    setTdocSelect(seleccion.value)
-                                }
-                            }
-                            options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }))}
-                            defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: setTdocSelect }}
-                        />
+        <>
+            <div className='container-fluid' >
+                <div className='row'>
+                    <div className='col-3'>
+                        <Regresar
+                            ruta='propietarios' />
                     </div>
-                    <h2 className='h2-propietario'> Nro. de Documento: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"ndoc"}
-                        value={ndoc}
-                        onChange={e => setNdoc(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Correo Electrónico: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"correo"}
-                        value={correo}
-                        onChange={e => setCorreo(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Nro. de Celular: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"ncel"}
-                        value={ncel}
-                        onChange={e => setNcel(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Finca: </h2>
-                    <div className='input-select'>
-                        <Select
-                            onChange={
-                                (seleccion) => {
-                                    setFincaSelect(seleccion.value)
-                                }
-                            }
-                            options={listaFincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
-                            defaultValue={{ label: obtenerLabelDeLaFincaSeleccionada, value: fincaSelect }}
+                    <div className='col-9'>
+                        <form className="form-propietarios" onSubmit={handlesubmit}>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Nombre y Apellido "
+                                    name={"nombres"}
+                                    value={nombres}
+                                    onChange={e => {
+                                        setNombres(e.target.value)
+                                    }
+                                    } />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Tipo de Documento:</label>
+                                <div className='input-select col-4'>
+                                    <Select
+                                        onChange={
+                                            (seleccion) => {
+                                                setTdocSelect(seleccion.value)
+                                            }
+                                        }
+                                        options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }))}
+                                        defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: setTdocSelect }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Nro. de Documento "
+                                    name={"ndoc"}
+                                    value={ndoc}
+                                    onChange={e => setNdoc(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Correo Electrónico "
+                                    name={"correo"}
+                                    value={correo}
+                                    onChange={e => setCorreo(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Nro. de Celular "
+                                    name={"ncel"}
+                                    value={ncel}
+                                    onChange={e => setNcel(e.target.value)} />
+                            </div>
 
-                        />
+                            <div className="form-group row">
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
+                                <div className='input-select col-4'>
+                                    <Select
+                                        onChange={
+                                            (seleccion) => {
+                                                setFincaSelect(seleccion.value)
+                                            }
+                                        }
+                                        options={listaFincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
+                                        defaultValue={{ label: obtenerLabelDeLaFincaSeleccionada, value: fincaSelect }}
+
+                                    /></div>
+
+                            </div>
+
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Departamento :</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Departamento "
+                                    name={"dep"}
+                                    value={dep}
+                                    onChange={e => setDep(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Estacionamiento "
+                                    name={"estacionamiento"}
+                                    value={estacionamiento}
+                                    onChange={e => setEstacionamiento(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    id="inputEmail3"
+                                    placeholder="Participación(%) "
+                                    name={"part"}
+                                    value={part}
+                                    onChange={e => setPart(e.target.value)} />
+                            </div>
+
+                        </form>
+                        <div className='contenedor-btn-guardar' onClick={() => updatePropietario()}>
+                            <button className='btn-guardar'>Actualizar</button>
+                        </div>
                     </div>
-                    <h2 className='h2-propietario'> Departamento: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"dep"}
-                        value={dep}
-                        onChange={e => setDep(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Estacionamiento: </h2>
-                    <input
-                        className='input-propietario'
-                        type='text'
-                        placeholder=''
-                        name={"estacionamiento"}
-                        value={estacionamiento}
-                        onChange={e => setEstacionamiento(e.target.value)}
-                    />
-                    <h2 className='h2-propietario'> Participación (%): </h2>
-                    <input
-                        className='input-propietario'
-                        type='number'
-                        placeholder=''
-                        name={"part"}
-                        value={part}
-                        onChange={e => setPart(e.target.value)}
-                    />
-                </form>
+                </div>
             </div>
-
-            <div className='contenedor-btn-guardar col-3' onClick={() => updatePropietario()}>
-                <button className='btn-guardar'>ACTUALIZAR</button>
-            </div>
-        </div>
+        </>
     );
 }
 

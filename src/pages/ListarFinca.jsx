@@ -1,0 +1,67 @@
+
+import Regresar from '../componentes/Regresar';
+import '../App.css';
+import '../estilos/FormPropietario.css';
+import { Link } from 'react-router-dom';
+import { ItemFinca } from '../componentes/ItemFinca';
+import { useEffect } from 'react';
+const encabezadoCss = {
+    background: '#294A98',
+    color: 'white'
+}
+
+function ListarFinca({ listafincas, getFincas }) {
+
+    useEffect(() => {
+        getFincas()
+    }, []);
+
+    return (
+        <>
+            <div className='container-fluid' >
+                <div className='row'>
+                    <div className='col-3'>
+                        <Regresar
+                            ruta='home' />
+                    </div>
+
+                    <div className='col-6'>
+                    {listafincas.length == 0 ? <h1>Cargando...</h1> : (
+                        <table className="table table-primary table-striped mt-5">
+                            <thead>
+                                <tr style={encabezadoCss}>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Direccion</th>
+                                    <th scope='col'></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                listafincas.map((finca, contador) => (
+                                    <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca}/>
+                                ))
+                                }
+
+                            </tbody>
+
+                        </table>
+                    )
+                    }
+                    </div>
+                    <div className='col text-center' id='lateral-derecho'>
+
+                        <Link to="/Videofincas/finca">
+                            <button type="button" className="btn-guardar" id='boton-agregar'>
+                                Agregar
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+        </>
+    );
+}
+
+export default ListarFinca;
