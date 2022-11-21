@@ -1,0 +1,28 @@
+.form-info {
+  width: auto;
+  min-height: auto;
+  background-color: #83A0E5;
+  padding: 25px;
+  margin-bottom: 25px;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20.8px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+}
+
+.seccion-contenedor-iconos {
+  text-align: right;
+}
+
+.seccion-icono {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  margin-bottom: -10px;
+  margin-top: 15px;
+  cursor: pointer;
+  color: rgb(23, 43,77);
+}
