@@ -5,6 +5,7 @@ import '../estilos/Login.css';
 import '../App.css';
 
 import axios from '../api/axios';
+
 const LOGIN_URL = '/auth';
 
 const textLogin = {
@@ -66,6 +67,7 @@ const Login = () => {
 
     const abrirMenu = e => {
         e.preventDefault();
+      
         navigate("/Videofincas/home");
     };
 

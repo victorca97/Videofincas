@@ -11,7 +11,7 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
         const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos } = pro;
 
         const eliminarPropietario = (id) => {
-                console.log(id)
+                
                 const data_DELETE = {
                         "_id": id
                 }
@@ -20,15 +20,14 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                 try {
                         axios.delete(URL, {data: data_DELETE}).then(
                                 res => {
-                                        console.log('delete axios')
-                                        console.log(res.data)
+                                      
                                         actualizarTablaEliminada(id)
+                                        
                                 }
                         )
 
                 }
                 catch (error) {
-                        console.log("Entro al catch")
                         alert("Hubo error en el servidor")
                         console.log(error)
                 }

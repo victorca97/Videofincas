@@ -37,7 +37,6 @@ function Propietario() {
 
     function enviarPropietario() {
 
-        console.log(fincaSelect);
         const data_POST = {
             "_id": tdocSelect + ndoc,
             "Finca": fincaSelect,
@@ -54,7 +53,6 @@ function Propietario() {
         try {
             axios.post(URL, data_POST).then(
                 res => {
-                    console.log(res.data.status)
                     setData(res.data)
                     if (res.data.status === 201) {
                         console.log('entra al status 201')

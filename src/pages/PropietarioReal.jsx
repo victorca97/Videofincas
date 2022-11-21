@@ -12,7 +12,7 @@ function Propietario() {
   const agregarPropietario = e => {
     e.preventDefault()
     if(!propietario.trim()){
-      console.log('Campo vacio')
+      
       setError('El campo no puede estar Vacío')
       return
     }
@@ -38,7 +38,7 @@ function Propietario() {
   const editarPropietario = e => {
     e.preventDefault()
     if(!propietario.trim()){
-      console.log('Campo vacio')
+     
       setError('El campo no puede estar vacío')
       return
     }

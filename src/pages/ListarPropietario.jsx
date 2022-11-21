@@ -17,7 +17,6 @@ const encabezadoCss = {
 
 export const ListarPropietario = () => {
 
-    console.log(':C')
     const [propietarios, setPropietarios] = useState([])
 
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
@@ -47,7 +46,6 @@ export const ListarPropietario = () => {
     };
 
     useEffect(() => {
-        console.log('entro a useEffect getfincas')
         getFincas();
     }, []);
 
