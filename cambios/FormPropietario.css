@@ -1,0 +1,95 @@
+.form-propietarios {
+    padding: 25px;
+    margin-left: 0;
+}
+
+.h2-propietario {
+    color: #294A98;
+    font-size: 20px;
+    margin: 10px 10px;
+    align-self: center;
+}
+
+.input-propietario {
+    width: 280px;
+    height: 35px;
+    font-size: 14.4px;
+    background-color: white;
+    padding: 3.5px 8px 3.5px 4px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid black;
+    outline: none;
+    margin-left: auto;
+    margin-right: 45%;
+    align-self: center;
+}
+
+.input-select {
+    width: 180px;
+    height: 35px;
+    font-size: 14.4px;
+    font-family: Lato, sans-serif;
+    min-width: 240px;
+    padding: 3.5px 8px 3.5px 4px;
+    color: black;
+    outline: none;
+}
+
+.lateral-derecho{
+    margin-top: 25%;
+    padding-left: 150px;
+}
+
+.nb {
+    border: none;
+    display: block;
+    position: relative;
+    padding: 0.7em 2.4em;
+    font-size: 18px;
+    background: transparent;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    color: royalblue;
+    z-index: 1;
+    font-family: inherit;
+    font-weight: 500;
+   }
+   
+   .nb span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+    border: 4px solid royalblue;
+   }
+   
+   .nb span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8%;
+    height: 500%;
+    background: var(--lightgray);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-60deg);
+    transition: all 0.3s;
+   }
+   
+   .nb:hover span::before {
+    transform: translate(-50%, -50%) rotate(-90deg);
+    width: 100%;
+    background: royalblue;
+   }
+   
+   .nb:hover {
+    color: white;
+   }
+   
+   .nb:active span::before {
+    background: #2751cd;
+   }
