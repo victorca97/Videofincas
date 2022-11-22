@@ -14,11 +14,6 @@ export const NavBar = () => {
   const location = useLocation();
 
   let name = location.pathname.split('Videofincas/')[1]
-  
-  /* if (name.includes('/')) {
-    name = name.split('/')[0]
-  } */
-  
   switch (name) {
     case 'home':
       name = 'Menú principal'
@@ -38,9 +33,6 @@ export const NavBar = () => {
     case 'descarga':
       name = 'Descargas'
       break;
-    case 'fincas':
-      name='Fincas'
-      break
     default:
       break;
   }
@@ -62,9 +54,12 @@ export const NavBar = () => {
           </h1>
         </div>
 
-        <Link to='/Videofincas' className='d-flex col-sm-2 align-items-center justify-content-end'>
-          <AiOutlineLogout style={iconLogout} />
-        </Link>
+        <div className='my-4'>
+          <Link to='/Videofincas' className='main_div col-xs-12 col-sm-2 py-3 '>
+            <button>Salir</button>
+          </Link>
+        </div>
+
 
       </div>
     </div>

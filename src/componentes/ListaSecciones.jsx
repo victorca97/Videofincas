@@ -20,8 +20,12 @@ function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreg
 
 
     return(
-        <>
-            <FormSeccion onSubmit={agregarSeccion}/>
+        <>  
+            <div className='container-fluid'>
+                <div>
+                <FormSeccion onSubmit={agregarSeccion}/>
+                </div>
+                
             <div className='contenedor-secciones'>
                {
                     listaSecciones.map((seccion) =>                    
@@ -38,6 +42,8 @@ function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreg
                     secciones.map(seccion => console.log(seccion))
                 } */}
             </div>
+            </div>
+            
         </>
     );
 }

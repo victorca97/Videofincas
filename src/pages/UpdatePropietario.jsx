@@ -210,8 +210,10 @@ function UpdatePropietario() {
                             </div>
 
                         </form>
-                        <div className='contenedor-btn-guardar' onClick={() => updatePropietario()}>
-                            <button className='btn-guardar'>Actualizar</button>
+                        <div className='d-flex justify-content-center mb-5' onClick={() => updatePropietario()}>
+                            <button className='nb'> Actualizar
+                            <span></span>
+                        </button>
                         </div>
                     </div>
                 </div>

@@ -50,17 +50,19 @@ function Propietario() {
             "Departamentos": [{ "ID_Departamentos": dep, "Porcentaje_Participacion": part }],
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
         }
+        console.log(data_POST)
 
-        const validarDepartamento = propietariosPorFinca.find(propietario => propietario.Departamentos.ID_Departamentos === dep)
+       /*  const validarDepartamento = propietariosPorFinca.find(propietario => propietario.Departamentos.ID_Departamentos === dep)
         console.log('Validar Departamento: ',validarDepartamento)
         const validarFinca = propietariosPorFinca.find(propietario=> propietario.Finca === fincaSelect)
-        console.log('Validar Finca: ', validarFinca)
+        console.log('Validar Finca: ', validarFinca) */
         
         const url_base = GetURLAPI()
         const URL = url_base + "propietario"
         try {
             axios.post(URL, data_POST).then(
                 res => {
+                    console.log(res.data)
                     setData(res.data)
                     if (res.data.status === 201) {
                         console.log('entra al status 201')

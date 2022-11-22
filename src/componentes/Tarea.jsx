@@ -6,34 +6,34 @@ function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
 
   return (
     <div className={completada ? 'tarea-contenedor completada' : 'tarea-contenedor'}>
-      <div 
-        className='tarea-texto'
-        onClick={() => completarTarea(id)}>
-        {texto.charAt(0).toUpperCase() + texto.slice(1)}
+      <div className='container-fluid '>
+        <form>
+          <div class="row d-flex align-items-center">
+            <div
+              className='col-3 tarea-texto'
+              onClick={() => completarTarea(id)}>
+              {texto.charAt(0).toUpperCase() + texto.slice(1)}
+            </div>
+            <div class="col">
+              <input class="form-control" type="text"
+                name='periodo'
+                placeholder='Descripcion o periodo' />
+            </div>
+            <div class="col">
+              <input class="form-control" type="number"
+                name='importe'
+                placeholder="Ingresar importe Total" />
+            </div>
+            
+            <div className='col-1 tarea-contenedor-iconos'
+              onClick={() => eliminarTarea(id)}>
+              <AiFillCloseCircle className='tarea-icono' />
+            </div>
+          </div>
+
+        </form>
       </div>
-      <div
-        className='periodo-contenedor'>
-        <input
-          className='periodo-input'
-          type="text"
-          name='periodo'
-          placeholder='Ingresar periodo'
-        />
-      </div>
-      <div
-        className='importe-contenedor'>
-        <input 
-          className='importe-input' 
-          type="number"
-          name='importe' 
-          placeholder="Ingresar importe"
-        />
-      </div>
-      <div 
-        className='tarea-contenedor-iconos'
-        onClick={() => eliminarTarea(id)}>
-        <AiFillCloseCircle className='tarea-icono'/>
-      </div>
+
     </div>
   );
 }

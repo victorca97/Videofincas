@@ -40,21 +40,28 @@ function Recibo() {
 
     return (
         <>
-            <div className='row'>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className='col-3'><Regresar
+                        ruta='home' className='col-3' /></div>
+                    <div className='col-9'>
+                        <form className="nombre-finca-formulario col-8">
 
-                <Regresar
-                    ruta='home' className='col-3' />
-                <form className="nombre-finca-formulario col-6">
-
-                    <h2> Nombre de la Finca: </h2>
-                    <div className='autocomplete-wrapper'>
-                        <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} />
+                            <h2> Nombre de la Finca: </h2>
+                            <div className='autocomplete-wrapper'>
+                                <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} />
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones} fincaSelect={fincaSelect} />
-            <div className='contenedor-btn-guardar'>
-                <button onClick={putPlantilla} className='btn-guardar'>GUARDAR</button>
+
+                </div>
+                <div className='container-fluid'>
+                    <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones} fincaSelect={fincaSelect} />
+                    <div className='contenedor-btn-guardar'>
+                        <button onClick={putPlantilla} className='btn-guardar'>GUARDAR</button>
+                    </div>
+                </div>
+
             </div>
         </>
     );
