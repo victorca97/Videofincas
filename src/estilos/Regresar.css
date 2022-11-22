@@ -15,3 +15,17 @@
     color: #fff;
     text-transform: capitalize;
 }
+
+.btn-regresar,
+.btn-guardar{
+    background-color: #294A98;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 12px;
+    margin: 0;
+}
+
+.btn-regresar:hover,
+.btn-guardar:hover{
+    color: #fff;
+}

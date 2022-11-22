@@ -15,7 +15,7 @@ const encabezadoCss = {
     color: 'white'
 }
 
-export const ListarPropietario = ({listafincas}) => {
+export const ListarPropietario = ({ listafincas }) => {
 
     const [propietarios, setPropietarios] = useState([])
 
@@ -36,19 +36,6 @@ export const ListarPropietario = ({listafincas}) => {
         setMensaje('No hay Propietarios')
     }
 
-
-
- /*    const getFincas = async () => {
-        const url_base = GetURLAPI()
-        const resp = await axios.get(url_base + 'finca')
-        console.log(resp.data)
-        setListafincas(resp.data);
-    };
-
-    useEffect(() => {
-        getFincas();
-    }, []); */
-
     useEffect(() => {
         console.log('entro a useEffect getpropietarios')
         getPropietarios();
@@ -58,12 +45,12 @@ export const ListarPropietario = ({listafincas}) => {
         <div>
             <div className='container-fluid' >
                 <div className='row'>
-                    <div className='col'>
+                    <div className='col-xs-3 col-sm-3'>
                         <Regresar
                             ruta='home' />
                     </div>
-                    <div className='col-6'>
-                        <form className='form-propietarios '>
+                    <div className='col-xs-6 col-sm-6'>
+                        <form className='form-propietarios d-flex justify-content-center'>
                             <h2 className='h2-propietario'> Finca: </h2>
                             <div className='input-select mb-3'>
                                 <ReactSelect
@@ -83,14 +70,15 @@ export const ListarPropietario = ({listafincas}) => {
                         </form>
                     </div>
 
-                    <div className='col text-center' id='lateral-derecho'>
-
-                        <Link to="/Videofincas/propietario" 
-                            state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
-                                <button type="button" className="btn-guardar" id='boton-agregar'>
+                    <div className='col-xs-6 col-sm-3 mt-0 mb-2'>
+                        <div className='container mt-4 d-flex justify-content-center'>
+                            <Link to="/Videofincas/propietario"
+                                state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
+                                <button type="button" className="btn btn-guardar">
                                     Agregar
                                 </button>
-                        </Link>
+                            </Link>
+                        </div>
                     </div>
 
                 </div>
@@ -113,7 +101,7 @@ export const ListarPropietario = ({listafincas}) => {
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca}/>
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca} />
                                 ))
                                 }
 

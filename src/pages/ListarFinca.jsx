@@ -10,7 +10,7 @@ const encabezadoCss = {
     color: 'white'
 }
 
-function ListarFinca({ listafincas, getFincas}) {
+function ListarFinca({ listafincas, getFincas }) {
 
     useEffect(() => {
         getFincas()
@@ -22,42 +22,44 @@ function ListarFinca({ listafincas, getFincas}) {
         <>
             <div className='container-fluid' >
                 <div className='row'>
-                    <div className='col-3'>
+                    <div className='col-xs-3 col-sm-3'>
                         <Regresar
                             ruta='home' />
                     </div>
 
-                    <div className='col-6'>
-                    {listafincas?.length == 0 ? <h1>Cargando...</h1> : (
-                        <table className="table table-primary table-striped mt-5">
-                            <thead>
-                                <tr style={encabezadoCss}>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Direccion</th>
-                                    <th scope='col'></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                listafincas?.map((finca, contador) => (
-                                    <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca} getFincas={getFincas}/>
-                                ))
-                                }
+                    <div className='col-xs-6 col-sm-6'>
+                        {listafincas?.length == 0 ? <h1>Cargando...</h1> : (
+                            <table className="table table-primary table-striped mt-5">
+                                <thead>
+                                    <tr style={encabezadoCss}>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Direccion</th>
+                                        <th scope='col'></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        listafincas?.map((finca, contador) => (
+                                            <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca} getFincas={getFincas} />
+                                        ))
+                                    }
 
-                            </tbody>
+                                </tbody>
 
-                        </table>
-                    )
-                    }
+                            </table>
+                        )
+                        }
                     </div>
-                    <div className='col text-center' id='lateral-derecho'>
+                    <div className='col-xs-3 col-sm-3'>
+                        <div className='container mt-4 d-flex justify-content-center'>
+                            <Link to="/Videofincas/finca">
+                                <button type="button" className="btn btn-guardar mb-2">
+                                    Agregar
+                                </button>
+                            </Link>
+                        </div>
 
-                        <Link to="/Videofincas/finca">
-                            <button type="button" className="btn-guardar" id='boton-agregar'>
-                                Agregar
-                            </button>
-                        </Link>
                     </div>
                 </div>
             </div>

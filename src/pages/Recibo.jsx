@@ -1,17 +1,18 @@
 
 import { useState } from 'react';
-import { Fincas } from "../componentes/Fincas";
 import ListaSecciones from "../componentes/ListaSecciones";
 import Regresar from "../componentes/Regresar";
 import '../App.css';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import Select from 'react-select'
 import GetURLAPI from '../utilidades/parametros';
 
-function Recibo({listafincas}) {
+const url_base = GetURLAPI()
+
+function Recibo({ listafincas }) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
-    const url_base = GetURLAPI()
 
     const getPlantilla = async (fincaOption) => {
         const api_plantilla = await axios.get(url_base + `plantilla/${fincaOption}`)
@@ -44,12 +45,22 @@ function Recibo({listafincas}) {
                 <div className='row'>
                     <div className='col-3'><Regresar
                         ruta='home' className='col-3' /></div>
-                    <div className='col-9'>
-                        <form className="nombre-finca-formulario col-8">
+                    <div className='col-6'>
+                        <form className='form-propietarios d-flex justify-content-center'>
 
-                            <h2>Finca: </h2>
+                            <h2 className='h2-propietario'>Finca: </h2>
                             <div className='autocomplete-wrapper'>
-                                <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} />
+                                {/* <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} listafincas={listafincas}/> */}
+                                <div className='input-select mb-3'>
+                                    <Select
+                                        onChange={
+                                            (finca_seleccion) => {
+                                                console.log(finca_seleccion.value)
+                                            }
+                                        }
+                                        options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup.Nombre }))}
+                                    />
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -14,8 +14,8 @@ function Regresar(props) {
     };
 
     return (
-        <div className="contenedor-btn-regresar">
-            <button id="btn-regresar" onClick={linkear}>
+        <div className="container mt-4 d-flex justify-content-center">
+            <button className="btn btn-regresar" onClick={linkear}>
                 ← Regresar
             </button>
         </div>

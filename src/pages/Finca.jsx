@@ -79,7 +79,7 @@ export const Finca = () => {
             <div className='container-fluid' >
                 <SubirImg />
                 <div className='contenedor-btn-guardar' onClick={handlesubmit}>
-                    <button className='btn-guardar'>GUARDAR</button>
+                    <button className='btn-guardar mt-2 mb-2'>GUARDAR</button>
                 </div>
 
             </div>
