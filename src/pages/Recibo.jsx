@@ -8,7 +8,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import GetURLAPI from '../utilidades/parametros';
 
-function Recibo() {
+function Recibo({listafincas}) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
     const url_base = GetURLAPI()
@@ -47,7 +47,7 @@ function Recibo() {
                     <div className='col-9'>
                         <form className="nombre-finca-formulario col-8">
 
-                            <h2> Nombre de la Finca: </h2>
+                            <h2>Finca: </h2>
                             <div className='autocomplete-wrapper'>
                                 <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} />
                             </div>

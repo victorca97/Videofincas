@@ -20,7 +20,7 @@ export const Finca = () => {
         const data_POST = {
             "Admin_Id": "Admin0001",
             "Nombre": nombre,
-            direccion,
+            "Direccion": direccion,
             /*imagen, */
 
         }
@@ -45,7 +45,7 @@ export const Finca = () => {
                 <div className='row'>
                     <div className='col-3'>
                         <Regresar
-                            ruta='home' />
+                            ruta='fincas' />
                     </div>
 
                     <div className='col-6 vh-200 justify-content-center align-items-center'>

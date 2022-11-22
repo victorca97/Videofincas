@@ -30,6 +30,9 @@ export const NavBar = () => {
     case 'finca':
       name = 'Formulario de las Fincas'
       break;
+    case 'fincas':
+      name = 'Fincas'
+      break;
     case 'descarga':
       name = 'Descargas'
       break;

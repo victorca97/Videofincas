@@ -77,8 +77,8 @@ function Propietario() {
                         setEstacionamiento('')
                         setPart(0)
                     } else {
-                        // if status === *   "No se pudo registrar por el N° Dep"
-                        alert(res.data.mensaje)
+                        console.log('entro al else',res.data.message)
+                        alert(res.data.message)
                     }
                 }
             )

@@ -4,12 +4,13 @@ import axios from '../api/axios';
 
 const url_base = GetURLAPI()
 
-export const ItemFinca = ({ finca, _id, Nombre, Direccion, contador }) => {
+export const ItemFinca = ({ finca, getFincas, _id, Nombre, Direccion, contador }) => {
 
-    const eliminarFinca = () => {
+    const eliminarFinca = (id) => {
 
         const data_DELETE = {
-            "_id": _id
+            "_id": id,
+            "Nombre": Nombre
         }
 
         const URL = url_base + "finca"
@@ -19,6 +20,8 @@ export const ItemFinca = ({ finca, _id, Nombre, Direccion, contador }) => {
                 res => {
 
                     console.log('eliminado')
+                    alert(res.data.message)
+                    getFincas()
                 }
             )
 
@@ -29,7 +32,6 @@ export const ItemFinca = ({ finca, _id, Nombre, Direccion, contador }) => {
             console.log(error)
         }
     }
-
 
 
     return (
@@ -44,7 +46,7 @@ export const ItemFinca = ({ finca, _id, Nombre, Direccion, contador }) => {
                     state={{ finca }}>
                     <button type="button" className="btn btn-warning mr-3">Editar</button>
                 </Link>
-                <button type="button" className="btn btn-danger" onClick={eliminarFinca}>Eliminar</button>
+                <button type="button" className="btn btn-danger" onClick={() => eliminarFinca(_id)}>Eliminar</button>
 
             </td>
         </tr>

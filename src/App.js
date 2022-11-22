@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path='Videofincas/' element={<Login />} />
         <Route path='Videofincas/home' element={<Menu />} />
-        <Route path='Videofincas/recibo' element={<Recibo />} />
+        <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas}/>} />
         <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas}/>} />
         <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
         <Route path='Videofincas/propietario' element={<Propietario />} />

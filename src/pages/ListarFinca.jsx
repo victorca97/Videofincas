@@ -10,11 +10,13 @@ const encabezadoCss = {
     color: 'white'
 }
 
-function ListarFinca({ listafincas, getFincas }) {
+function ListarFinca({ listafincas, getFincas}) {
 
     useEffect(() => {
         getFincas()
     }, []);
+
+    console.log(listafincas)
 
     return (
         <>
@@ -26,7 +28,7 @@ function ListarFinca({ listafincas, getFincas }) {
                     </div>
 
                     <div className='col-6'>
-                    {listafincas.length == 0 ? <h1>Cargando...</h1> : (
+                    {listafincas?.length == 0 ? <h1>Cargando...</h1> : (
                         <table className="table table-primary table-striped mt-5">
                             <thead>
                                 <tr style={encabezadoCss}>
@@ -38,8 +40,8 @@ function ListarFinca({ listafincas, getFincas }) {
                             </thead>
                             <tbody>
                                 {
-                                listafincas.map((finca, contador) => (
-                                    <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca}/>
+                                listafincas?.map((finca, contador) => (
+                                    <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca} getFincas={getFincas}/>
                                 ))
                                 }
 
