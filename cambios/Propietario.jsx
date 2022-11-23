@@ -1,33 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState  } from 'react';
 import Regresar from '../componentes/Regresar';
 import GetURLAPI from '../utilidades/parametros';
 import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
-/* import ReactSelect from 'react-select'; */
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 
-function UpdatePropietario() {
+function Propietario() {
 
     const location = useLocation();
-    const propietarioRecuperado = location.state.pro;
-    const listaFincas = location.state.listafincas
-    const navigate = useNavigate()
-
-    const {
-        _id,
-        Finca,
-        Nombres_y_Apellidos,
-        Tipo_Documento,
-        Nro_Documento,
-        Correo,
-        Telefono,
-        Departamentos,
-        Estacionamientos
-    } = propietarioRecuperado;
+    const propietariosPorFinca = location.state.propietariosPorFinca;
+    console.log('locatioooon ', propietariosPorFinca)
 
     const doc = [
         { id: 'D', name: 'D.N.I.', adress: 'dni' },
@@ -35,29 +21,25 @@ function UpdatePropietario() {
         { id: 'PS', name: 'Nro. Pasaporte', adress: 'passport' }
     ]
 
-    const [nombres, setNombres] = useState(Nombres_y_Apellidos)
+    const [nombres, setNombres] = useState("")
     const [listatdoc, setListatdoc] = useState(doc)
-    const [tdocSelect, setTdocSelect] = useState(Tipo_Documento)
-    const [ndoc, setNdoc] = useState(Nro_Documento)
-    const [correo, setCorreo] = useState(Correo)
-    const [ncel, setNcel] = useState(Telefono)
-    const [dep, setDep] = useState(Departamentos[0].ID_Departamentos)
-    const [estacionamiento, setEstacionamiento] = useState(Estacionamientos[0].Numero_Estacionamiento)
-    const [part, setPart] = useState(Departamentos[0].Porcentaje_Participacion)
-    const [fincaSelect, setFincaSelect] = useState(Finca)
+    const [tdocSelect, setTdocSelect] = useState("")
+    const [ndoc, setNdoc] = useState("")
+    const [correo, setCorreo] = useState("")
+    const [ncel, setNcel] = useState("")
+    const [dep, setDep] = useState("")
+    const [estacionamiento, setEstacionamiento] = useState("")
+    const [part, setPart] = useState(0)
+    const [fincaSelect, setFincaSelect] = useState("")
     const [data, setData] = useState({})
-    const obtenerLabelDelTipoDocumentoSeleccionado = doc.find(d => d.id === Tipo_Documento).name
-    const obtenerLabelDeLaFincaSeleccionada = listaFincas.find(f => f._id === Finca).Nombre
-
 
     function handlesubmit(e) {
         e.preventDefault()
     }
 
-    function updatePropietario() {
+    function enviarPropietario() {
 
-
-        const data_PUT = {
+        const data_POST = {
             "_id": tdocSelect + ndoc,
             "Finca": fincaSelect,
             "Nombres_y_Apellidos": nombres,
@@ -68,35 +50,45 @@ function UpdatePropietario() {
             "Departamentos": [{ "ID_Departamentos": dep, "Porcentaje_Participacion": part }],
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
         }
-        console.log('data_PUT', data_PUT)
-        const url_base = GetURLAPI()
-        const URL = url_base + "propietarios"
-        try {
+        console.log(data_POST)
 
-            axios.put(URL, data_PUT).then(
+       /*  const validarDepartamento = propietariosPorFinca.find(propietario => propietario.Departamentos.ID_Departamentos === dep)
+        console.log('Validar Departamento: ',validarDepartamento)
+        const validarFinca = propietariosPorFinca.find(propietario=> propietario.Finca === fincaSelect)
+        console.log('Validar Finca: ', validarFinca) */
+        
+        const url_base = GetURLAPI()
+        const URL = url_base + "propietario"
+        try {
+            axios.post(URL, data_POST).then(
                 res => {
-                    console.log(res)
+                    console.log(res.data)
                     setData(res.data)
+                    if (res.data.status === 201) {
+                        console.log('entra al status 201')
+                        alert(res.data.mensaje)
+                        setNombres("")
+                        setTdocSelect("")
+                        setNdoc("")
+                        setCorreo("")
+                        setNcel("")
+                        setFincaSelect("")
+                        setDep('')
+                        setEstacionamiento('')
+                        setPart(0)
+                    } else {
+                        console.log('entro al else',res.data.message)
+                        alert(res.data.message)
+                    }
                 }
             )
-
         }
         catch (error) {
-            console.log("Entro al catch")
             alert("Hubo error en el servidor")
-            console.log(URL)
-            console.log(error)
         }
 
     }
-    useEffect(() => {
-
-        if (data.status === 201) {
-            alert(data.message)
-            navigate(-1)
-        }
-    }, [data])
-
+    
     return (
         <>
             <div className='container-fluid' >
@@ -109,16 +101,14 @@ function UpdatePropietario() {
                         <form className="form-propietarios" onSubmit={handlesubmit}>
                         <div className="form-group row">
                                 <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
-                                <div className='input-select col-4' >
-                                    <Select d
+                                <div className='input-select col-4'>
+                                    <Select
                                         onChange={
                                             (seleccion) => {
                                                 setFincaSelect(seleccion.value)
                                             }
                                         }
-                                        options={listaFincas?.map(sup => ({ label: sup.Nombre, value: sup._id }.disabled))}
-                                        defaultValue={{ label: obtenerLabelDeLaFincaSeleccionada, value: fincaSelect }}
-
+                                        options={location.state.listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
                                     /></div>
 
                             </div>
@@ -133,7 +123,6 @@ function UpdatePropietario() {
                                     value={dep}
                                     onChange={e => setDep(e.target.value)} />
                             </div>
-
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
                                 <input type='text'
@@ -144,7 +133,6 @@ function UpdatePropietario() {
                                     value={estacionamiento}
                                     onChange={e => setEstacionamiento(e.target.value)} />
                             </div>
-
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
                                 <input type='text'
@@ -155,9 +143,9 @@ function UpdatePropietario() {
                                     value={part}
                                     onChange={e => setPart(e.target.value)} />
                             </div>
-                            
+
                             <div className="form-group row">
-                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Tipo de Documento:</label>
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Tipo:</label>
                                 <div className='input-select col-4'>
                                     <Select
                                         onChange={
@@ -165,12 +153,15 @@ function UpdatePropietario() {
                                                 setTdocSelect(seleccion.value)
                                             }
                                         }
-                                        options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }))}
-                                        defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: setTdocSelect }}
-                                        isOptionDisabled={true}
+                                        options={
+                                            listatdoc.map(sup => ({ label: sup.name, value: sup.id })
+                                            )
+                                        }
+                                       
                                     />
                                 </div>
                             </div>
+
 
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
@@ -207,7 +198,6 @@ function UpdatePropietario() {
                                     value={correo}
                                     onChange={e => setCorreo(e.target.value)} />
                             </div>
-
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
                                 <input type='text'
@@ -219,11 +209,10 @@ function UpdatePropietario() {
                                     onChange={e => setNcel(e.target.value)} />
                             </div>
 
+                            
                         </form>
-                        <div className='d-flex justify-content-center mb-5' onClick={() => updatePropietario()}>
-                            <button className='nb'> Actualizar
-                            <span></span>
-                        </button>
+                        <div className='contenedor-btn-guardar' onClick={() => enviarPropietario()}>
+                            <button className='btn-guardar'>GUARDAR</button>
                         </div>
                     </div>
                 </div>
@@ -232,4 +221,4 @@ function UpdatePropietario() {
     );
 }
 
-export default UpdatePropietario;
+export default Propietario;
