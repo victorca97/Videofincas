@@ -74,7 +74,10 @@ function UpdatePropietario() {
         try {
 
             axios.put(URL, data_PUT).then(
-                res => setData(res.data)
+                res => {
+                    console.log(res)
+                    setData(res.data)
+                }
             )
 
         }
@@ -128,6 +131,7 @@ function UpdatePropietario() {
                                         }
                                         options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }))}
                                         defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: setTdocSelect }}
+                                        isOptionDisabled={true}
                                     />
                                 </div>
                             </div>
@@ -164,8 +168,8 @@ function UpdatePropietario() {
 
                             <div className="form-group row">
                                 <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
-                                <div className='input-select col-4'>
-                                    <Select
+                                <div className='input-select col-4' >
+                                    <Select disabled
                                         onChange={
                                             (seleccion) => {
                                                 setFincaSelect(seleccion.value)
