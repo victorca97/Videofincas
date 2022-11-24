@@ -51,18 +51,13 @@ function Propietario() {
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
         }
         console.log(data_POST)
-
-       /*  const validarDepartamento = propietariosPorFinca.find(propietario => propietario.Departamentos.ID_Departamentos === dep)
-        console.log('Validar Departamento: ',validarDepartamento)
-        const validarFinca = propietariosPorFinca.find(propietario=> propietario.Finca === fincaSelect)
-        console.log('Validar Finca: ', validarFinca) */
         
         const url_base = GetURLAPI()
         const URL = url_base + "propietario"
         try {
             axios.post(URL, data_POST).then(
                 res => {
-                    console.log(res.data)
+                    console.log(res.data.mensaje)
                     setData(res.data)
                     if (res.data.status === 201) {
                         console.log('entra al status 201')
@@ -77,8 +72,8 @@ function Propietario() {
                         setEstacionamiento('')
                         setPart(0)
                     } else {
-                        console.log('entro al else',res.data.message)
-                        alert(res.data.message)
+                        console.log('entro al else',res.data.mensaje)
+                        alert(res.data.mensaje)
                     }
                 }
             )
@@ -99,19 +94,51 @@ function Propietario() {
                     </div>
                     <div className='col-9'>
                         <form className="form-propietarios" onSubmit={handlesubmit}>
+                        <div className="form-group row">
+                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
+                                <div className='input-select col-4'>
+                                    <Select
+                                        onChange={
+                                            (seleccion) => {
+                                                setFincaSelect(seleccion.value)
+                                            }
+                                        }
+                                        options={location.state.listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
+                                    /></div>
+
+                            </div>
+
                             <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Departamento :</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    id="inputEmail3"
-                                    placeholder="Nombre y Apellido "
-                                    name={"nombres"}
-                                    value={nombres}
-                                    onChange={e => {
-                                        setNombres(e.target.value)
-                                    }
-                                    } />
+                                    placeholder="Departamento "
+                                    autocomplete="off"
+                                    name={"dep"}
+                                    value={dep}
+                                    onChange={e => setDep(e.target.value)} />
                             </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    autocomplete="off"
+                                    placeholder="Estacionamiento "
+                                    name={"estacionamiento"}
+                                    value={estacionamiento}
+                                    onChange={e => setEstacionamiento(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    autocomplete="off"
+                                    placeholder="Participación(%) "
+                                    name={"part"}
+                                    value={part}
+                                    onChange={e => setPart(e.target.value)} />
+                            </div>
+
                             <div className="form-group row">
                                 <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Tipo:</label>
                                 <div className='input-select col-4'>
@@ -135,17 +162,32 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    id="inputEmail3"
+                                    autocomplete="off"
                                     placeholder="Nro. de Documento "
                                     name={"ndoc"}
                                     value={ndoc}
                                     onChange={e => setNdoc(e.target.value)} />
                             </div>
+                            
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    autocomplete="off"
+                                    placeholder="Nombre y Apellido "
+                                    name={"nombres"}
+                                    value={nombres}
+                                    onChange={e => {
+                                        setNombres(e.target.value)
+                                    }
+                                    } />
+                            </div>
+                            
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    id="inputEmail3"
+                                    autocomplete="off"
                                     placeholder="Correo Electrónico "
                                     name={"correo"}
                                     value={correo}
@@ -155,58 +197,14 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    id="inputEmail3"
+                                    autocomplete="off"
                                     placeholder="Nro. de Celular "
                                     name={"ncel"}
                                     value={ncel}
                                     onChange={e => setNcel(e.target.value)} />
                             </div>
 
-                            <div className="form-group row">
-                                <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
-                                <div className='input-select col-4'>
-                                    <Select
-                                        onChange={
-                                            (seleccion) => {
-                                                setFincaSelect(seleccion.value)
-                                            }
-                                        }
-                                        options={location.state.listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
-                                    /></div>
-
-                            </div>
-
-                            <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Departamento :</label>
-                                <input type='text'
-                                    className='form-control col-4'
-                                    id="inputEmail3"
-                                    placeholder="Departamento "
-                                    name={"dep"}
-                                    value={dep}
-                                    onChange={e => setDep(e.target.value)} />
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
-                                <input type='text'
-                                    className='form-control col-4'
-                                    id="inputEmail3"
-                                    placeholder="Estacionamiento "
-                                    name={"estacionamiento"}
-                                    value={estacionamiento}
-                                    onChange={e => setEstacionamiento(e.target.value)} />
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
-                                <input type='text'
-                                    className='form-control col-4'
-                                    id="inputEmail3"
-                                    placeholder="Participación(%) "
-                                    name={"part"}
-                                    value={part}
-                                    onChange={e => setPart(e.target.value)} />
-                            </div>
-
+                            
                         </form>
                         <div className='contenedor-btn-guardar' onClick={() => enviarPropietario()}>
                             <button className='btn-guardar'>GUARDAR</button>

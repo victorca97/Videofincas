@@ -4,26 +4,23 @@ import { v4 as uuidv4 } from 'uuid';
 
 function FormSeccion (props) {
 
-  const [input, setInput] = useState('');
+  const [inputSeccion, setInputSeccion] = useState('');
 
   const manejarCambioSeccion = e => {
-    setInput(e.target.value);
+    setInputSeccion(e.target.value);
     }
 
   const manejarEnvioSeccion = e => {
     e.preventDefault();
     const seccionNueva = {
       ID_Seccion: uuidv4(),
-      nombre: input,
+      nombre: inputSeccion,
       Subsecciones: []
     }
-    props.onSubmit(seccionNueva);
+    props.onSubmit(seccionNueva); 
   }
 
-  const reiniciarBusqueda = e => {
-    document.querySelector('#root > form.form-agregar-seccion > input').value = '';
-  }
-
+  
   return (
     <form className='form-agregar-seccion'
       onSubmit={manejarEnvioSeccion}>
@@ -36,7 +33,7 @@ function FormSeccion (props) {
       />
       <button 
         className='seccion-boton'
-        onClick={reiniciarBusqueda}>
+        onClick={manejarEnvioSeccion}>
         Agregar
       </button>
     </form>

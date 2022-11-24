@@ -29,7 +29,7 @@ export const Finca = () => {
         Axios.post(URL, data_POST).then(
             res => {
                 if (res.status == 200) {
-                    alert("Finca registrada")
+                    alert(res.data.mensaje)
                     onResetForm()
 
                 } else (console.log(res))
@@ -55,6 +55,7 @@ export const Finca = () => {
                             <input type='text'
                                 className='form-control col-8 '
                                 id='subtitulo-finca'
+                                autocomplete="off"
                                 placeholder=""
                                 name={"nombre"}
                                 value={nombre}
@@ -65,6 +66,7 @@ export const Finca = () => {
                             <input type='text'
                                 className='form-control col-8 '
                                 id='subtitulo-finca'
+                                autocomplete="off"
                                 placeholder=""
                                 name={"direccion"}
                                 value={direccion}

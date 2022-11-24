@@ -15,20 +15,20 @@ const encabezadoCss = {
     color: 'white'
 }
 
-export const ListarPropietario = ({ listafincas }) => {
+export const ListarPropietario = ({ listafincas, propietarios, getPropietarios}) => {
 
-    const [propietarios, setPropietarios] = useState([])
-
+    //const [propietarios, setPropietarios] = useState([])
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
+
     /* const [listafincas, setListafincas] = useState([]) */
     const [mensaje, setMensaje] = useState('Buscar finca')
 
-    const getPropietarios = async () => {
+    /* const getPropietarios = async () => {
         const url_base = GetURLAPI()
         const resp = await axios.get(url_base + 'propietarios')
         console.log(resp.data)
         setPropietarios(resp.data);
-    };
+    }; */
 
     const buscarPropietarioPorFinca = (id) => {
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
@@ -36,10 +36,10 @@ export const ListarPropietario = ({ listafincas }) => {
         setMensaje('No hay Propietarios')
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('entro a useEffect getpropietarios')
         getPropietarios();
-    }, []);
+    }, []);  */
 
     return (
         <div>
@@ -101,7 +101,7 @@ export const ListarPropietario = ({ listafincas }) => {
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca} />
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca} getPropietarios={getPropietarios}/>
                                 ))
                                 }
 

@@ -13,22 +13,21 @@ const url_base = GetURLAPI()
 function Recibo({ listafincas }) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
+    console.log('listafincas >>>', listafincas)
 
-    const getPlantilla = async (fincaOption) => {
-        const api_plantilla = await axios.get(url_base + `plantilla/${fincaOption}`)
-        const lista_result = api_plantilla.data[0].Seccion.map(sec => {
-            let a_objeto = {
-                ID_Seccion: uuidv4(),
-                nombre: sec.nombre,
-                Subsecciones: sec.Subsecciones
-            }
-            return (a_objeto);
-        })
-
-        setListaSecciones(lista_result);
-        console.log('result', lista_result)
-        console.log('lista', listaSecciones)
+    const getRecibo = async (fincaId) => {
+       
+        const resp = await axios.get(url_base + `recibo/${fincaId}`)
+        console.log(resp.data)
+        console.log(resp.data[0]?.Seccion)
+        if(resp.data.length > 0){
+            setListaSecciones(resp?.data[0].Seccion)
+        }else{
+            setListaSecciones([])
+        }
+       
     };
+
 
     const putPlantilla = async () => {
         console.log('lista', listaSecciones)
@@ -55,10 +54,12 @@ function Recibo({ listafincas }) {
                                     <Select
                                         onChange={
                                             (finca_seleccion) => {
-                                                console.log(finca_seleccion.value)
+                                                console.log(finca_seleccion)
+                                                /*  setFincaSelect(finca_seleccion.value) */
+                                                getRecibo(finca_seleccion.value)
                                             }
                                         }
-                                        options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup.Nombre }))}
+                                        options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
                                     />
                                 </div>
                             </div>

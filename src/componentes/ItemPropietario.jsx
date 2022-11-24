@@ -2,26 +2,28 @@
 import { Link, useLocation } from 'react-router-dom';
 import axios from '../api/axios';
 import GetURLAPI from '../utilidades/parametros';
-
+import { useEffect } from 'react'
 const url_base = GetURLAPI()
 
-export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, contador }) => {
+export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, getPropietarios, contador }) => {
 
         const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos } = pro;
 
         const eliminarPropietario = (id) => {
-                
+
                 const data_DELETE = {
-                        "_id": id
+                        "_id": id,
+                        "Nombres_y_Apellidos": Nombres_y_Apellidos
                 }
 
                 const URL = url_base + "propietario"
                 try {
-                        axios.delete(URL, {data: data_DELETE}).then(
+                        axios.delete(URL, { data: data_DELETE }).then(
                                 res => {
-                                      
+                                        console.log(res.data.mensaje)
+                                        alert(res.data.mensaje)
                                         actualizarTablaEliminada(id)
-                                        
+
                                 }
                         )
 
@@ -33,15 +35,15 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
         }
 
         const actualizarTablaEliminada = (id) => {
-                const tablaActualizada = propietariosPorFinca?.filter(pro=> pro._id !== id)
+                const tablaActualizada = propietariosPorFinca?.filter(pro => pro._id !== id)
                 setPropietariosPorFinca(tablaActualizada)
         }
-/* 
+
         useEffect(() => {
-         console.log('entro al useEffect')
-                
-        }, []) */
-        
+                console.log('entro al useEffect')
+                getPropietarios()
+        }, [])
+
 
         return (
 
@@ -50,18 +52,14 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                         <td>{Nombres_y_Apellidos}</td>
 
                         {Departamentos.map((departamento, id) => (
-                                <>
-                                        <td>{departamento.ID_Departamentos}</td>
-                                        <td>{departamento.Porcentaje_Participacion}</td>
-                                </>
-
+                               <Departamento key={id} departamento={departamento}/>
 
                         ))}
-                           
+
 
                         {
                                 Estacionamientos.map((estacionamiento, id) => (
-                                        <td>{estacionamiento.Numero_Estacionamiento}</td>
+                                        <td key={id}>{estacionamiento.Numero_Estacionamiento}</td>
                                 ))
                         }
                         <td className="d-flex">
@@ -81,4 +79,12 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
 
 
         )
+}
+
+const Departamento = ({departamento}) => {
+        return (
+                <>
+                        <td>{departamento.ID_Departamentos}</td>
+                        <td>{departamento.Porcentaje_Participacion}</td>
+                </>)
 }
