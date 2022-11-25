@@ -3,7 +3,7 @@ import FormSeccion from './FormSeccion';
 import Seccion from './Seccion';
 
 
-function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreglo}) {
+function ListaSecciones({listaSecciones,setListaSecciones}) {
     
     const agregarSeccion = seccion => {
         if (seccion.nombre.trim()) {
@@ -26,7 +26,7 @@ function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreg
             <div className='contenedor-secciones'>
                {
                     listaSecciones.map((seccion) =>                    
-                    <Seccion  fincaSelect={fincaSelect}
+                    <Seccion  
                         key={seccion.ID_Seccion}
                         {...seccion}
                         seccion={seccion}

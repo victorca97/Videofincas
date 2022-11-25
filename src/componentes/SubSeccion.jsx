@@ -4,7 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completada, completarTarea, eliminarTarea, agregarDatosTarea}) {
+function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completarTarea, eliminarTarea, agregarDatosTarea}) {
 
   const[Monto, setMonto] = useState(monto)
   const[Descripcion, setDescripcion] = useState(descripcion)
@@ -22,7 +22,7 @@ function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, 
   }, [Monto, Descripcion])
   
   return (
-    <div className={completada ? 'tarea-contenedor completada' : 'tarea-contenedor'}>
+    <div className={'tarea-contenedor'}>
       <div className='container-fluid '>
         <form>
           <div className="row d-flex align-items-center">
@@ -49,11 +49,7 @@ function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, 
 
         </form>
       </div>
-      <div>
-        <button>
-          Agregar
-        </button>
-      </div>
+    
 
     </div>
   );

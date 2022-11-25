@@ -31,10 +31,12 @@ function Recibo({ listafincas }) {
         
     ]
 
-    const getRecibo = async (fincaId) => {
+    const getRecibo = async (mes_seleccion) => {
+        console.log(fincaSelect)
+        console.log('messsssss' , mes)
         const data_POST = {
-            "_id": fincaId,
-            "mes": mes,
+            "_id": fincaSelect,
+            "mes": mes_seleccion,
             "anno": 2022
         }
         console.log('dataPOSt ',data_POST)
@@ -52,7 +54,17 @@ function Recibo({ listafincas }) {
 
 
     const putPlantilla = async () => {
-        console.log('LISTA DE SECCIONES PARA GUARDAR EN LA BD >→→', listaSecciones)
+        console.log('LISTA DE SECCIONES PARA GUARDAR EN LA BD >→→')
+        const data = {
+           Finca: fincaSelect, 
+            Year: 2022,
+            Mes: mes,
+            Seccion: listaSecciones
+        }
+        console.log(data)
+
+        const res = await axios.put(url_base+`recibos`,data);
+        console.log(res)
        /*  await axios.put(url_base + 'plantilla', {
             '_id': fincaSelect,
             'Finca': fincaSelect,
@@ -77,7 +89,7 @@ function Recibo({ listafincas }) {
                                         onChange={
                                             (finca_seleccion) => {
                                                 /*  setFincaSelect(finca_seleccion.value) */
-                                                getRecibo(finca_seleccion.value)
+                                                setFincaSelect(finca_seleccion.value)
                                             }
                                         }
                                         options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
@@ -88,6 +100,7 @@ function Recibo({ listafincas }) {
                                         onChange={
                                             (mes_seleccion) => {
                                                 console.log(mes_seleccion.value)
+                                                getRecibo(mes_seleccion.value)
                                                 setMes(mes_seleccion.value)
                                                 /*  setFincaSelect(finca_seleccion.value) */
                                             }
@@ -101,7 +114,7 @@ function Recibo({ listafincas }) {
 
                 </div>
                 <div className='container-fluid'>
-                    <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones} fincaSelect={fincaSelect} />
+                    <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones}/>
                     <div className='contenedor-btn-guardar'>
                         <button onClick={putPlantilla} className='btn-guardar'>GUARDAR</button>
                     </div>

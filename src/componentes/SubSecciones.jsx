@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SubSeccionFormulario  from './SubSeccionFormulario';
 import '../estilos/ListaTareas.css'
-import { ListaSubSecciones } from './ListaSubSecciones';
 import SubSeccion from './SubSeccion';
 
 function SubSecciones({listaSecciones}) {

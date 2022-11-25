@@ -15,9 +15,10 @@ function SubSeccionFormulario ({agregarTarea}) {
     const tareaNueva = {
       ID_Subseccion: uuidv4(),
       nombre: input,
-      completada: false,
+      /* completada: false, */
+      monto: '',
       descripcion: '',
-      monto: ''
+     
     }
     agregarTarea(tareaNueva);
    
