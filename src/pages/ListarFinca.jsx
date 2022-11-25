@@ -16,8 +16,7 @@ function ListarFinca({ listafincas, getFincas }) {
         getFincas()
     }, []);
 
-    console.log(listafincas)
-
+    
     return (
         <>
             <div className='container-fluid' >

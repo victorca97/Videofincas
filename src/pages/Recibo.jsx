@@ -13,11 +13,33 @@ const url_base = GetURLAPI()
 function Recibo({ listafincas }) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
-    console.log('listafincas >>>', listafincas)
+    const [mes, setMes] = useState()
+   
+    const meses = [
+        {id:1, mes:'Enero'},
+        {id:2, mes:'Febrero'},
+        {id:3, mes:'Marzo'},
+        {id:4, mes:'Abril'},
+        {id:5, mes:'Mayo'},
+        {id:6, mes:'Junio'},
+        {id:7, mes:'Julio'},
+        {id:8, mes:'Agosto'},
+        {id:9, mes:'Septiembre'},
+        {id:10, mes:'Octubre'},
+        {id:11, mes:'Noviembre'},
+        {id:12, mes:'Diciembre'},
+        
+    ]
 
     const getRecibo = async (fincaId) => {
-       
-        const resp = await axios.get(url_base + `recibo/${fincaId}`)
+        const data_POST = {
+            "_id": fincaId,
+            "mes": mes,
+            "anno": 2022
+        }
+        console.log('dataPOSt ',data_POST)
+        const resp = await axios.post(url_base + `recibo`, data_POST)
+
         console.log(resp.data)
         console.log(resp.data[0]?.Seccion)
         if(resp.data.length > 0){
@@ -30,12 +52,12 @@ function Recibo({ listafincas }) {
 
 
     const putPlantilla = async () => {
-        console.log('lista', listaSecciones)
-        await axios.put(url_base + 'plantilla', {
+        console.log('LISTA DE SECCIONES PARA GUARDAR EN LA BD >→→', listaSecciones)
+       /*  await axios.put(url_base + 'plantilla', {
             '_id': fincaSelect,
             'Finca': fincaSelect,
             'Seccion': listaSecciones
-        })
+        }) */
     }
 
     return (
@@ -54,12 +76,23 @@ function Recibo({ listafincas }) {
                                     <Select
                                         onChange={
                                             (finca_seleccion) => {
-                                                console.log(finca_seleccion)
                                                 /*  setFincaSelect(finca_seleccion.value) */
                                                 getRecibo(finca_seleccion.value)
                                             }
                                         }
                                         options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
+                                    />
+                                </div>
+                                <div className='input-select mb-3'>
+                                    <Select
+                                        onChange={
+                                            (mes_seleccion) => {
+                                                console.log(mes_seleccion.value)
+                                                setMes(mes_seleccion.value)
+                                                /*  setFincaSelect(finca_seleccion.value) */
+                                            }
+                                        }
+                                        options={meses?.map(m => ({ label: m.mes, value: m.id }))}
                                     />
                                 </div>
                             </div>

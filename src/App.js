@@ -28,7 +28,6 @@ function App() {
   const getPropietarios = async () => {
     const url_base = GetURLAPI()
     const resp = await axios.get(url_base + 'propietarios')
-    console.log(resp.data)
     setPropietarios(resp.data);
 };
 

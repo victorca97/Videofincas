@@ -1,9 +1,26 @@
 import React from 'react';
 import '../estilos/Tarea.css'
 import { AiFillCloseCircle } from "react-icons/ai";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-function SubSeccion({ ID_Subseccion, texto, completada, completarTarea, eliminarTarea}) {
+function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completada, completarTarea, eliminarTarea, agregarDatosTarea}) {
 
+  const[Monto, setMonto] = useState(monto)
+  const[Descripcion, setDescripcion] = useState(descripcion)
+  console.log('ID_Subseccion', ID_Subseccion)
+  console.log('montoooo: ',Monto)
+  console.log('descripcioon: ',Descripcion)
+  console.log('tarea desde subseccion', tarea)
+ 
+  useEffect(() => {
+    agregarDatosTarea(tarea, Monto, Descripcion)
+  }, [Monto, Descripcion])
+  
+  useEffect(() => {
+    console.log('subsecciones >>→', tareas)
+  }, [Monto, Descripcion])
+  
   return (
     <div className={completada ? 'tarea-contenedor completada' : 'tarea-contenedor'}>
       <div className='container-fluid '>
@@ -12,19 +29,18 @@ function SubSeccion({ ID_Subseccion, texto, completada, completarTarea, eliminar
             <div
               className='col-3 tarea-texto'
               onClick={() => completarTarea(ID_Subseccion)}>
-              {texto.charAt(0).toUpperCase() + texto.slice(1)}
+              {nombre.charAt(0).toUpperCase() + nombre.slice(1)}
             </div>
             <div className="col">
               <input className="form-control" type="text"
-                name='periodo'
-                placeholder='Descripcion o periodo' />
+                name='descripcion'
+                placeholder='Descripcion o periodo' value={Descripcion} onChange={e=>setDescripcion(e.target.value)}/>
             </div>
             <div className="col">
               <input className="form-control" type="number"
-                name='importe'
-                placeholder="Ingresar importe Total" />
+                name='monto'
+                placeholder="Ingresar Monto" value={Monto} onChange={e=> setMonto(parseFloat(e.target.value))}/>
             </div>
-            
             <div className='col-1 tarea-contenedor-iconos'
               onClick={() => eliminarTarea(ID_Subseccion)}>
               <AiFillCloseCircle className='tarea-icono' />
@@ -32,6 +48,11 @@ function SubSeccion({ ID_Subseccion, texto, completada, completarTarea, eliminar
           </div>
 
         </form>
+      </div>
+      <div>
+        <button>
+          Agregar
+        </button>
       </div>
 
     </div>

@@ -28,7 +28,7 @@ function FormSeccion (props) {
         className='seccion-input'
         type='text'
         placeholder='Ingresa una nueva seccion'
-        name='texto'
+        name='nombre'
         onChange={manejarCambioSeccion}
       />
       <button 

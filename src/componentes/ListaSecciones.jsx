@@ -12,7 +12,9 @@ function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreg
             setListaSecciones(seccionesActualizadas);
         }
     }
-   
+    
+    console.log('lista secciooneeeeeeeeeeeeees', listaSecciones)
+    
     
     return(
         <>  
@@ -27,7 +29,8 @@ function ListaSecciones({listaSecciones,setListaSecciones, fincaSelect, setArreg
                     <Seccion  fincaSelect={fincaSelect}
                         key={seccion.ID_Seccion}
                         {...seccion}
-                        listaSecciones={listaSecciones} 
+                        seccion={seccion}
+                        listaSecciones={listaSecciones}
                         setListaSecciones={setListaSecciones}
                     />
                     )

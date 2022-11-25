@@ -113,7 +113,7 @@ function Propietario() {
                                 <input type='text'
                                     className='form-control col-4'
                                     placeholder="Departamento "
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     name={"dep"}
                                     value={dep}
                                     onChange={e => setDep(e.target.value)} />
@@ -122,7 +122,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Estacionamiento "
                                     name={"estacionamiento"}
                                     value={estacionamiento}
@@ -132,7 +132,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Participación(%) "
                                     name={"part"}
                                     value={part}
@@ -162,7 +162,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Nro. de Documento "
                                     name={"ndoc"}
                                     value={ndoc}
@@ -173,7 +173,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Nombre y Apellido "
                                     name={"nombres"}
                                     value={nombres}
@@ -187,7 +187,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Correo Electrónico "
                                     name={"correo"}
                                     value={correo}
@@ -197,7 +197,7 @@ function Propietario() {
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Celular :</label>
                                 <input type='text'
                                     className='form-control col-4'
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder="Nro. de Celular "
                                     name={"ncel"}
                                     value={ncel}

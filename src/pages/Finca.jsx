@@ -55,7 +55,7 @@ export const Finca = () => {
                             <input type='text'
                                 className='form-control col-8 '
                                 id='subtitulo-finca'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder=""
                                 name={"nombre"}
                                 value={nombre}
@@ -66,7 +66,7 @@ export const Finca = () => {
                             <input type='text'
                                 className='form-control col-8 '
                                 id='subtitulo-finca'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder=""
                                 name={"direccion"}
                                 value={direccion}

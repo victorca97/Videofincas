@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../estilos/TareaFormulario.css';
 import { v4 as uuidv4 } from 'uuid';
 
-function SubSeccionFormulario (props) {
+function SubSeccionFormulario ({agregarTarea}) {
 
   const [input, setInput] = useState('');
 
@@ -13,11 +13,14 @@ function SubSeccionFormulario (props) {
   const manejarEnvio = e => {
     e.preventDefault();
     const tareaNueva = {
-      id: uuidv4(),
-      texto: input,
-      completada: false
+      ID_Subseccion: uuidv4(),
+      nombre: input,
+      completada: false,
+      descripcion: '',
+      monto: ''
     }
-    props.onSubmit(tareaNueva);
+    agregarTarea(tareaNueva);
+   
   }
 
   return (
@@ -28,7 +31,7 @@ function SubSeccionFormulario (props) {
         className='tarea-input'
         type='text'
         placeholder='Ingresa una subseccion'
-        name='texto'
+        name='nombre'
         onChange={manejarCambio}
       />
       <button 

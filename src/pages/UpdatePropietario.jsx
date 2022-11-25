@@ -91,11 +91,12 @@ function UpdatePropietario() {
     }
     useEffect(() => {
         console.log('useeffect  ', data.mensaje)
-        console.log(data.status)
+        console.log(data)
         if (data.status === 201) {
             alert(data.mensaje)
             navigate(-1)
-        }else{
+        }
+        if(data.status === 400){
             alert(data.mensaje)
         }
     }, [data])
@@ -130,7 +131,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Departamento :</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Departamento "
                                 name={"dep"}
                                 value={dep}
@@ -141,7 +142,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Estacionamiento:</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Estacionamiento "
                                 name={"estacionamiento"}
                                 value={estacionamiento}
@@ -152,7 +153,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Participación(%) "
                                 name={"part"}
                                 value={part}
@@ -179,7 +180,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Documento :</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Nro. de Documento "
                                 name={"ndoc"}
                                 value={ndoc}
@@ -190,7 +191,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Nombres y Apellidos:</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Nombre y Apellido "
                                 name={"nombres"}
                                 value={nombres}
@@ -204,7 +205,7 @@ function UpdatePropietario() {
                             <label htmlFor="inputEmail3" className="col-3 col-form-label">Correo Electrónico:</label>
                             <input type='text'
                                 className='form-control col-4'
-                                autocomplete="off"
+                                autoComplete="off"
                                 placeholder="Correo Electrónico "
                                 name={"correo"}
                                 value={correo}

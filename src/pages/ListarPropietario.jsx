@@ -36,10 +36,10 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios})
         setMensaje('No hay Propietarios')
     }
 
-    /* useEffect(() => {
+    useEffect(() => {
         console.log('entro a useEffect getpropietarios')
         getPropietarios();
-    }, []);  */
+    }, []); 
 
     return (
         <div>
