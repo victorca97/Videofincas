@@ -6,6 +6,7 @@ import { ListaSubSecciones } from './ListaSubSecciones';
 function Seccion({ID_Seccion, nombre, listaSecciones, setListaSecciones,seccion }) {
     console.log('Entro a seccion', listaSecciones)
     const {Subsecciones} = seccion;
+    
     const eliminarSeccion = ID_Seccion => {
         console.log(ID_Seccion)
         const seccionesActualizadas = listaSecciones.filter(seccion => seccion.ID_Seccion !== ID_Seccion);

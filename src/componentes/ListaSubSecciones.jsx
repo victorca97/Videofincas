@@ -28,10 +28,13 @@ export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) =
     console.log('tareaaaaaaaaaaaaaaaaaa',tarea)
  
   }
-  const eliminarTarea = id => {
-    const tareasActualizadas = tareas.filter(tarea => tarea.ID_Subseccion !== id);
+  const eliminarTarea = (idSubtarea,idSeccion) => {
+    const tareasActualizadas = tareas.filter(tarea => tarea.ID_Subseccion !== idSubtarea);
     console.log('eliminarTarea ', tareasActualizadas)
-    setTareas(tareasActualizadas);
+    let encontrarSeccion = listaSecciones.find(seccion => seccion.ID_Seccion == idSeccion);
+    encontrarSeccion.Subsecciones = tareasActualizadas
+    console.log('encontrar Seccion: ',encontrarSeccion)
+    setTareas(tareasActualizadas); 
   }
 
   const completarTarea = id => {
@@ -44,13 +47,14 @@ export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) =
     setTareas(tareasActualizadas);
   }
 
+
     return (
         <>
         <SubSeccionFormulario agregarTarea={agregarTarea}/>
         <div className='tareas-lista-contenedor'>
           {
             tareas.map((tarea) =>
-              <SubSeccion {...tarea} key={tarea.id} tarea={tarea} tareas={tareas} agregarTarea={agregarTarea} eliminarTarea={eliminarTarea} completarTarea={completarTarea} agregarDatosTarea={agregarDatosTarea}/>
+              <SubSeccion {...tarea} key={tarea.id} tarea={tarea} tareas={tareas} agregarTarea={agregarTarea} eliminarTarea={eliminarTarea} completarTarea={completarTarea} agregarDatosTarea={agregarDatosTarea} ID_Seccion={ID_Seccion}/>
             )
           }
         </div>
