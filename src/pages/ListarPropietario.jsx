@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
-import GetURLAPI from '../utilidades/parametros';
-import axios from '../api/axios';
-
 import '../App.css';
 import '../estilos/FormPropietario.css'
 import ReactSelect from 'react-select';
@@ -17,18 +13,9 @@ const encabezadoCss = {
 
 export const ListarPropietario = ({ listafincas, propietarios, getPropietarios}) => {
 
-    //const [propietarios, setPropietarios] = useState([])
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
 
-    /* const [listafincas, setListafincas] = useState([]) */
     const [mensaje, setMensaje] = useState('Buscar finca')
-
-    /* const getPropietarios = async () => {
-        const url_base = GetURLAPI()
-        const resp = await axios.get(url_base + 'propietarios')
-        console.log(resp.data)
-        setPropietarios(resp.data);
-    }; */
 
     const buscarPropietarioPorFinca = (id) => {
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
@@ -87,7 +74,7 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios})
             <div className='container-fluid ' >
                 <div className='col-12 pb-4 text-center'>
 
-                    {propietariosPorFinca.length == 0 ? <h1>{mensaje}</h1> : (
+                    {propietariosPorFinca.length === 0 ? <h1>{mensaje}</h1> : (
                         <table className="table table-primary table-striped">
                             <thead>
                                 <tr style={encabezadoCss}>

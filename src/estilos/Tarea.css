@@ -1,7 +1,7 @@
 .tarea-contenedor {
-    width: 800px;
+    /* width: 800px; */
     min-height: 52px;
-    background-color: #1b1b32;
+    background-color: #CBD4EA;
     margin: 5px 0; /* superior e inferior - izquierdo y derecho */
     padding: 8px 15px 8px 20px; /* superior - derecha - inferior - izquierda */
     display: flex;
@@ -11,11 +11,6 @@
     border: 1px solid white;
     cursor: pointer;
 }
-
-.tarea-contenedor {
-    background-color: #CBD4EA;
-}
-
 
 .tarea-texto {
     width: 100%;

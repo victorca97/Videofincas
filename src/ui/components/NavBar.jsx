@@ -2,12 +2,6 @@ import React from 'react'
 import '../styles-navbar.css'
 import videoFincaLogo from '../../imagenes/logo_videofinca.png'
 import { useLocation, Link } from 'react-router-dom'
-import { AiOutlineLogout } from 'react-icons/ai'
-
-const iconLogout = {
-  width: '50px',
-  height: '50px'
-}
 
 export const NavBar = () => {
 
@@ -47,6 +41,7 @@ export const NavBar = () => {
           <img
             src={videoFincaLogo}
             className='videofincas-logo'
+            alt='Logo Videofinca'
           />
         </Link>
 

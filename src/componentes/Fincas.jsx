@@ -4,7 +4,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import GetURLAPI from '../utilidades/parametros';
 
-export const Fincas = ({listafincas, setFincaSelect, getPlantilla, getFincasBySelector, setObtenerId}) => {
+export const Fincas = ({listafincas, getPlantilla, getFincasBySelector, setObtenerId}) => {
  
     return (
         <div className='fincas-contenedor'>

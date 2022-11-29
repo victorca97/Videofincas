@@ -4,7 +4,7 @@ import ListaSecciones from "../componentes/ListaSecciones";
 import Regresar from "../componentes/Regresar";
 import '../App.css';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+/* import { v4 as uuidv4 } from 'uuid'; */
 import Select from 'react-select'
 import GetURLAPI from '../utilidades/parametros';
 
@@ -14,62 +14,62 @@ function Recibo({ listafincas }) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
     const [mes, setMes] = useState()
-   
+
     const meses = [
-        {id:1, mes:'Enero'},
-        {id:2, mes:'Febrero'},
-        {id:3, mes:'Marzo'},
-        {id:4, mes:'Abril'},
-        {id:5, mes:'Mayo'},
-        {id:6, mes:'Junio'},
-        {id:7, mes:'Julio'},
-        {id:8, mes:'Agosto'},
-        {id:9, mes:'Septiembre'},
-        {id:10, mes:'Octubre'},
-        {id:11, mes:'Noviembre'},
-        {id:12, mes:'Diciembre'},
-        
+        { id: 1, mes: 'Enero' },
+        { id: 2, mes: 'Febrero' },
+        { id: 3, mes: 'Marzo' },
+        { id: 4, mes: 'Abril' },
+        { id: 5, mes: 'Mayo' },
+        { id: 6, mes: 'Junio' },
+        { id: 7, mes: 'Julio' },
+        { id: 8, mes: 'Agosto' },
+        { id: 9, mes: 'Septiembre' },
+        { id: 10, mes: 'Octubre' },
+        { id: 11, mes: 'Noviembre' },
+        { id: 12, mes: 'Diciembre' },
+
     ]
 
     const getRecibo = async (mes_seleccion) => {
         console.log(fincaSelect)
-        console.log('messsssss' , mes)
+        console.log('messsssss', mes)
         const data_POST = {
             "_id": fincaSelect,
             "mes": mes_seleccion,
             "anno": 2022
         }
-        console.log('dataPOSt ',data_POST)
+        console.log('dataPOSt ', data_POST)
         const resp = await axios.post(url_base + `recibo`, data_POST)
 
         console.log(resp.data)
         console.log(resp.data[0]?.Seccion)
-        if(resp.data.length > 0){
+        if (resp.data.length > 0) {
             setListaSecciones(resp?.data[0].Seccion)
-        }else{
+        } else {
             setListaSecciones([])
         }
-       
+
     };
 
 
     const putPlantilla = async () => {
         console.log('LISTA DE SECCIONES PARA GUARDAR EN LA BD >→→')
         const data = {
-           Finca: fincaSelect, 
+            Finca: fincaSelect,
             Year: 2022,
             Mes: mes,
             Seccion: listaSecciones
         }
         console.log(data)
 
-        const res = await axios.put(url_base+`recibos`,data);
+        const res = await axios.put(url_base + `recibos`, data);
         console.log(res)
-       /*  await axios.put(url_base + 'plantilla', {
-            '_id': fincaSelect,
-            'Finca': fincaSelect,
-            'Seccion': listaSecciones
-        }) */
+        /*  await axios.put(url_base + 'plantilla', {
+             '_id': fincaSelect,
+             'Finca': fincaSelect,
+             'Seccion': listaSecciones
+         }) */
     }
 
     return (
@@ -79,11 +79,9 @@ function Recibo({ listafincas }) {
                     <div className='col-3'><Regresar
                         ruta='home' className='col-3' /></div>
                     <div className='col-6'>
-                        <form className='form-propietarios d-flex justify-content-center'>
-
-                            <h2 className='h2-propietario'>Finca: </h2>
-                            <div className='autocomplete-wrapper'>
-                                {/* <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} listafincas={listafincas}/> */}
+                        <form className='form-propietarios'>
+                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                                <h2 className='h2-propietario'>Finca: </h2>
                                 <div className='input-select mb-3'>
                                     <Select
                                         onChange={
@@ -95,6 +93,11 @@ function Recibo({ listafincas }) {
                                         options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
                                     />
                                 </div>
+                            </div>
+
+                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                                {/* <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} listafincas={listafincas}/> */}
+                                <h2 className='h2-propietario'>Mes: </h2>
                                 <div className='input-select mb-3'>
                                     <Select
                                         onChange={
@@ -114,9 +117,9 @@ function Recibo({ listafincas }) {
 
                 </div>
                 <div className='container-fluid'>
-                    <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones}/>
+                    <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones} />
                     <div className='contenedor-btn-guardar'>
-                        <button onClick={putPlantilla} className='btn-guardar'>GUARDAR</button>
+                        <button onClick={putPlantilla} className='btn-guardar'>GENERAR RECIBO</button>
                     </div>
                 </div>
 

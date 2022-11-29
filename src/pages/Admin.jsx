@@ -1,8 +1,7 @@
 import Logo from "../componentes/logo";
-import {useState,useEffect} from 'react';
+import {useState } from 'react';
 import { Fincas } from "../componentes/Fincas";
 import ListaSecciones from "../componentes/ListaSecciones";
-import SubirImg from "../componentes/SubirImg";
 import '../App.css';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';

@@ -21,6 +21,7 @@ function SubSeccionFormulario ({agregarTarea}) {
      
     }
     agregarTarea(tareaNueva);
+    setInput('')
    
   }
 
@@ -33,6 +34,7 @@ function SubSeccionFormulario ({agregarTarea}) {
         type='text'
         placeholder='Ingresa una subseccion'
         name='nombre'
+        value={input}
         onChange={manejarCambio}
       />
       <button 

@@ -12,9 +12,9 @@ function ListaSecciones({listaSecciones,setListaSecciones}) {
             setListaSecciones(seccionesActualizadas);
         }
     }
-    
+    /* 
     console.log('lista secciooneeeeeeeeeeeeees', listaSecciones)
-    
+     */
     
     return(
         <>  

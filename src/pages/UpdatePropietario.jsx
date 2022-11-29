@@ -5,7 +5,6 @@ import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
-/* import ReactSelect from 'react-select'; */
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -18,7 +17,6 @@ function UpdatePropietario() {
     const navigate = useNavigate()
 
     const {
-        _id,
         Finca,
         Nombres_y_Apellidos,
         Tipo_Documento,

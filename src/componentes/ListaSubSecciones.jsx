@@ -1,5 +1,5 @@
 import SubSeccion from "./SubSeccion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SubSeccionFormulario from "./SubSeccionFormulario";
 export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) => {
 
@@ -11,7 +11,7 @@ export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) =
 
       tarea.nombre = tarea.nombre.trim();
       console.log('tarea para insertar >>> ', tarea)
-      let encontrarSeccion = listaSecciones.find(seccion => seccion.ID_Seccion == ID_Seccion)
+      let encontrarSeccion = listaSecciones.find(seccion => seccion.ID_Seccion === ID_Seccion)
       setTareas([...tareas, tarea])
       encontrarSeccion.Subsecciones.push(tarea)
       console.log('encontrarSeccion >>> ', encontrarSeccion)
@@ -31,7 +31,7 @@ export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) =
   const eliminarTarea = (idSubtarea,idSeccion) => {
     const tareasActualizadas = tareas.filter(tarea => tarea.ID_Subseccion !== idSubtarea);
     console.log('eliminarTarea ', tareasActualizadas)
-    let encontrarSeccion = listaSecciones.find(seccion => seccion.ID_Seccion == idSeccion);
+    let encontrarSeccion = listaSecciones.find(seccion => seccion.ID_Seccion === idSeccion);
     encontrarSeccion.Subsecciones = tareasActualizadas
     console.log('encontrar Seccion: ',encontrarSeccion)
     setTareas(tareasActualizadas); 
