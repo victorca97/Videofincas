@@ -13,7 +13,7 @@ export const NavBar = () => {
       name = 'Menú principal'
       break;
     case 'recibo':
-      name = 'Formulario del Recibo';
+      name = 'Recibo';
       break;
     case 'propietario':
       name = 'Formulario del Propietarios'

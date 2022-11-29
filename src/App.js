@@ -13,6 +13,7 @@ import GetURLAPI from "./utilidades/parametros";
 import axios from "./api/axios";
 import { Finca } from "./pages/Finca";
 import { UpdateFinca } from "./pages/UpdateFinca";
+import { ListarRecibo } from "./pages/ListarRecibo";
 
 function App() {
 
@@ -43,8 +44,9 @@ function App() {
       <Routes>
         <Route path='Videofincas/' element={<Login />} />
         <Route path='Videofincas/home' element={<Menu />} />
+        <Route path='Videofincas/recibos' element={<ListarRecibo listafincas={listafincas}/>} />
         <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas}/>} />
-        <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} propietarios={propietarios} getPropietarios={getPropietarios}/>} />
+        <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas}/>} />
         <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
         <Route path='Videofincas/propietario' element={<Propietario />} />
         <Route path='Videofincas/fincas' element={<ListarFinca listafincas={listafincas} getFincas={getFincas} setListafincas={setListafincas}/>} />

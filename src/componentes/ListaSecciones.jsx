@@ -25,7 +25,7 @@ function ListaSecciones({listaSecciones,setListaSecciones}) {
                 
             <div className='contenedor-secciones'>
                {
-                    listaSecciones.map((seccion) =>                    
+                    listaSecciones?.map((seccion) =>                    
                     <Seccion  
                         key={seccion.ID_Seccion}
                         {...seccion}

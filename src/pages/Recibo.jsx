@@ -13,7 +13,8 @@ const url_base = GetURLAPI()
 function Recibo({ listafincas }) {
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
-    const [mes, setMes] = useState()
+    const [tipoSelect, setTipoSelect] = useState()
+    const [mesSelect, setMesSelect] = useState()
 
     const meses = [
         { id: 1, mes: 'Enero' },
@@ -31,14 +32,21 @@ function Recibo({ listafincas }) {
 
     ]
 
-    const getRecibo = async (mes_seleccion) => {
-        console.log(fincaSelect)
-        console.log('messsssss', mes)
+    const tipos = [
+        {id:1, tipo:'Departamento'},
+        {id:2, tipo:'Estacionamiento'}
+    ]
+
+    const getRecibo = async (tipo_seleccion) => {
+        
+        console.log(tipo_seleccion)
         const data_POST = {
             "_id": fincaSelect,
-            "mes": mes_seleccion,
-            "anno": 2022
+            "mes": mesSelect,
+            "anno": 2022,
+            "tipo":tipo_seleccion
         }
+
         console.log('dataPOSt ', data_POST)
         const resp = await axios.post(url_base + `recibo`, data_POST)
 
@@ -46,6 +54,7 @@ function Recibo({ listafincas }) {
         console.log(resp.data[0]?.Seccion)
         if (resp.data.length > 0) {
             setListaSecciones(resp?.data[0].Seccion)
+           
         } else {
             setListaSecciones([])
         }
@@ -58,18 +67,14 @@ function Recibo({ listafincas }) {
         const data = {
             Finca: fincaSelect,
             Year: 2022,
-            Mes: mes,
-            Seccion: listaSecciones
+            Mes: mesSelect,
+            Seccion: listaSecciones,
+            tipo: tipoSelect
         }
         console.log(data)
 
-        const res = await axios.put(url_base + `recibos`, data);
+        const res = await axios.post(url_base + `recibos_crear`, data);
         console.log(res)
-        /*  await axios.put(url_base + 'plantilla', {
-             '_id': fincaSelect,
-             'Finca': fincaSelect,
-             'Seccion': listaSecciones
-         }) */
     }
 
     return (
@@ -103,12 +108,26 @@ function Recibo({ listafincas }) {
                                         onChange={
                                             (mes_seleccion) => {
                                                 console.log(mes_seleccion.value)
-                                                getRecibo(mes_seleccion.value)
-                                                setMes(mes_seleccion.value)
+                                                setMesSelect(mes_seleccion.value)
                                                 /*  setFincaSelect(finca_seleccion.value) */
                                             }
                                         }
                                         options={meses?.map(m => ({ label: m.mes, value: m.id }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                                <h2 className='h2-propietario'>Tipo: </h2>
+                                <div className='input-select mb-3'>
+                                    <Select
+                                        onChange={
+                                            (tipo_seleccion) => {
+                                                /*  setFincaSelect(finca_seleccion.value) */
+                                                setTipoSelect(tipo_seleccion.value)
+                                                getRecibo(tipo_seleccion.value)
+                                            }
+                                        }
+                                        options={tipos?.map(sup => ({ label: sup.tipo, value: sup.id }))}
                                     />
                                 </div>
                             </div>
