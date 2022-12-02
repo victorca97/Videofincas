@@ -13,7 +13,7 @@ function Menu() {
                     <Link id="link-finca" to="/Videofincas/fincas">Fincas</Link>
                 </li>
                 <li id="elemento-lista-recibo">
-                    <Link id="link-recibo" to="/Videofincas/recibo">Recibos</Link>
+                    <Link id="link-recibo" to="/Videofincas/recibos">Recibos</Link>
                 </li>
                 <li id="elemento-lista-propietario">
                     <Link id="link-propietario" to="/Videofincas/propietarios">Propietarios</Link>

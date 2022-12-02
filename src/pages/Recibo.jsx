@@ -9,13 +9,16 @@ import Select from 'react-select'
 import GetURLAPI from '../utilidades/parametros';
 
 const url_base = GetURLAPI()
+var today = new Date();
+var year = today.getFullYear();
 
-function Recibo({ listafincas }) {
+function Recibo({ listafincas, propietarios }) {
+
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
     const [tipoSelect, setTipoSelect] = useState()
     const [mesSelect, setMesSelect] = useState()
-
+   
     const meses = [
         { id: 1, mes: 'Enero' },
         { id: 2, mes: 'Febrero' },
@@ -43,8 +46,9 @@ function Recibo({ listafincas }) {
         const data_POST = {
             "_id": fincaSelect,
             "mes": mesSelect,
-            "anno": 2022,
-            "tipo":tipo_seleccion
+            "anno": year,
+            "tipo":tipo_seleccion,
+            
         }
 
         console.log('dataPOSt ', data_POST)
@@ -74,6 +78,9 @@ function Recibo({ listafincas }) {
         console.log(data)
 
         const res = await axios.post(url_base + `recibos_crear`, data);
+        if(res.data.status === 201){
+            alert(res.data.mensaje)
+        }
         console.log(res)
     }
 
@@ -82,7 +89,7 @@ function Recibo({ listafincas }) {
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-3'><Regresar
-                        ruta='home' className='col-3' /></div>
+                        ruta='recibos' className='col-3' /></div>
                     <div className='col-6'>
                         <form className='form-propietarios'>
                             <div className='autocomplete-wrapper d-flex justify-content-center'>
@@ -93,6 +100,7 @@ function Recibo({ listafincas }) {
                                             (finca_seleccion) => {
                                                 /*  setFincaSelect(finca_seleccion.value) */
                                                 setFincaSelect(finca_seleccion.value)
+                                                
                                             }
                                         }
                                         options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
