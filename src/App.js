@@ -21,7 +21,7 @@ function App() {
   const [listafincas, setListafincas] = useState([])
   const [propietarios, setPropietarios] = useState([])
   const [recibos, setRecibos] = useState([])
-
+  
   const getFincas = async () => {
     const url_base = GetURLAPI()
     const resp = await axios.get(url_base + 'finca')
@@ -39,7 +39,7 @@ function App() {
     const resp = await axios.get(url_base + 'recibos')
     setRecibos(resp.data)
   }
-
+  
   useEffect(() => {
     getFincas();
     getPropietarios();
@@ -54,8 +54,8 @@ function App() {
         <Route path='Videofincas/' element={<Login />} />
         <Route path='Videofincas/home' element={<Menu />} />
         <Route path='Videofincas/recibos' element={<ListarRecibo listafincas={listafincas}  getRecibos={getRecibos} recibos={recibos} propietarios={propietarios} />} />
-        <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas} />} />
-        <Route path='Videofincas/recibo/:id' element={<VisualizarRecibo listafincas={listafincas} />} />
+        <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas}/>} />
+        <Route path='Videofincas/recibo/:id' element={<VisualizarRecibo recibos={recibos}/>} />
         <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} getPropietarios={getPropietarios} propietarios={propietarios}/>} />
         <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
         <Route path='Videofincas/propietario' element={<Propietario />} />

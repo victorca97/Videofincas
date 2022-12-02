@@ -29,6 +29,11 @@ const meses = [
 
 const years = [2021, 2022, 2023]
 
+const tipos = [
+    {id:1, tipo:'Departamento'},
+    {id:2, tipo:'Estacionamiento'}
+]
+
 export const ListarRecibo = ({ listafincas, getRecibos, recibos, propietarios }) => {
     const [recibosPorFinca, setRecibosPorFinca] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
@@ -160,7 +165,7 @@ export const ListarRecibo = ({ listafincas, getRecibos, recibos, propietarios })
                             </thead>
                             <tbody>
                                 {recibosPorFinca?.map((recibo, contador) => (
-                                    <ItemRecibo key={recibo._id} {...recibo} contador={contador} recibo={recibo} listafincas={listafincas} recibosPorFinca={recibosPorFinca} setRecibosPorFinca={setRecibosPorFinca} getRecibos={getRecibos} propietariosPorFinca={propietariosPorFinca}/>
+                                    <ItemRecibo key={recibo._id} {...recibo} contador={contador} recibo={recibo} listafincas={listafincas} recibosPorFinca={recibosPorFinca} setRecibosPorFinca={setRecibosPorFinca} getRecibos={getRecibos} propietariosPorFinca={propietariosPorFinca} meses={meses} years={years} tipos={tipos}/>
                                 ))
                                 }
 

@@ -4,7 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completarTarea, eliminarTarea, agregarDatosTarea, ID_Seccion}) {
+function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completarTarea, eliminarTarea, agregarDatosTarea, ID_Seccion, visualizarReciboSubseccion=false}) {
 
   const[Monto, setMonto] = useState(monto)
   const[Descripcion, setDescripcion] = useState(descripcion)
@@ -42,7 +42,10 @@ function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, 
                 placeholder="Ingresar Monto" value={Monto} onChange={e=> setMonto(parseFloat(e.target.value))}/>
             </div>
             <div className='col-1 tarea-contenedor-iconos'>
-              <AiFillCloseCircle className='tarea-icono' onClick={() => eliminarTarea(ID_Subseccion, ID_Seccion)}/>
+              {
+                !visualizarReciboSubseccion &&  <AiFillCloseCircle className='tarea-icono' onClick={() => eliminarTarea(ID_Subseccion, ID_Seccion)}/>
+              }
+             
             </div>
           </div>
 

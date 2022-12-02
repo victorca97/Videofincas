@@ -7,7 +7,8 @@ export const NavBar = () => {
 
   const location = useLocation();
 
-  let name = location.pathname.split('Videofincas/')[1]
+  let name = location.pathname.split('/')[2]
+  console.log('navbarrrrrr', name)
   switch (name) {
     case 'home':
       name = 'Menú principal'
@@ -15,14 +16,17 @@ export const NavBar = () => {
     case 'recibo':
       name = 'Recibo';
       break;
+    case 'recibos':
+        name = 'Recibos';
+        break;
     case 'propietario':
-      name = 'Formulario del Propietarios'
+      name = 'Propietarios'
       break;
     case 'propietarios':
       name = 'Propietarios'
       break;
     case 'finca':
-      name = 'Formulario de las Fincas'
+      name = 'Fincas'
       break;
     case 'fincas':
       name = 'Fincas'
@@ -30,6 +34,7 @@ export const NavBar = () => {
     case 'descarga':
       name = 'Descargas'
       break;
+    
     default:
       break;
   }

@@ -1,7 +1,7 @@
 import SubSeccion from "./SubSeccion";
 import { useState } from "react";
 import SubSeccionFormulario from "./SubSeccionFormulario";
-export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) => {
+export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones, visualizarReciboSubseccion=false}) => {
 
   console.log('entro a lista subsecciones ',Subsecciones)
  const [tareas, setTareas] = useState(Subsecciones);
@@ -50,11 +50,13 @@ export const ListaSubSecciones = ({ ID_Seccion, Subsecciones, listaSecciones}) =
 
     return (
         <>
-        <SubSeccionFormulario agregarTarea={agregarTarea}/>
+        {
+          !visualizarReciboSubseccion &&  <SubSeccionFormulario agregarTarea={agregarTarea}/>
+        }
         <div className='tareas-lista-contenedor'>
           {
             tareas.map((tarea) =>
-              <SubSeccion {...tarea} key={tarea.id} tarea={tarea} tareas={tareas} agregarTarea={agregarTarea} eliminarTarea={eliminarTarea} completarTarea={completarTarea} agregarDatosTarea={agregarDatosTarea} ID_Seccion={ID_Seccion}/>
+              <SubSeccion {...tarea} key={tarea.id} tarea={tarea} tareas={tareas} agregarTarea={agregarTarea} eliminarTarea={eliminarTarea} completarTarea={completarTarea} agregarDatosTarea={agregarDatosTarea} ID_Seccion={ID_Seccion} visualizarReciboSubseccion={visualizarReciboSubseccion}/>
             )
           }
         </div>

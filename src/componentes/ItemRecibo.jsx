@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const url_base = GetURLAPI()
 
-export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas }) => {
+export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas, recibo, meses, years, tipos }) => {
 
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
@@ -21,6 +21,9 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas 
         setNombreFinca(finca.Nombre)
     }
 
+    const labelMes = meses.find(m => m.id===Mes).mes
+    const labelYear = years.find(y => y===Year)
+    const labelTipo = tipos.find(t=> t.id ===tipo).tipo
     useEffect(() => {
         encontrarNombreFinca()
     }, [])
@@ -47,14 +50,14 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas 
         <tr>
             <th scope="row">{contador + 1}</th>
             <td>{nombreFinca}</td>
-            <td>{Mes}</td>
-            <td>{Year}</td>
-            <td>{tipo}</td>
+            <td>{labelMes}</td>
+            <td>{labelYear}</td>
+            <td>{labelTipo}</td>
             <td className="d-flex justify-content-center">
 
                 <Link
                     to={`/Videofincas/recibo/${_id}`}
-                    state={{ listafincas }}>
+                    state={{ recibo, listafincas }}>
                     <button type="button" className="btn btn-warning mr-3">Visualizar</button>
                 </Link>
                

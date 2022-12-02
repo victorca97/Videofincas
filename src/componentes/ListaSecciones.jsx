@@ -4,6 +4,8 @@ import Seccion from './Seccion';
 
 
 function ListaSecciones({listaSecciones,setListaSecciones}) {
+
+    console.log('Lista secccionesssssssssssssssn ', listaSecciones)
     
     const agregarSeccion = seccion => {
         if (seccion.nombre.trim()) {

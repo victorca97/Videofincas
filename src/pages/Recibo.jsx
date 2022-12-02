@@ -12,7 +12,7 @@ const url_base = GetURLAPI()
 var today = new Date();
 var year = today.getFullYear();
 
-function Recibo({ listafincas, propietarios }) {
+function Recibo({ listafincas }) {
 
     const [fincaSelect, setFincaSelect] = useState("");
     const [listaSecciones, setListaSecciones] = useState([]);
