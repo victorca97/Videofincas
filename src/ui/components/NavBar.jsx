@@ -8,13 +8,13 @@ export const NavBar = () => {
   const location = useLocation();
 
   let name = location.pathname.split('/')[2]
-  console.log('navbarrrrrr', name)
+
   switch (name) {
     case 'home':
       name = 'Menú principal'
       break;
     case 'recibo':
-      name = 'Recibo';
+      name = 'Generar Recibo';
       break;
     case 'recibos':
         name = 'Recibos';

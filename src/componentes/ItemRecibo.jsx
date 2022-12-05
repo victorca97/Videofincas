@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const url_base = GetURLAPI()
 
-export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas, recibo, meses, years, tipos }) => {
+export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas, recibo, meses, years, tipos, setShowLoading, setMessage, setShowAlert }) => {
 
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
@@ -14,10 +14,10 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas,
     const [nombreFinca, setNombreFinca] = useState('');
     const [fechaEmision, setFechaEmision] = useState(hoy.toLocaleDateString())
     const [fechaVencimiento, setFechaVencimiento] = useState(ultimoDia.toLocaleDateString())
+    const [data, setData] = useState()
 
     const encontrarNombreFinca = () => {
         const finca = listafincas.find(finca => finca._id === Finca)
-        console.log('nombre fincaaaa>>', finca.Nombre)
         setNombreFinca(finca.Nombre)
     }
 
@@ -31,6 +31,8 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas,
 
     const generarRecibo = async (id) => {
 
+        setShowLoading(true)
+        setShowAlert(false)
         console.log('fecha final', fechaVencimiento)
         const data_POST = {
             '_id': id,
@@ -42,10 +44,18 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas,
         }
         console.log(data_POST)
         const res = await axios.post(url_base + `recibos_generar`, data_POST);
-        console.log(res)
+        setData(res)
     }
 
-
+    useEffect(() => {
+        
+        if (data?.status === 200) {
+            setShowLoading(false)
+            setMessage(data?.data.mensaje)
+            setShowAlert(true)
+        }
+        
+    }, [data])
     return (
         <tr>
             <th scope="row">{contador + 1}</th>

@@ -5,6 +5,7 @@ import GetURLAPI from '../utilidades/parametros';
 import Axios from 'axios';
 import { SubirImg } from '../componentes/SubirImg';
 import { useForm } from '../hooks/useForm';
+import { useState } from 'react';
 
 
 export const Finca = () => {
@@ -14,6 +15,8 @@ export const Finca = () => {
         imagen: ''
     })
 
+    const [showAlert, setShowAlert] = useState(false)
+    const [message, setMessage] = useState('')
 
     function handlesubmit(e) {
         e.preventDefault()
@@ -29,7 +32,9 @@ export const Finca = () => {
         Axios.post(URL, data_POST).then(
             res => {
                 if (res.status == 200) {
-                    alert(res.data.mensaje)
+                    setMessage(res.data.mensaje)
+                    setShowAlert(true)
+                    /* alert(res.data.mensaje) */
                     onResetForm()
 
                 } else (console.log(res))
@@ -43,14 +48,25 @@ export const Finca = () => {
         <>
             <div className='container-fluid' >
                 <div className='row'>
-                    <div className='col-3'>
+                    <div className='col-3 mt-4'>
                         <Regresar
                             ruta='fincas' />
                     </div>
 
                     <div className='col-6 vh-200 justify-content-center align-items-center'>
 
-                        <div className="form-group text-center " >
+                        {
+                            showAlert && (
+                                <div className="alert alert-primary alert-dismissible fade show mt-3 text-center" role="alert">
+                                    <strong>{message}</strong>
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            )
+                        }
+
+                        <div className="form-group text-center mt-1" >
                             <label className="col col-form-label">Nombre de la Finca :</label>
                             <input type='text'
                                 className='form-control col-8 '

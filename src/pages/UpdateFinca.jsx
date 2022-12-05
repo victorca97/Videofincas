@@ -22,7 +22,6 @@ export const UpdateFinca = () => {
   })
 
   const [data, setData] = useState({})
-  console.log(_id)
   function actualizarFinca() {
 
     console.log('entro actualizar finca')
@@ -50,9 +49,7 @@ export const UpdateFinca = () => {
     }
   }
 
-  console.log('dato actualizado, ',data)
   useEffect(() => {
-
     if (data.status === 201) {
         alert(data.message)
         navigate(-1)

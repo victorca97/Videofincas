@@ -4,7 +4,7 @@ import axios from '../api/axios';
 
 const url_base = GetURLAPI()
 
-export const ItemFinca = ({ finca, getFincas, _id, Nombre, Direccion, contador }) => {
+export const ItemFinca = ({ finca, getFincas, _id, Nombre, Direccion, contador, setShowEliminar, setMessage }) => {
 
     const eliminarFinca = (id) => {
 
@@ -18,10 +18,9 @@ export const ItemFinca = ({ finca, getFincas, _id, Nombre, Direccion, contador }
         try {
             axios.delete(URL, { data: data_DELETE }).then(
                 res => {
-
-                    console.log('eliminado')
-                    alert(res.data.message)
                     getFincas()
+                    setMessage(res.data.message)
+                    setShowEliminar(true)
                 }
             )
 

@@ -18,7 +18,9 @@ function Recibo({ listafincas }) {
     const [listaSecciones, setListaSecciones] = useState([]);
     const [tipoSelect, setTipoSelect] = useState()
     const [mesSelect, setMesSelect] = useState()
-   
+    const [showAlert, setShowAlert] = useState(false)
+    const [message, setMessage] = useState('')
+
     const meses = [
         { id: 1, mes: 'Enero' },
         { id: 2, mes: 'Febrero' },
@@ -36,19 +38,19 @@ function Recibo({ listafincas }) {
     ]
 
     const tipos = [
-        {id:1, tipo:'Departamento'},
-        {id:2, tipo:'Estacionamiento'}
+        { id: 1, tipo: 'Departamento' },
+        { id: 2, tipo: 'Estacionamiento' }
     ]
 
     const getRecibo = async (tipo_seleccion) => {
-        
+
         console.log(tipo_seleccion)
         const data_POST = {
             "_id": fincaSelect,
             "mes": mesSelect,
             "anno": year,
-            "tipo":tipo_seleccion,
-            
+            "tipo": tipo_seleccion,
+
         }
 
         console.log('dataPOSt ', data_POST)
@@ -58,7 +60,7 @@ function Recibo({ listafincas }) {
         console.log(resp.data[0]?.Seccion)
         if (resp.data.length > 0) {
             setListaSecciones(resp?.data[0].Seccion)
-           
+
         } else {
             setListaSecciones([])
         }
@@ -78,8 +80,9 @@ function Recibo({ listafincas }) {
         console.log(data)
 
         const res = await axios.post(url_base + `recibos_crear`, data);
-        if(res.data.status === 201){
-            alert(res.data.mensaje)
+        if (res.data.status === 201) {
+            setShowAlert(true)
+            setMessage(res.data.mensaje)
         }
         console.log(res)
     }
@@ -90,17 +93,19 @@ function Recibo({ listafincas }) {
                 <div className='row'>
                     <div className='col-3'><Regresar
                         ruta='recibos' className='col-3' /></div>
-                    <div className='col-6'>
-                        <form className='form-propietarios'>
-                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                    <div className='col-9'>
+                        
+                        <form className='form-propietarios d-flex'>
+
+                            <div className='justify-content-center'>
                                 <h2 className='h2-propietario'>Finca: </h2>
-                                <div className='input-select mb-3'>
+                                <div className='input-select mb-4 text-center'>
                                     <Select
                                         onChange={
                                             (finca_seleccion) => {
                                                 /*  setFincaSelect(finca_seleccion.value) */
                                                 setFincaSelect(finca_seleccion.value)
-                                                
+
                                             }
                                         }
                                         options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
@@ -108,10 +113,10 @@ function Recibo({ listafincas }) {
                                 </div>
                             </div>
 
-                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                            <div className='justify-content-center'>
                                 {/* <Fincas setFincaSelect={setFincaSelect} getPlantilla={getPlantilla} listafincas={listafincas}/> */}
                                 <h2 className='h2-propietario'>Mes: </h2>
-                                <div className='input-select mb-3'>
+                                <div className='input-select mb-4 text-center'>
                                     <Select
                                         onChange={
                                             (mes_seleccion) => {
@@ -124,9 +129,9 @@ function Recibo({ listafincas }) {
                                     />
                                 </div>
                             </div>
-                            <div className='autocomplete-wrapper d-flex justify-content-center'>
+                            <div className='justify-content-center'>
                                 <h2 className='h2-propietario'>Tipo: </h2>
-                                <div className='input-select mb-3'>
+                                <div className='input-select mb-4 text-center'>
                                     <Select
                                         onChange={
                                             (tipo_seleccion) => {
@@ -143,6 +148,20 @@ function Recibo({ listafincas }) {
                     </div>
 
                 </div>
+             
+                    <div className='d-flex justify-content-center align-items-center'>
+                    {
+                            showAlert && (
+                                <div className="alert alert-primary alert-dismissible fade show mt-2" role="alert">
+                                    <strong>{message}</strong>
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            )
+                        }
+                    </div>
+             
                 <div className='container-fluid'>
                     <ListaSecciones listaSecciones={listaSecciones} setListaSecciones={setListaSecciones} />
                     <div className='contenedor-btn-guardar'>

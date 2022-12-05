@@ -11,11 +11,12 @@ const encabezadoCss = {
     color: 'white'
 }
 
-export const ListarPropietario = ({ listafincas, propietarios, getPropietarios}) => {
+export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }) => {
 
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
-
     const [mensaje, setMensaje] = useState('Buscar finca')
+    const [showAlert, setShowAlert] = useState(false)
+    const [message, setMessage] = useState('')
 
     const buscarPropietarioPorFinca = (id) => {
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
@@ -24,19 +25,18 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios})
     }
 
     useEffect(() => {
-        console.log('entro a useEffect getpropietarios')
+
         getPropietarios();
-    }, []); 
+    }, []);
 
     return (
         <div>
             <div className='container-fluid' >
                 <div className='row'>
-                    <div className='col-xs-3 col-sm-3'>
-                        <Regresar
-                            ruta='home' />
-                    </div>
-                    <div className='col-xs-6 col-sm-6'>
+
+
+                    <div className='col-xs-12 col-sm-12'>
+
                         <form className='form-propietarios d-flex justify-content-center'>
                             <h2 className='h2-propietario'> Finca: </h2>
                             <div className='input-select mb-3'>
@@ -52,43 +52,42 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios})
                             </div>
 
 
-
-
                         </form>
                     </div>
 
-                    <div className='col-xs-6 col-sm-3 mt-0 mb-2'>
-                        <div className='container mt-4 d-flex justify-content-center'>
-                            <Link to="/Videofincas/propietario"
-                                state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
-                                <button type="button" className="btn btn-guardar">
-                                    Agregar
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
 
                 </div>
+
             </div>
 
             <div className='container-fluid ' >
-                <div className='col-12 pb-4 text-center'>
+                <div className='col-12 pb-2 text-center'>
+                    {
+                        showAlert && (
+                            <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>{message}</strong>
+                                <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        )
+                    }
 
-                    {propietariosPorFinca.length === 0 ? <h1>{mensaje}</h1> : (
+                    {propietariosPorFinca.length != 0 && (
                         <table className="table table-primary table-striped">
                             <thead>
                                 <tr style={encabezadoCss}>
                                     <th scope="col">#</th>
                                     <th scope="col">Nombres y Apellidos</th>
                                     <th scope="col">N° Departamento</th>
-                                    <th scope='col'>% de participaciones</th>
                                     <th scope="col">N° Estacionamiento</th>
+                                    <th scope='col'>% de participaciones</th>
                                     <th scope='col'></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {propietariosPorFinca?.map((pro, contador) => (
-                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca} getPropietarios={getPropietarios}/>
+                                    <ItemPropietario key={pro._id} {...pro} contador={contador} pro={pro} listafincas={listafincas} propietariosPorFinca={propietariosPorFinca} setPropietariosPorFinca={setPropietariosPorFinca} getPropietarios={getPropietarios} setShowAlert={setShowAlert} setMessage={setMessage} />
                                 ))
                                 }
 
@@ -103,6 +102,20 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios})
                 </div>
 
             </div>
+            
+            <div className='d-flex justify-content-center align-items-center mb-2'>
+
+<Regresar
+    ruta='home' />
+<div className='ml-4 mt-2'>
+    <Link to="/Videofincas/propietario"
+        state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
+        <button type="button" className="btn btn-guardar">
+            Agregar
+        </button>
+    </Link>
+</div>
+</div>
 
 
         </div>

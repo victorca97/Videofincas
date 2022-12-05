@@ -5,7 +5,7 @@ import GetURLAPI from '../utilidades/parametros';
 import { useEffect } from 'react'
 const url_base = GetURLAPI()
 
-export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, getPropietarios, contador }) => {
+export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, getPropietarios, contador, setMessage, setShowAlert }) => {
 
         const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos } = pro;
 
@@ -20,8 +20,9 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                 try {
                         axios.delete(URL, { data: data_DELETE }).then(
                                 res => {
-                                        console.log(res.data.mensaje)
-                                        alert(res.data.mensaje)
+                                  
+                                        setMessage(res.data.mensaje)
+                                        setShowAlert(true)
                                         actualizarTablaEliminada(id)
 
                                 }
@@ -40,7 +41,7 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
         }
 
         useEffect(() => {
-                console.log('entro al useEffect')
+              
                 getPropietarios()
         }, [])
 
@@ -52,16 +53,23 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                         <td>{Nombres_y_Apellidos}</td>
 
                         {Departamentos.map((departamento, id) => (
-                               <Departamento key={id} departamento={departamento}/>
+                                <Departamento key={id} departamento={departamento} />
 
                         ))}
-
 
                         {
                                 Estacionamientos.map((estacionamiento, id) => (
                                         <td key={id}>{estacionamiento.Numero_Estacionamiento}</td>
                                 ))
                         }
+
+                        {Departamentos.map((departamento, id) => (
+                                <Participacion key={id} departamento={departamento} />
+
+                        ))}
+
+
+
                         <td className="d-flex">
 
                                 <Link
@@ -81,10 +89,14 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
         )
 }
 
-const Departamento = ({departamento}) => {
+const Departamento = ({ departamento }) => {
         return (
-                <>
-                        <td>{departamento.ID_Departamentos}</td>
-                        <td>{departamento.Porcentaje_Participacion}</td>
-                </>)
+
+                <td>{departamento.ID_Departamentos}</td>
+
+        )
+}
+
+const Participacion = ({ departamento }) => {
+        return (<td>{departamento.Porcentaje_Participacion}</td>)
 }

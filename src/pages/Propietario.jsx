@@ -13,7 +13,6 @@ function Propietario() {
 
     const location = useLocation();
     const propietariosPorFinca = location.state.propietariosPorFinca;
-    console.log('locatioooon ', propietariosPorFinca)
 
     const doc = [
         { id: 'D', name: 'D.N.I.', adress: 'dni' },
@@ -32,6 +31,9 @@ function Propietario() {
     const [part, setPart] = useState(0)
     const [fincaSelect, setFincaSelect] = useState("")
     const [data, setData] = useState({})
+    const [showAlert, setShowAlert] = useState(false)
+    const [message, setMessage] = useState('')
+    const [error, setError] = useState('warning')
 
     function handlesubmit(e) {
         e.preventDefault()
@@ -59,9 +61,11 @@ function Propietario() {
                 res => {
                     console.log(res.data.mensaje)
                     setData(res.data)
-                    if (res.data.status === 201) {
-                        console.log('entra al status 201')
-                        alert(res.data.mensaje)
+                    if (res.data.status === 200) {
+                        console.log('entra al status 200')
+                        setMessage(res.data.mensaje)
+                        setShowAlert(true)
+                        setError('primary')
                         setNombres("")
                         setTdocSelect("")
                         setNdoc("")
@@ -71,9 +75,17 @@ function Propietario() {
                         setDep('')
                         setEstacionamiento('')
                         setPart(0)
-                    } else {
-                        console.log('entro al else',res.data.mensaje)
-                        alert(res.data.mensaje)
+                    }
+                    if(res.data.status === 201){
+                        setMessage(res.data.mensaje)
+                        setShowAlert(true)
+                        setError('warning')
+                    }
+                    if(res.data.status === 400){
+                        console.log('entro al else',res)
+                        setMessage(res.data.mensaje)
+                        setShowAlert(true)
+                        setError('warning')
                     }
                 }
             )
@@ -88,12 +100,25 @@ function Propietario() {
         <>
             <div className='container-fluid' >
                 <div className='row'>
-                    <div className='col-3'>
+                    <div className='col-3 mt-4'>
                         <Regresar
                             ruta='propietarios' />
                     </div>
                     <div className='col-9'>
-                        <form className="form-propietarios" onSubmit={handlesubmit}>
+                        <form className="form-propietarios pb-0" onSubmit={handlesubmit}>
+                        <div className="form-group row">
+                                {
+                                    showAlert && (
+                                        <div className={`alert alert-${error} alert-dismissible fade show`} role="alert">
+                                            <strong>{message}</strong>
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    )
+                                }
+
+                            </div>
                         <div className="form-group row">
                                 <label htmlFor="exampleFormControlSelect1" className="col-3 col-form-label">Finca:</label>
                                 <div className='input-select col-4'>
