@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../componentes/AuthProvider";
+/* import AuthContext from "../componentes/AuthProvider"; */
 import '../estilos/Login.css';
 import '../App.css';
 
 import axios from '../api/axios';
+import { AuthContext } from '../context/AuthContext';
 
 const LOGIN_URL = '/auth';
 
@@ -13,7 +14,8 @@ const textLogin = {
 }
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+   /*  const { setAuth } = useContext(AuthContext); */
+   const { login } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -45,7 +47,7 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            /* setAuth({ user, pwd, roles, accessToken }); */
             setUser('');
             setPwd('');
             setSuccess(true);
@@ -65,23 +67,14 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const abrirMenu = e => {
+    const onLogin = e => {
         e.preventDefault();
-      
+        login('luisgonzales')
         navigate("/Videofincas/home");
     };
 
     return (
         <>
-            {/* {success ? (
-                <section>
-                    <h1>Te has logeado satisfactoriamente</h1>
-                    <br />
-                    <p>
-                        <a href="#">Menu Principal</a>
-                    </p>
-                </section>
-            ) : ( */}
             <div id="contenedor-login">
                
                 <div className='contenedor-seccion'>
@@ -89,7 +82,7 @@ const Login = () => {
                     <div className='seccion'>
                         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                         <h1 id='titulo-login' style={textLogin}>Inicio de Sesión</h1>
-                        <form id="form-login" onSubmit={abrirMenu}>
+                        <form id="form-login" onSubmit={onLogin}>
                             {/* onSubmit={handleSubmit} */}
                             <label htmlFor="username" style={textLogin}>Usuario:</label>
                             <input
@@ -110,7 +103,7 @@ const Login = () => {
                                 value={pwd}
                                 required
                             />
-                            <button id="btn-login" >Ingresar</button>
+                            <button id="btn-login" onClick={onLogin}>Ingresar</button>
                         </form>
                     </div>
 

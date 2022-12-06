@@ -12,7 +12,7 @@ const encabezadoCss = {
 }
 
 export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }) => {
-
+    console.log('listafincas >>>', listafincas)
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
     const [showAlert, setShowAlert] = useState(false)
@@ -21,7 +21,13 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
     const buscarPropietarioPorFinca = (id) => {
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
         setPropietariosPorFinca(propietariosEncontrado)
+        console.log(propietariosEncontrado)
         setMensaje('No hay Propietarios')
+    }
+
+    const total_porcentaje_participacion = (id) => {
+        const fincaEncontrada = listafincas.find(f => f._id === id)
+        console.log(fincaEncontrada)
     }
 
     useEffect(() => {
@@ -45,6 +51,7 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
                                         (seleccion) => {
 
                                             buscarPropietarioPorFinca(seleccion.value)
+                                            total_porcentaje_participacion(seleccion.value)
                                         }
                                     }
                                     options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
@@ -61,6 +68,9 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
             </div>
 
             <div className='container-fluid ' >
+                <div>
+
+                </div>
                 <div className='col-12 pb-2 text-center'>
                     {
                         showAlert && (
