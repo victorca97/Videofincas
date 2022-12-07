@@ -24,6 +24,7 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas,
     const labelMes = meses.find(m => m.id===Mes).mes
     const labelYear = years.find(y => y===Year)
     const labelTipo = tipos.find(t=> t.id ===tipo).tipo
+    console.log('label tipo', labelTipo)
     useEffect(() => {
         encontrarNombreFinca()
     }, [])
@@ -40,7 +41,7 @@ export const ItemRecibo = ({ contador, _id, Finca, Mes, Year, tipo, listafincas,
             'tipo': tipo,
             'fecha_emision': fechaEmision,
             'fecha_vencimiento': fechaVencimiento
-            /* 'propietarios': propietariosPorFinca */
+            
         }
         console.log(data_POST)
         const res = await axios.post(url_base + `recibos_generar`, data_POST);

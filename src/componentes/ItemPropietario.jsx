@@ -7,7 +7,7 @@ const url_base = GetURLAPI()
 
 export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, getPropietarios, contador, setMessage, setShowAlert }) => {
 
-        const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos } = pro;
+        const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos, Numero_deposito } = pro;
 
         const eliminarPropietario = (id) => {
 
@@ -20,7 +20,7 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                 try {
                         axios.delete(URL, { data: data_DELETE }).then(
                                 res => {
-                                  
+
                                         setMessage(res.data.mensaje)
                                         setShowAlert(true)
                                         actualizarTablaEliminada(id)
@@ -41,7 +41,7 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
         }
 
         useEffect(() => {
-              
+
                 getPropietarios()
         }, [])
 
@@ -63,10 +63,13 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
                                 ))
                         }
 
+                        <td>{Numero_deposito}</td>
+                        
                         {Departamentos.map((departamento, id) => (
                                 <Participacion key={id} departamento={departamento} />
 
                         ))}
+
 
 
 

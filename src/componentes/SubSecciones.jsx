@@ -5,8 +5,7 @@ import SubSeccion from './SubSeccion';
 
 function SubSecciones({listaSecciones}) {
 
-  console.log('estoy en lista subsecciones')
-  console.log(listaSecciones)
+ 
   const [tareas, setTareas] = useState([]);
 
   const agregarTarea = tarea => {

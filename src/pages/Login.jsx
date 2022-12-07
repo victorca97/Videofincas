@@ -69,7 +69,10 @@ const Login = () => {
 
     const onLogin = e => {
         e.preventDefault();
-        login('luisgonzales')
+        console.log('dentro de onlogin')
+        console.log('user: ', user)
+        console.log('password', pwd)
+        login(user, pwd)
         navigate("/Videofincas/home");
     };
 

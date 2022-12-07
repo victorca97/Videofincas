@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../styles-navbar.css'
 import videoFincaLogo from '../../imagenes/logo_videofinca.png'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 
 export const NavBar = () => {
 
   const location = useLocation();
-
+  const { user, logout } = useContext(AuthContext)
+  /* console.log('userrrrrrrr', user) */
   let name = location.pathname.split('/')[2]
+  const navigate = useNavigate()
+
+  const onLogout = () => {
+    logout()
+    navigate('/Videofincas',{
+      replace: true
+    })
+  }
 
   switch (name) {
     case 'home':
@@ -56,10 +66,10 @@ export const NavBar = () => {
             {name}
           </h1>
         </div>
-
+      
         <div className='my-4'>
-          <Link to='/Videofincas' className='main_div col-xs-12 col-sm-2 py-3 '>
-            <button>Salir</button>
+          <Link className='main_div col-xs-12 col-sm-2 py-3 '>
+            <button onClick={onLogout}>Salir</button>
           </Link>
         </div>
 

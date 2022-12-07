@@ -6,33 +6,11 @@ import Select from 'react-select';
 import Regresar from '../componentes/Regresar';
 import { ItemRecibo } from '../componentes/ItemRecibo';
 import '../estilos/FormPropietario.css';
+import { meses, years, tipos } from '../datos/datosSelectores';
 const encabezadoCss = {
     background: '#294A98',
     color: 'white'
 }
-
-const meses = [
-    { id: 1, mes: 'Enero' },
-    { id: 2, mes: 'Febrero' },
-    { id: 3, mes: 'Marzo' },
-    { id: 4, mes: 'Abril' },
-    { id: 5, mes: 'Mayo' },
-    { id: 6, mes: 'Junio' },
-    { id: 7, mes: 'Julio' },
-    { id: 8, mes: 'Agosto' },
-    { id: 9, mes: 'Septiembre' },
-    { id: 10, mes: 'Octubre' },
-    { id: 11, mes: 'Noviembre' },
-    { id: 12, mes: 'Diciembre' },
-
-]
-
-const years = [2021, 2022, 2023]
-
-const tipos = [
-    { id: 1, tipo: 'Departamento' },
-    { id: 2, tipo: 'Estacionamiento' }
-]
 
 export const ListarRecibo = ({ listafincas, getRecibos, recibos, propietarios }) => {
     const [recibosPorFinca, setRecibosPorFinca] = useState([])

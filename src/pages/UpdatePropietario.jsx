@@ -5,17 +5,16 @@ import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 
 import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
+import { doc } from '../datos/datosSelectores';
 
 function UpdatePropietario() {
 
     const location = useLocation();
     const propietarioRecuperado = location.state.pro;
     const listaFincas = location.state.listafincas
-    const navigate = useNavigate()
 
     const {
         Finca,
@@ -25,14 +24,9 @@ function UpdatePropietario() {
         Correo,
         Telefono,
         Departamentos,
-        Estacionamientos
+        Estacionamientos,
+        Numero_deposito
     } = propietarioRecuperado;
-
-    const doc = [
-        { id: 'D', name: 'D.N.I.', adress: 'dni' },
-        { id: 'CE', name: 'Carnet de Extranjería', adress: 'ce' },
-        { id: 'PS', name: 'Nro. Pasaporte', adress: 'passport' }
-    ]
 
     const [nombres, setNombres] = useState(Nombres_y_Apellidos)
     const [listatdoc, setListatdoc] = useState(doc)
@@ -42,6 +36,7 @@ function UpdatePropietario() {
     const [ncel, setNcel] = useState(Telefono)
     const [dep, setDep] = useState(Departamentos[0].ID_Departamentos)
     const [estacionamiento, setEstacionamiento] = useState(Estacionamientos[0].Numero_Estacionamiento)
+    const [deposito, setDeposito] = useState(Numero_deposito)
     const [part, setPart] = useState(Departamentos[0].Porcentaje_Participacion)
     const [fincaSelect, setFincaSelect] = useState(Finca)
     const [data, setData] = useState({})
@@ -68,6 +63,7 @@ function UpdatePropietario() {
             "Telefono": ncel,
             "Departamentos": [{ "ID_Departamentos": dep, "Porcentaje_Participacion": part }],
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
+            "Numero_deposito": deposito
         }
         console.log('data_PUT', data_PUT)
         const url_base = GetURLAPI()
@@ -177,6 +173,17 @@ function UpdatePropietario() {
                             </div>
 
                             <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Depósito:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    autoComplete="off"
+                                    placeholder="Depósito "
+                                    name={"Numero_deposito"}
+                                    value={deposito}
+                                    onChange={e => setDeposito(e.target.value)} />
+                            </div>
+
+                            <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
                                 <input type='text'
                                     className='form-control col-4'
@@ -196,9 +203,8 @@ function UpdatePropietario() {
                                                 setTdocSelect(seleccion.value)
                                             }
                                         }
-                                        options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }))}
-                                        defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: setTdocSelect }}
-                                        isOptionDisabled={true}
+                                        options={listatdoc.map(sup => ({ label: sup.name, value: sup.id }.disabled))}
+                                        defaultValue={{ label: obtenerLabelDelTipoDocumentoSeleccionado, value: tdocSelect }}
                                     />
                                 </div>
                             </div>

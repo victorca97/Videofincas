@@ -4,21 +4,13 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function SubSeccion({ tareas, tarea, ID_Subseccion, nombre, monto, descripcion, completarTarea, eliminarTarea, agregarDatosTarea, ID_Seccion, visualizarReciboSubseccion = false }) {
+function SubSeccion({ tarea, ID_Subseccion, nombre, monto, descripcion, completarTarea, eliminarTarea, agregarDatosTarea, ID_Seccion, visualizarReciboSubseccion = false }) {
 
   const [Monto, setMonto] = useState(monto)
   const [Descripcion, setDescripcion] = useState(descripcion)
-  console.log('ID_Subseccion', ID_Subseccion)
-  console.log('montoooo: ', Monto)
-  console.log('descripcioon: ', Descripcion)
-  console.log('tarea desde subseccion', tarea)
 
   useEffect(() => {
     agregarDatosTarea(tarea, Monto, Descripcion)
-  }, [Monto, Descripcion])
-
-  useEffect(() => {
-    console.log('subsecciones >>→', tareas)
   }, [Monto, Descripcion])
 
   return (

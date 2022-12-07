@@ -4,7 +4,6 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { ListaSubSecciones } from './ListaSubSecciones';
 
 function Seccion({ ID_Seccion, nombre, listaSecciones, setListaSecciones, seccion, visualizarReciboSeccion = false, visualizarReciboSubseccion }) {
-    console.log('Entro a seccion', listaSecciones)
     const { Subsecciones } = seccion;
 
     const eliminarSeccion = ID_Seccion => {

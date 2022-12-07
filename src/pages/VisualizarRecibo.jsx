@@ -3,42 +3,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useState } from "react";
 import Regresar from "../componentes/Regresar";
-const meses = [
-    { id: 1, mes: 'Enero' },
-    { id: 2, mes: 'Febrero' },
-    { id: 3, mes: 'Marzo' },
-    { id: 4, mes: 'Abril' },
-    { id: 5, mes: 'Mayo' },
-    { id: 6, mes: 'Junio' },
-    { id: 7, mes: 'Julio' },
-    { id: 8, mes: 'Agosto' },
-    { id: 9, mes: 'Septiembre' },
-    { id: 10, mes: 'Octubre' },
-    { id: 11, mes: 'Noviembre' },
-    { id: 12, mes: 'Diciembre' },
+import { meses, years } from "../datos/datosSelectores";
 
-]
-
-const years = [2021, 2022, 2023]
 export const VisualizarRecibo = () => {
 
     const location = useLocation();
     const reciboRecuperado = location.state.recibo;
     const listaFincas = location.state.listafincas;
     const listaSecciones = reciboRecuperado.Seccion;
-    const navigate = useNavigate()
-    console.log(reciboRecuperado)
-    console.log(listaSecciones)
     const [fincaRecuperado, setFincaRecuperado] = useState(reciboRecuperado.Finca)
     const [mesRecuperado, setMesRecuperado] = useState(reciboRecuperado.Mes)
     const [annioRecuperado, setAnnioRecuperado] = useState(reciboRecuperado.Year)
-    console.log(listaFincas)
-    console.log(fincaRecuperado)
-    console.log(mesRecuperado)
-    console.log(annioRecuperado)
+   
     const obtenerLabelDeLaFincaSeleccionada = listaFincas.find(f => f._id === fincaRecuperado).Nombre
     const obtenerLabelMes = meses.find(m => m.id === mesRecuperado).mes
-    console.log('obtener label mes', obtenerLabelMes)
+  
 
     return (
         <>

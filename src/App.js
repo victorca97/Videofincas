@@ -16,6 +16,8 @@ import { UpdateFinca } from "./pages/UpdateFinca";
 import { ListarRecibo } from "./pages/ListarRecibo";
 import { VisualizarRecibo } from "./pages/VisualizarRecibo";
 import { AuthProvider } from "./context/AuthProvider";
+import { PrivateRoute } from "./router/PrivateRoute";
+import { PublicRoute } from "./router/PublicRoute";
 
 function App() {
 
@@ -48,23 +50,39 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider> 
+    <AuthProvider>
 
       <div className="pantalla">
         <NavBar />
         <Routes>
-          <Route path='Videofincas/' element={<Login />} />
-          <Route path='Videofincas/home' element={<Menu />} />
-          <Route path='Videofincas/recibos' element={<ListarRecibo listafincas={listafincas} getRecibos={getRecibos} recibos={recibos} propietarios={propietarios} />} />
-          <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas} />} />
-          <Route path='Videofincas/recibo/:id' element={<VisualizarRecibo recibos={recibos} />} />
-          <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} getPropietarios={getPropietarios} propietarios={propietarios} />} />
-          <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
-          <Route path='Videofincas/propietario' element={<Propietario />} />
-          <Route path='Videofincas/fincas' element={<ListarFinca listafincas={listafincas} getFincas={getFincas} setListafincas={setListafincas} />} />
-          <Route path='Videofincas/fincas/:id' element={<UpdateFinca />} />
-          <Route path='Videofincas/finca' element={<Finca />} />
-          <Route path='Videofincas/descarga' element={<Descarga />} />
+
+
+          <Route path='Videofincas/' element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>} />
+
+
+          <Route path='/*' element={
+            <PrivateRoute>
+              <Routes>
+                <Route path='Videofincas/home' element={<Menu />} />
+                <Route path='Videofincas/recibos' element={<ListarRecibo listafincas={listafincas} getRecibos={getRecibos} recibos={recibos} propietarios={propietarios} />} />
+                <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas} />} />
+                <Route path='Videofincas/recibo/:id' element={<VisualizarRecibo recibos={recibos} />} />
+                <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} getPropietarios={getPropietarios} propietarios={propietarios} getFincas={getFincas} />} />
+                <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
+                <Route path='Videofincas/propietario' element={<Propietario />} />
+                <Route path='Videofincas/fincas' element={<ListarFinca listafincas={listafincas} getFincas={getFincas} setListafincas={setListafincas} />} />
+                <Route path='Videofincas/fincas/:id' element={<UpdateFinca />} />
+                <Route path='Videofincas/finca' element={<Finca />} />
+                <Route path='Videofincas/descarga' element={<Descarga />} />
+                
+              </Routes>
+
+            </PrivateRoute>}
+          />
+
         </Routes>
       </div>
     </AuthProvider>

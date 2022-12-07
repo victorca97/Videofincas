@@ -7,7 +7,7 @@ import axios from 'axios';
 /* import { v4 as uuidv4 } from 'uuid'; */
 import Select from 'react-select'
 import GetURLAPI from '../utilidades/parametros';
-
+import { meses, tipos } from '../datos/datosSelectores';
 const url_base = GetURLAPI()
 var today = new Date();
 var year = today.getFullYear();
@@ -20,27 +20,6 @@ function Recibo({ listafincas }) {
     const [mesSelect, setMesSelect] = useState()
     const [showAlert, setShowAlert] = useState(false)
     const [message, setMessage] = useState('')
-
-    const meses = [
-        { id: 1, mes: 'Enero' },
-        { id: 2, mes: 'Febrero' },
-        { id: 3, mes: 'Marzo' },
-        { id: 4, mes: 'Abril' },
-        { id: 5, mes: 'Mayo' },
-        { id: 6, mes: 'Junio' },
-        { id: 7, mes: 'Julio' },
-        { id: 8, mes: 'Agosto' },
-        { id: 9, mes: 'Septiembre' },
-        { id: 10, mes: 'Octubre' },
-        { id: 11, mes: 'Noviembre' },
-        { id: 12, mes: 'Diciembre' },
-
-    ]
-
-    const tipos = [
-        { id: 1, tipo: 'Departamento' },
-        { id: 2, tipo: 'Estacionamiento' }
-    ]
 
     const getRecibo = async (tipo_seleccion) => {
 
@@ -91,8 +70,9 @@ function Recibo({ listafincas }) {
         <>
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-3'><Regresar
-                        ruta='recibos' className='col-3' /></div>
+                    <div className='col-3 mt-4'>
+                        <Regresar ruta='recibos' className='col-3' />
+                    </div>
                     <div className='col-9'>
                         
                         <form className='form-propietarios d-flex'>

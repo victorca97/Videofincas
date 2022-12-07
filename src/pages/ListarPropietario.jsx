@@ -11,28 +11,34 @@ const encabezadoCss = {
     color: 'white'
 }
 
-export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }) => {
-    console.log('listafincas >>>', listafincas)
+export const ListarPropietario = ({ listafincas, propietarios, getPropietarios, getFincas }) => {
+   
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
     const [showAlert, setShowAlert] = useState(false)
     const [message, setMessage] = useState('')
+    const [totalPorcentaje, setTotalPorcentaje] = useState()
+    const [showAlertParticipacion, setShowAlertParticipacion] = useState(false)
 
     const buscarPropietarioPorFinca = (id) => {
+
         const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
         setPropietariosPorFinca(propietariosEncontrado)
-        console.log(propietariosEncontrado)
         setMensaje('No hay Propietarios')
+      
+        setShowAlertParticipacion(true)
+        
+
     }
 
     const total_porcentaje_participacion = (id) => {
         const fincaEncontrada = listafincas.find(f => f._id === id)
-        console.log(fincaEncontrada)
+        setTotalPorcentaje(fincaEncontrada.Total_porc_participacion)
     }
 
     useEffect(() => {
-
         getPropietarios();
+        getFincas()
     }, []);
 
     return (
@@ -68,18 +74,30 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
             </div>
 
             <div className='container-fluid ' >
-                <div>
+                {
+                    showAlertParticipacion && (
+                        <div className='container-fluid row justify-content-end  m-0'>
+                            <div className="col-4 alert alert-success text-center mb-0" role="alert">
+                                Total: {totalPorcentaje}% de participacion
+                            </div>
+                        </div>
+                    )
+                }
 
-                </div>
+
                 <div className='col-12 pb-2 text-center'>
                     {
                         showAlert && (
-                            <div className="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>{message}</strong>
-                                <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                            
+                                <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>{message}</strong>
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                           
+
+
                         )
                     }
 
@@ -91,7 +109,8 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
                                     <th scope="col">Nombres y Apellidos</th>
                                     <th scope="col">N° Departamento</th>
                                     <th scope="col">N° Estacionamiento</th>
-                                    <th scope='col'>% de participaciones</th>
+                                    <th scope="col">N° de Depósito</th>
+                                    <th scope='col'>% de Participaciones</th>
                                     <th scope='col'></th>
                                 </tr>
                             </thead>
@@ -112,20 +131,20 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios }
                 </div>
 
             </div>
-            
+
             <div className='d-flex justify-content-center align-items-center mb-2'>
 
-<Regresar
-    ruta='home' />
-<div className='ml-4 mt-2'>
-    <Link to="/Videofincas/propietario"
-        state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
-        <button type="button" className="btn btn-guardar">
-            Agregar
-        </button>
-    </Link>
-</div>
-</div>
+                <Regresar
+                    ruta='home' />
+                <div className='ml-4 mt-2'>
+                    <Link to="/Videofincas/propietario"
+                        state={{ listafincas: listafincas, propietariosPorFinca: propietariosPorFinca }}>
+                        <button type="button" className="btn btn-guardar">
+                            Agregar
+                        </button>
+                    </Link>
+                </div>
+            </div>
 
 
         </div>

@@ -6,6 +6,7 @@ import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
 import { useLocation } from 'react-router-dom';
+import { doc } from '../datos/datosSelectores';
 
 import axios from 'axios';
 
@@ -13,12 +14,6 @@ function Propietario() {
 
     const location = useLocation();
     const propietariosPorFinca = location.state.propietariosPorFinca;
-
-    const doc = [
-        { id: 'D', name: 'D.N.I.', adress: 'dni' },
-        { id: 'CE', name: 'Carnet de Extranjería', adress: 'ce' },
-        { id: 'PS', name: 'Nro. Pasaporte', adress: 'passport' }
-    ]
 
     const [nombres, setNombres] = useState("")
     const [listatdoc, setListatdoc] = useState(doc)
@@ -28,6 +23,7 @@ function Propietario() {
     const [ncel, setNcel] = useState("")
     const [dep, setDep] = useState("")
     const [estacionamiento, setEstacionamiento] = useState("")
+    const [deposito, setDeposito] = useState()
     const [part, setPart] = useState(0)
     const [fincaSelect, setFincaSelect] = useState("")
     const [data, setData] = useState({})
@@ -51,6 +47,7 @@ function Propietario() {
             "Telefono": ncel,
             "Departamentos": [{ "ID_Departamentos": dep, "Porcentaje_Participacion": part }],
             "Estacionamientos": [{ "Numero_Estacionamiento": estacionamiento }],
+            "Numero_deposito": deposito
         }
         console.log(data_POST)
         
@@ -74,6 +71,7 @@ function Propietario() {
                         setFincaSelect("")
                         setDep('')
                         setEstacionamiento('')
+                        setDeposito('')
                         setPart(0)
                     }
                     if(res.data.status === 201){
@@ -152,6 +150,16 @@ function Propietario() {
                                     name={"estacionamiento"}
                                     value={estacionamiento}
                                     onChange={e => setEstacionamiento(e.target.value)} />
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-3 col-form-label">Nro. de Depósito:</label>
+                                <input type='text'
+                                    className='form-control col-4'
+                                    autoComplete="off"
+                                    placeholder="Depósito "
+                                    name={"Numero_deposito"}
+                                    value={deposito}
+                                    onChange={e => setDeposito(e.target.value)} />
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-3 col-form-label">Participación (%):</label>
