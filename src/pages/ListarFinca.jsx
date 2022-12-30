@@ -4,7 +4,8 @@ import '../App.css';
 import '../estilos/FormPropietario.css';
 import { Link } from 'react-router-dom';
 import { ItemFinca } from '../componentes/ItemFinca';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 const encabezadoCss = {
     background: '#294A98',
     color: 'white'
@@ -12,11 +13,13 @@ const encabezadoCss = {
 
 function ListarFinca({ listafincas, getFincas }) {
 
+    console.log(listafincas)
     const [showEliminar, setShowEliminar] = useState(false)
     const [message, setMessage] = useState(false)
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        getFincas()
+        getFincas(user.username)
     }, []);
 
 
@@ -50,7 +53,7 @@ function ListarFinca({ listafincas, getFincas }) {
                                 <tbody>
                                     {
                                         listafincas?.map((finca, contador) => (
-                                            <ItemFinca key={finca._id} {...finca} contador={contador} finca={finca} getFincas={getFincas} setShowEliminar={setShowEliminar} setMessage={setMessage} />
+                                            <ItemFinca key={finca.id} {...finca} contador={contador} finca={finca} getFincas={getFincas} setShowEliminar={setShowEliminar} setMessage={setMessage} />
                                         ))
                                     }
 

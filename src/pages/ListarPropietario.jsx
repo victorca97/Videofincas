@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css';
 import '../estilos/FormPropietario.css'
 import ReactSelect from 'react-select';
 import Regresar from '../componentes/Regresar';
 import { ItemPropietario } from '../componentes/ItemPropietario';
+import { AuthContext } from '../context/AuthContext';
 
 const encabezadoCss = {
     background: '#294A98',
@@ -12,7 +13,9 @@ const encabezadoCss = {
 }
 
 export const ListarPropietario = ({ listafincas, propietarios, getPropietarios, getFincas }) => {
-   
+    
+    const { user } = useContext(AuthContext)
+    console.log(propietarios)
     const [propietariosPorFinca, setPropietariosPorFinca] = useState([])
     const [mensaje, setMensaje] = useState('Buscar finca')
     const [showAlert, setShowAlert] = useState(false)
@@ -22,23 +25,26 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios, 
 
     const buscarPropietarioPorFinca = (id) => {
 
-        const propietariosEncontrado = propietarios.filter(propietario => propietario.Finca === id)
+        console.log(id)
+        const propietariosEncontrado = propietarios?.filter(propietario => propietario.finca_id === id)
+        console.log(propietariosEncontrado)
         setPropietariosPorFinca(propietariosEncontrado)
         setMensaje('No hay Propietarios')
-      
+        
         setShowAlertParticipacion(true)
         
 
     }
 
     const total_porcentaje_participacion = (id) => {
-        const fincaEncontrada = listafincas.find(f => f._id === id)
+        const fincaEncontrada = listafincas.find(f => f.id === id)
         setTotalPorcentaje(fincaEncontrada.Total_porc_participacion)
     }
 
     useEffect(() => {
-        getPropietarios();
-        getFincas()
+        console.log('entro useEffect')
+        getPropietarios(user.username);
+        getFincas(user.username)
     }, []);
 
     return (
@@ -60,7 +66,7 @@ export const ListarPropietario = ({ listafincas, propietarios, getPropietarios, 
                                             total_porcentaje_participacion(seleccion.value)
                                         }
                                     }
-                                    options={listafincas?.map(sup => ({ label: sup.Nombre, value: sup._id }))}
+                                    options={listafincas?.map(sup => ({ label: sup.nombre, value: sup.id }))}
                                 />
                             </div>
 

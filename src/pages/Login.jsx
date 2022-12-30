@@ -1,13 +1,9 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import { useNavigate } from "react-router-dom";
-/* import AuthContext from "../componentes/AuthProvider"; */
 import '../estilos/Login.css';
 import '../App.css';
+import { useNavigate } from "react-router-dom";
 
-import axios from '../api/axios';
 import { AuthContext } from '../context/AuthContext';
-
-const LOGIN_URL = '/auth';
 
 const textLogin = {
     color: 'white'
@@ -15,67 +11,31 @@ const textLogin = {
 
 const Login = () => {
    /*  const { setAuth } = useContext(AuthContext); */
-   const { login } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const userRef = useRef();
-    const errRef = useRef();
 
+    const navigate = useNavigate();
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [user, pwd])
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            /* setAuth({ user, pwd, roles, accessToken }); */
-            setUser('');
-            setPwd('');
-            setSuccess(true);
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No hay respuesta del servidor');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Usuario o contraseña incorrecta');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Usuario no autorizado');
-            } else {
-                setErrMsg('Fallo en el logeo');
-            }
-            errRef.current.focus();
-        }
-    }
-
-    const navigate = useNavigate();
-
-    const onLogin = e => {
+  /*   const navigate = useNavigate();
+ */
+    const onLogin = async e => {
         e.preventDefault();
         console.log('dentro de onlogin')
         console.log('user: ', user)
         console.log('password', pwd)
-        login(user, pwd)
-        navigate("/Videofincas/home");
+       if(await login(user, pwd)){
+            navigate("/Videofincas/home");
+        } 
     };
 
+  
     return (
         <>
             <div id="contenedor-login">

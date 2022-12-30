@@ -8,7 +8,7 @@ import Descarga from "./pages/Descarga";
 import { NavBar } from "./ui/components/NavBar";
 import { ListarPropietario } from "./pages/ListarPropietario";
 import UpdatePropietario from "./pages/UpdatePropietario";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import GetURLAPI from "./utilidades/parametros";
 import axios from "./api/axios";
 import { Finca } from "./pages/Finca";
@@ -18,23 +18,39 @@ import { VisualizarRecibo } from "./pages/VisualizarRecibo";
 import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
+import { Registro } from "./pages/Registro";
+
 
 function App() {
 
   const [listafincas, setListafincas] = useState([])
   const [propietarios, setPropietarios] = useState([])
   const [recibos, setRecibos] = useState([])
+  const [stateAdmin, setStateAdmin] = useState('')
 
-  const getFincas = async () => {
+  const getFincas = async (admin) => {
+
+    const data_POST={
+      user: admin
+    }
+    setStateAdmin(admin)
     const url_base = GetURLAPI()
-    const resp = await axios.get(url_base + 'finca')
+    const resp = await axios.post(url_base + 'finca', data_POST)
     setListafincas(resp.data);
   };
 
-  const getPropietarios = async () => {
-    const url_base = GetURLAPI()
-    const resp = await axios.get(url_base + 'propietarios')
-    setPropietarios(resp.data);
+  const getPropietarios = async (admin) => {
+   
+      console.log(admin)
+      const data_POST={
+        user: admin
+      }
+      console.log(data_POST)
+      const url_base = GetURLAPI()
+      const resp = await axios.post(url_base + 'listar_propietarios', data_POST)
+      console.log('RESPPPPPPPPPP', resp)
+      setPropietarios(resp.data);
+    
   };
 
   const getRecibos = async () => {
@@ -43,11 +59,11 @@ function App() {
     setRecibos(resp.data)
   }
 
-  useEffect(() => {
+   useEffect(() => {
     getFincas();
     getPropietarios();
     getRecibos();
-  }, []);
+  }, []); 
 
   return (
     <AuthProvider>
@@ -55,13 +71,11 @@ function App() {
       <div className="pantalla">
         <NavBar />
         <Routes>
-
-
+          <Route path='Videofincas/registro_admin' element={<Registro />} />
           <Route path='Videofincas/' element={
             <PublicRoute>
               <Login />
             </PublicRoute>} />
-
 
           <Route path='/*' element={
             <PrivateRoute>
@@ -70,14 +84,14 @@ function App() {
                 <Route path='Videofincas/recibos' element={<ListarRecibo listafincas={listafincas} getRecibos={getRecibos} recibos={recibos} propietarios={propietarios} />} />
                 <Route path='Videofincas/recibo' element={<Recibo listafincas={listafincas} />} />
                 <Route path='Videofincas/recibo/:id' element={<VisualizarRecibo recibos={recibos} />} />
-                <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} getPropietarios={getPropietarios} propietarios={propietarios} getFincas={getFincas} />} />
+                <Route path='Videofincas/propietarios' element={<ListarPropietario listafincas={listafincas} getPropietarios={getPropietarios} propietarios={propietarios} getFincas={getFincas}/>} />
                 <Route path='Videofincas/propietarios/:id' element={<UpdatePropietario />} />
                 <Route path='Videofincas/propietario' element={<Propietario />} />
                 <Route path='Videofincas/fincas' element={<ListarFinca listafincas={listafincas} getFincas={getFincas} setListafincas={setListafincas} />} />
                 <Route path='Videofincas/fincas/:id' element={<UpdateFinca />} />
                 <Route path='Videofincas/finca' element={<Finca />} />
                 <Route path='Videofincas/descarga' element={<Descarga />} />
-                
+
               </Routes>
 
             </PrivateRoute>}

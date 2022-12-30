@@ -5,10 +5,11 @@ import '../App.css';
 import '../estilos/FormPropietario.css';
 import '../estilos/TipoDoc.css';
 import Select from 'react-select';
-import { useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 import { doc } from '../datos/datosSelectores';
+
 
 function UpdatePropietario() {
 
@@ -45,6 +46,8 @@ function UpdatePropietario() {
     const [showAlert, setShowAlert] = useState(false)
     const [message, setMessage] = useState('')
     const [error, setError] = useState('warning')
+    const [inputError, setInputError] = useState(false)
+    const [casosInputError, setCasosInputError] = useState('')
 
     function handlesubmit(e) {
         e.preventDefault()
@@ -72,10 +75,42 @@ function UpdatePropietario() {
 
             axios.put(URL, data_PUT).then(
                 res => {
-                    console.log(res)
-                    setData(res.data)
                     
-                   
+                    setData(res.data)
+                    console.log(res.data)
+                    switch (res.data.input_error) {
+                        case 'departamento':
+                            setInputError(res.data.error)
+                            setCasosInputError('departamento')
+                            break;
+                        case 'estacionamiento':
+                            setInputError(res.data.error)
+                            setCasosInputError('estacionamiento')
+                            break;
+                        case 'deposito':
+                            setInputError(res.data.error)
+                            setCasosInputError('deposito')
+                            break;
+                        case 'departamento y deposito':
+                            setInputError(res.data.error)
+                            setCasosInputError('departamento y deposito')
+                            break;
+                        case 'estacionamiento y departameto':
+                            setInputError(res.data.error)
+                            setCasosInputError('estacionamiento y departameto')
+                            break;
+                        case 'estacionamiento y deposito':
+                            setInputError(res.data.error)
+                            setCasosInputError('estacionamiento y deposito')
+                            break;
+                        case 'todos':
+                            setInputError(res.data.error)
+                            setCasosInputError('todos')
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             )
 
@@ -89,18 +124,21 @@ function UpdatePropietario() {
 
     }
     useEffect(() => {
-        
+
         if (data.status === 200) {
             /*  alert(data.mensaje) */
             setShowAlert(true)
             setMessage(data.mensaje)
             setError('primary')
+            setInputError(false)
             /* navigate(-1) */
         }
-        if(data.status === 201){
+        if (data.status === 201) {
             setShowAlert(true)
             setMessage(data.mensaje)
             setError('warning')
+
+
         }
         if (data.status === 400) {
             setShowAlert(true)
@@ -117,6 +155,7 @@ function UpdatePropietario() {
                         <Regresar
                             ruta='propietarios' />
                     </div>
+                   
                     <div className='col-9'>
                         <form className="form-propietarios" onSubmit={handlesubmit}>
                             <div className="form-group row">
@@ -158,7 +197,13 @@ function UpdatePropietario() {
                                     placeholder="Departamento "
                                     name={"dep"}
                                     value={dep}
-                                    onChange={e => setDep(e.target.value)} />
+                                    onChange={e => setDep(e.target.value)}
+                                    style={
+                                        (inputError & (casosInputError==='departamento' || casosInputError==='departamento y deposito' || casosInputError==='estacionamiento y departameto' || casosInputError==='todos') ) ? {
+                                            borderColor: 'red'
+                                        } : {}
+                                    }
+                                />
                             </div>
 
                             <div className="form-group row">
@@ -167,6 +212,11 @@ function UpdatePropietario() {
                                     className='form-control col-4'
                                     autoComplete="off"
                                     placeholder="Estacionamiento "
+                                    style={
+                                        (inputError & (casosInputError==='estacionamiento' || casosInputError==='estacionamiento y departameto' || casosInputError==='estacionamiento y deposito' || casosInputError==='todos') )? {
+                                            borderColor: 'red'
+                                        } : {}
+                                    }
                                     name={"estacionamiento"}
                                     value={estacionamiento}
                                     onChange={e => setEstacionamiento(e.target.value)} />
@@ -178,6 +228,11 @@ function UpdatePropietario() {
                                     className='form-control col-4'
                                     autoComplete="off"
                                     placeholder="Depósito "
+                                    style={
+                                        (inputError & (casosInputError==='deposito'|| casosInputError==='departamento y deposito' || casosInputError==='estacionamiento y deposito' || casosInputError==='todos'))? {
+                                            borderColor: 'red'
+                                        } : {}
+                                    }
                                     name={"Numero_deposito"}
                                     value={deposito}
                                     onChange={e => setDeposito(e.target.value)} />

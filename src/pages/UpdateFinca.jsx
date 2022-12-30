@@ -1,37 +1,43 @@
 import Regresar from '../componentes/Regresar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../estilos/FormPropietario.css';
 import GetURLAPI from '../utilidades/parametros';
 import axios from 'axios';
 import { SubirImg } from '../componentes/SubirImg';
 import { useForm } from '../hooks/useForm';
+import { AuthContext } from '../context/AuthContext';
 
 export const UpdateFinca = () => {
 
   const location = useLocation();
   const fincaRecuperado = location.state.finca
   const navigate = useNavigate()
-  const { _id, Nombre, Direccion } = fincaRecuperado;
+  const { id, nombre, direccion } = fincaRecuperado;
 
-  const { nombre, direccion, onInputChange, onResetForm } = useForm({
-    nombre: Nombre,
-    direccion: Direccion,
+  const { nombreInput, direccionInput, onInputChange, onResetForm } = useForm({
+    nombreInput: nombre,
+    direccionInput: direccion,
     imagen: ''
   })
 
   const [data, setData] = useState({})
+  const { user } = useContext(AuthContext)
+  const [showAlert, setShowAlert] = useState(false)
+  const [message, setMessage] = useState('')
+
   function actualizarFinca() {
 
     console.log('entro actualizar finca')
     const data_PUT = {
-      "_id": _id,
-      "Admin_Id": "Admin0001",
-      "Nombre": nombre,
-      "Direccion": direccion,
+      "user": user.username,
+      "id": id,
+      "nombre": nombreInput,
+      "direccion": direccionInput,
 
     }
+    console.log(data_PUT)
     const url_base = GetURLAPI()
     const URL = url_base + "finca"
     try {
@@ -50,11 +56,13 @@ export const UpdateFinca = () => {
   }
 
   useEffect(() => {
-    if (data.status === 201) {
-        alert(data.message)
-        navigate(-1)
+    if (data.status === 200) {
+      console.log(data)
+      setShowAlert(true)
+      setMessage(data.mensaje)
+      /* navigate(-1) */
     }
-}, [data])
+  }, [data])
 
   return (
     <>
@@ -66,8 +74,24 @@ export const UpdateFinca = () => {
               ruta='fincas' />
           </div>
 
+
+
           <div className='col-6 vh-200 justify-content-center align-items-center'>
             <form action="" onSubmit={actualizarFinca}>
+              <div className="form-group text-center mt-3" >
+                {
+                  showAlert && (
+                    <div className={`alert alert-warning alert-dismissible fade show`} role="alert">
+                      <strong>{message}</strong>
+                      <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setShowAlert(false)}>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  )
+                }
+              </div>
+
+
               <div className="form-group text-center " >
 
                 <label className="col col-form-label">Nombre de la Finca :</label>
@@ -75,8 +99,8 @@ export const UpdateFinca = () => {
                   className='form-control col-8 '
                   id='subtitulo-finca'
                   placeholder=""
-                  name={"nombre"}
-                  value={nombre}
+                  name={"nombreInput"}
+                  value={nombreInput}
                   onChange={onInputChange} />
               </div>
               <div className="form-group text-center" >
@@ -85,8 +109,8 @@ export const UpdateFinca = () => {
                   className='form-control col-8 '
                   id='subtitulo-finca'
                   placeholder=""
-                  name={"direccion"}
-                  value={direccion}
+                  name={"direccionInput"}
+                  value={direccionInput}
                   onChange={onInputChange}
                 />
               </div>

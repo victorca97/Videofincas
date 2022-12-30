@@ -7,13 +7,13 @@ const url_base = GetURLAPI()
 
 export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPropietariosPorFinca, getPropietarios, contador, setMessage, setShowAlert }) => {
 
-        const { _id, Nombres_y_Apellidos, Departamentos, Estacionamientos, Numero_deposito } = pro;
+        const { id, nombres_y_apellidos, numero_departamento, numero_estacionamiento, numero_deposito} = pro;
 
         const eliminarPropietario = (id) => {
 
                 const data_DELETE = {
                         "_id": id,
-                        "Nombres_y_Apellidos": Nombres_y_Apellidos
+                        "nombres_y_apellidos": nombres_y_apellidos
                 }
 
                 const URL = url_base + "propietario"
@@ -50,37 +50,18 @@ export const ItemPropietario = ({ pro, listafincas, propietariosPorFinca, setPro
 
                 <tr>
                         <th scope="row">{contador + 1}</th>
-                        <td>{Nombres_y_Apellidos}</td>
-
-                        {Departamentos.map((departamento, id) => (
-                                <Departamento key={id} departamento={departamento} />
-
-                        ))}
-
-                        {
-                                Estacionamientos.map((estacionamiento, id) => (
-                                        <td key={id}>{estacionamiento.Numero_Estacionamiento}</td>
-                                ))
-                        }
-
-                        <td>{Numero_deposito}</td>
-                        
-                        {Departamentos.map((departamento, id) => (
-                                <Participacion key={id} departamento={departamento} />
-
-                        ))}
-
-
-
-
+                        <td>{nombres_y_apellidos}</td>
+                        <td>{numero_departamento}</td>
+                        <td>{numero_estacionamiento}</td>
+                        <td>{numero_deposito}</td>
                         <td className="d-flex">
 
                                 <Link
-                                        to={`/Videofincas/propietarios/${_id}`}
+                                        to={`/Videofincas/propietarios/${id}`}
                                         state={{ pro, listafincas }}>
                                         <button type="button" className="btn btn-warning mr-3">Editar</button>
                                 </Link>
-                                <button type="button" className="btn btn-danger" onClick={() => eliminarPropietario(_id)}>Eliminar</button>
+                                <button type="button" className="btn btn-danger" onClick={() => eliminarPropietario(id)}>Eliminar</button>
 
                         </td>
 
